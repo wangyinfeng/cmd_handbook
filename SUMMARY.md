@@ -1,4 +1,4 @@
-* [Software manager]
+* [Software manager]()
     - [yum](yum.md)
     - [apt-get](apt-get.md)
 * [find](find.md)
