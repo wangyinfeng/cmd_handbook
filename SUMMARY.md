@@ -3,3 +3,4 @@
     - [apt-get](apt-get.md)
 * [find](find.md)
 * [system](system.md)
+* [bash](bash.md)
