@@ -4,5 +4,5 @@
 * [find](find.md)
 * [system](system.md)
 * [bash](bash.md)
-* [database](db_cmd.md)
+* [ovs](ovs.md)
 * [gitbook](gitbook.md)
