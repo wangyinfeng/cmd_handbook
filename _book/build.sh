@@ -8,3 +8,21 @@ gitbook init
 #gitbook serve ./book_dir
 
 gitbook build
+# specify the gitbook output dir
+#gitbook build --output=/tmp/gitbook
+
+# output pdf file
+# npm install gitbook-pdf -g failed
+#gitbook pdf ./book_dir
+
+# publish to gitpage
+# http://wanqingwong.com/gitbook-zh/publish/gitpages.html
+
+cp -r _book ../out_cmd_handbook/
+
+cd ../out_cmd_handbook
+git pull
+git add .
+git commit -m "new publish"
+git push
+

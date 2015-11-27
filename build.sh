@@ -26,3 +26,8 @@ git add .
 git commit -m "new publish"
 git push
 
+git pull
+git add .
+git commit -m "update"
+git push
+
