@@ -51,7 +51,7 @@
         data-chapter-title="openstack usage"
         data-filepath="openstackusage_md.md"
         data-basepath="."
-        data-revision="Mon Nov 30 2015 16:34:37 GMT+0800 (中国标准时间)"
+        data-revision="Mon Nov 30 2015 17:00:19 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -248,6 +248,27 @@
                     
                         <h1 id="openstack-usage">openstack usage</h1>
 <p>Collect the usage tips about OpenStack.</p>
+<h2 id="keystone">keystone</h2>
+<h3 id="invalid-openstack-identity-credentials">Invalid OpenStack Identity credentials</h3>
+<pre><code>[root@dog ~]# service keystone status
+keystone: unrecognized service
+</code></pre><p>-&gt; service openstack-keystone start</p>
+<pre><code>[root@dog ~]# keystone tenant-create --name admin --description &quot;Admin Tenant&quot;
+Invalid OpenStack Identity credentials.
+The token use the one configured in keystone.conf
+export OS_SERVICE_TOKEN=6c07f4b6d16c525d3493
+</code></pre><p>-&gt; cat /etc/keystone/keystone.conf | grep admin_token</p>
+<h2 id="mq">MQ</h2>
+<h3 id="amqp-errno-113-ehostunreach">AMQP: [Errno 113] EHOSTUNREACH</h3>
+<pre><code>2015-09-23 19:47:47.478 28758 INFO oslo.messaging._drivers.impl_rabbit [req-5bc81fae-e595-4fb3-b26d-1acd03af6275 ] Connecting to AMQP server on 10.27.248.252:5672
+2015-09-23 19:47:47.491 28758 ERROR oslo.messaging._drivers.impl_rabbit [req-5bc81fae-e595-4fb3-b26d-1acd03af6275 ] AMQP server on 10.27.248.252:5672 is unreachable: [Errno 113] EHOSTUNREACH. Trying again in 23 seconds.
+</code></pre><h4 id="solution">solution</h4>
+<p>Firewall issue! <a href="http://www.bubuko.com/infodetail-917191.html" target="_blank">http://www.bubuko.com/infodetail-917191.html</a></p>
+<pre><code>[root@dog ~]# iptables -I INPUT -p tcp --dport 5672 -j ACCEPT
+[root@dog ~]# service iptables save
+iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+[root@dog ~]# service iptables restart
+</code></pre><p>Happened again! The MQ server already configured the iptables&#x2026; Restart the iptables server solve the issue!</p>
 <h2 id="glance">glance</h2>
 <h3 id="httpinternalservererror-http-500">HTTPInternalServerError (HTTP 500)</h3>
 <pre><code>[root@dog ~]# glance image-create --name &quot;cirros-0.3.4-x86_64&quot; --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
@@ -300,7 +321,56 @@ yum update python-crypto
 </code></pre><h4 id="solution">solution</h4>
 <pre><code>Comment out the default_store=file under [glance_store], enable it at [default]
 Enable filesystem_store_datadir under [glance_store]
-</code></pre>
+</code></pre><h2 id="horizon">Horizon</h2>
+<h4 id="an-error-occurred-authenticating-please-try-again-later">An error occurred authenticating. Please try again later</h4>
+<p>When login the dashboard, error happened.
+<a href="https://ask.openstack.org/en/question/4567/cant-login-to-dashboard-an-error-occurred-authenticating-please-try-again-later/" target="_blank">https://ask.openstack.org/en/question/4567/cant-login-to-dashboard-an-error-occurred-authenticating-please-try-again-later/</a></p>
+<p>Disable the selinux or</p>
+<pre><code>setsebool -P httpd_can_network_connect 1
+</code></pre><h3 id="permission-denied-tmpsecretkeystore">Permission denied: &apos;/tmp/.secret_key_store</h3>
+<pre><code>[Wed Sep 23 04:48:36 2015] [error] [client 10.24.74.187]   File &quot;/usr/lib/python2.6/site-packages/horizon/utils/secret_key.py&quot;, line 56, in generate_or_read_from_file
+[Wed Sep 23 04:48:36 2015] [error] [client 10.24.74.187]     with open(key_file, &apos;w&apos;) as f:
+[Wed Sep 23 04:48:36 2015] [error] [client 10.24.74.187] IOError: [Errno 13] Permission denied: &apos;/tmp/.secret_key_store&#x2018;
+</code></pre><p>Edit the file: /etc/openstack-dashboard/local_settings. Set the SECRET_KEY with string instead reading from file.</p>
+<h3 id="cindervolum-doesnot-exist">cinder_volum doesnot exist</h3>
+<p>Open dashboard to create instance, some error show about cinder_volum doesnot exist, check the horizon error.log</p>
+<pre><code>[Wed Sep 23 12:19:59 2015] [error]     raise exceptions.ConnectionError(msg)
+[Wed Sep 23 12:19:59 2015] [error] ConnectionError: Unable to establish connection: (&apos;Connection aborted.&apos;, error(111, &apos;Connection refused&apos;))
+</code></pre><p>If not use cinder, delete it from keystone. </p>
+<pre><code>Keystone service-delete xxxxx
+Keystone endpoint-delete xxxx
+Service openstack-keystone restart
+</code></pre><pre><code>[root@dog nova]# tail  compute.log    
+2015-09-20 21:31:55.282 24249 AUDIT nova.compute.resource_tracker [-] Auditing locally available compute resources
+2015-09-20 21:31:55.368 24249 ERROR nova.virt.libvirt.driver [-] This is no cinder_volume_group vg        &#xF0E8; No harm by now
+</code></pre><h3 id="internalservererror-an-unexpected-error-prevented-the-server-from-fulfilling-your-request">InternalServerError: An unexpected error prevented the server from fulfilling your request</h3>
+<p>Check the keystone.log</p>
+<pre><code>Too many connections
+</code></pre><h4 id="solution">solution</h4>
+<p>Increase the max_connections in /etc/my.conf</p>
+<pre><code>max_connections = 1000
+</code></pre><h3 id="dashboard-only-accessable-on-localhost">Dashboard only accessable on localhost</h3>
+<pre><code>[root@dog ~]# service httpd restart
+Stopping httpd:                                            [  OK  ]
+Starting httpd: httpd: apr_sockaddr_info_get() failed for dog.cat
+httpd: Could not reliably determine the server&apos;s fully qualified domain name, using 127.0.0.1 for ServerName
+                                                           [  OK  ]
+</code></pre><h4 id="solution">solution</h4>
+<p>iptables issue, copy the /etc/syconfig/iptables from other server and restart iptables service</p>
+<h3 id="timed-out-waiting-for-a-reply-to-message-id">Timed out waiting for a reply to message ID</h3>
+<pre><code>2015-09-23 19:55:56.170 28758 ERROR nova.openstack.common.periodic_task [-] Error during ComputeManager._heal_instance_info_cache: Timed out waiting for a reply to message ID 0056214818ef4bcb9a18fc1788ab7241
+</code></pre><p>Also iptables issue</p>
+<pre><code>Service iptables stop
+</code></pre><p>at compute node</p>
+<h3 id="oslo-error">oslo ERROR</h3>
+<pre><code>2015-09-24 07:35:41.713 2060 ERROR oslo.messaging._drivers.common [-] Returning exception _oslo_messaging_localcontext_569859d7f2df40daa10c3a3786287788 to caller
+2015-09-24 07:35:41.713 2060 ERROR oslo.messaging._drivers.common [-] [&apos;Traceback (most recent call last):\n&apos;, &apos;  File &quot;/usr/lib/python2.6/site-packages/oslo/messaging/rpc/dispatcher.py&quot;, line 134, in _dispatch_and_reply\n    incoming.message))\n&apos;, &apos;  File &quot;/usr/lib/python2.6/site-packages/oslo/messaging/rpc/dispatcher.py&quot;, line 179, in _dispatch\n    localcontext.clear_local_context()\n&apos;, &apos;  File &quot;/usr/lib/python2.6/site-packages/oslo/messaging/localcontext.py&quot;, line 55, in clear_local_context\n    delattr(_STORE, _KEY)\n&apos;, &apos;AttributeError: _oslo_messaging_localcontext_569859d7f2df40daa10c3a3786287788\n&apos;]
+</code></pre><p><a href="http://osdir.com/ml/openstack-dev/2015-05/msg00435.html" target="_blank">http://osdir.com/ml/openstack-dev/2015-05/msg00435.html</a></p>
+<p>must do the monkey patching before anything else even loading another module that eventlet. &#x2013; I change the monkey_path(os=False, thread=False) for debug purpose.</p>
+<h3 id="horizon-cannot-access-the-instances-console">Horizon cannot access the instance&#x2019;s console</h3>
+<p><a href="http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html" target="_blank">http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html</a></p>
+<p>Configure the vnc</p>
+
                     
                     </section>
                 
