@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>system | The handbook to collect commands, usages and thoughts</title>
+        <title>openstack usage | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,8 @@
         
     
     
-    <link rel="next" href="./bash.html" />
     
-    
-    <link rel="prev" href="./find.html" />
+    <link rel="prev" href="./gitbook.html" />
     
 
         
@@ -49,9 +47,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="system"
-        data-filepath="system.md"
+        data-level="7"
+        data-chapter-title="openstack usage"
+        data-filepath="openstackusage_md.md"
         data-basepath="."
         data-revision="Mon Nov 30 2015 16:34:37 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -140,7 +138,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="system.html">
+        <li class="chapter " data-level="3" data-path="system.html">
             
                 
                     <a href="./system.html">
@@ -200,7 +198,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7" data-path="openstackusage_md.html">
+        <li class="chapter active" data-level="7" data-path="openstackusage_md.html">
             
                 
                     <a href="./openstackusage_md.html">
@@ -248,8 +246,61 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="system">system</h1>
+                        <h1 id="openstack-usage">openstack usage</h1>
+<p>Collect the usage tips about OpenStack.</p>
+<h2 id="glance">glance</h2>
+<h3 id="httpinternalservererror-http-500">HTTPInternalServerError (HTTP 500)</h3>
+<pre><code>[root@dog ~]# glance image-create --name &quot;cirros-0.3.4-x86_64&quot; --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
+[=============================&gt;] 100%
+HTTPInternalServerError (HTTP 500)
+</code></pre><h4 id="solution">solution</h4>
+<p>The mysql code should set as UTF8. 
+Drop and re-create the glance db fix the issue.</p>
+<pre><code>openstack-db --drop --service glance
+openstack-db --init --service glance --password dog
+</code></pre><h3 id="openstackglanceapi-dead-but-pid-file-exists">openstack-glance-api dead but pid file exists</h3>
+<pre><code>2015-09-17 07:29:05.107 3534 TRACE glance   File &quot;/usr/lib/python2.6/site-packages/stevedore/driver.py&quot;, line 50, in _default_on_load_failure
+2015-09-17 07:29:05.107 3534 TRACE glance     raise err
+2015-09-17 07:29:05.107 3534 TRACE glance ImportError: No module named serialization
+</code></pre><h4 id="solution">solution</h4>
+<pre><code>[root@dog ~]# yum install python-oslo-serialization
+</code></pre><h3 id="glancemanage-dbsync">glance-manage db_sync</h3>
+<pre><code>su -s /bin/sh -c &quot;glance-manage db_sync&quot; glance
+Traceback (most recent call last):
+  File &quot;/usr/bin/glance-manage&quot;, line 6, in &lt;module&gt;
+    from glance.cmd.manage import main
+  File &quot;/usr/lib/python2.6/site-packages/glance/cmd/manage.py&quot;, line 47, in &lt;module&gt;
+    from glance.db import migration as db_migration
+  File &quot;/usr/lib/python2.6/site-packages/glance/db/__init__.py&quot;, line 24, in &lt;module&gt;
+    from glance.common import crypt
+  File &quot;/usr/lib/python2.6/site-packages/glance/common/crypt.py&quot;, line 24, in &lt;module&gt;
+    from Crypto import Random
+ImportError: cannot import name Random
+</code></pre><h4 id="solution">solution</h4>
+<pre><code>Crypto.__version__ too low, the random include sinec 2.1
+[root@dog ~]# yum list python-crypto   
+Installed Packages
+python-crypto.x86_64                             2.0.1-22.el6                              @anaconda-CentOS-201311272149.x86_64/6.5
+Available Packages
+python-crypto.x86_64                             2.6.1-1.el6                               suning-juno-deps
+yum update python-crypto
+</code></pre><h3 id="glance-imagecreate-fail">glance image-create fail</h3>
+<pre><code>[root@dog ~]# glance image-create --name &quot;cirros-0.3.4-x86_64&quot; --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
+[=============================&gt;] 100%
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;410 Gone&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;h1&gt;410 Gone&lt;/h1&gt;
+  Error in store configuration. Adding images to store is disabled.&lt;br /&gt;&lt;br /&gt;
 
+ &lt;/body&gt;
+&lt;/html&gt; (HTTP N/A)
+</code></pre><h4 id="solution">solution</h4>
+<pre><code>Comment out the default_store=file under [glance_store], enable it at [default]
+Enable filesystem_store_datadir under [glance_store]
+</code></pre>
                     
                     </section>
                 
@@ -259,10 +310,8 @@
         </div>
 
         
-        <a href="./find.html" class="navigation navigation-prev " aria-label="Previous page: find"><i class="fa fa-angle-left"></i></a>
+        <a href="./gitbook.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: gitbook"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./bash.html" class="navigation navigation-next " aria-label="Next page: bash"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
