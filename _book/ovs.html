@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>ovs | The handbook to collect commands, usages and thoughts</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./gitbook.html" />
+    
+    
+    <link rel="prev" href="./bash.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5"
+        data-chapter-title="ovs"
+        data-filepath="ovs.md"
+        data-basepath="."
+        data-revision="Mon Nov 30 2015 17:00:19 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> Software manager</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="yum.html">
+            
+                
+                    <a href="./yum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        yum
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="apt-get.html">
+            
+                
+                    <a href="./apt-get.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        apt-get
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="find.html">
+            
+                
+                    <a href="./find.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        find
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="system.html">
+            
+                
+                    <a href="./system.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        system
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="bash.html">
+            
+                
+                    <a href="./bash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        bash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5" data-path="ovs.html">
+            
+                
+                    <a href="./ovs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        ovs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="gitbook.html">
+            
+                
+                    <a href="./gitbook.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        gitbook
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="openstackusage_md.html">
+            
+                
+                    <a href="./openstackusage_md.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        openstack usage
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >The handbook to collect commands, usages and thoughts</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="ovs-command-handbook">OVS command handbook</h1>
+<h2 id="database-command">Database command</h2>
+<pre><code>[root@dog ~]# ovsdb-client list-dbs
+Open_vSwitch
+</code></pre><pre><code>[root@dog ~]# ovsdb-client dump | grep table
+Bridge table
+Controller table
+Flow_Sample_Collector_Set table
+Flow_Table table
+IPFIX table
+Interface table
+Manager table
+Mirror table
+NetFlow table
+Open_vSwitch table
+Port table
+QoS table
+Queue table
+SSL table
+sFlow table
+</code></pre><pre><code>[root@dog ~]# ovsdb-client list-tables
+Table                    
+-------------------------
+Port                     
+Manager                  
+Bridge                   
+Interface                
+SSL                      
+IPFIX                    
+Open_vSwitch             
+Queue                    
+NetFlow                  
+Mirror                   
+QoS                      
+Controller               
+Flow_Table               
+sFlow                    
+Flow_Sample_Collector_Set
+</code></pre><pre><code>[root@dog ~]# ovsdb-client list-columns Port
+Column            Type                                                                                                 
+----------------- -----------------------------------------------------------------------------------------------------
+name              &quot;string&quot;                                                                                             
+statistics        {&quot;key&quot;:&quot;string&quot;,&quot;max&quot;:&quot;unlimited&quot;,&quot;min&quot;:0,&quot;value&quot;:&quot;integer&quot;}                                         
+vlan_mode         {&quot;key&quot;:{&quot;enum&quot;:[&quot;set&quot;,[&quot;access&quot;,&quot;native-tagged&quot;,&quot;native-untagged&quot;,&quot;trunk&quot;]],&quot;type&quot;:&quot;string&quot;},&quot;min&quot;:0}
+qos               {&quot;key&quot;:{&quot;refTable&quot;:&quot;QoS&quot;,&quot;type&quot;:&quot;uuid&quot;},&quot;min&quot;:0}                                                     
+_uuid             &quot;uuid&quot;                                                                                               
+trunks            {&quot;key&quot;:{&quot;maxInteger&quot;:4095,&quot;minInteger&quot;:0,&quot;type&quot;:&quot;integer&quot;},&quot;max&quot;:4096,&quot;min&quot;:0}                       
+mac               {&quot;key&quot;:&quot;string&quot;,&quot;min&quot;:0}                                                                             
+status            {&quot;key&quot;:&quot;string&quot;,&quot;max&quot;:&quot;unlimited&quot;,&quot;min&quot;:0,&quot;value&quot;:&quot;string&quot;}                                          
+interfaces        {&quot;key&quot;:{&quot;refTable&quot;:&quot;Interface&quot;,&quot;type&quot;:&quot;uuid&quot;},&quot;max&quot;:&quot;unlimited&quot;}                                     
+bond_active_slave {&quot;key&quot;:&quot;string&quot;,&quot;min&quot;:0}                                                                             
+bond_downdelay    &quot;integer&quot;                                                                                            
+_version          &quot;uuid&quot;                                                                                               
+bond_mode         {&quot;key&quot;:{&quot;enum&quot;:[&quot;set&quot;,[&quot;active-backup&quot;,&quot;balance-slb&quot;,&quot;balance-tcp&quot;]],&quot;type&quot;:&quot;string&quot;},&quot;min&quot;:0}       
+bond_updelay      &quot;integer&quot;                                                                                            
+external_ids      {&quot;key&quot;:&quot;string&quot;,&quot;max&quot;:&quot;unlimited&quot;,&quot;min&quot;:0,&quot;value&quot;:&quot;string&quot;}                                          
+other_config      {&quot;key&quot;:&quot;string&quot;,&quot;max&quot;:&quot;unlimited&quot;,&quot;min&quot;:0,&quot;value&quot;:&quot;string&quot;}                                          
+bond_fake_iface   &quot;boolean&quot;                                                                                            
+tag               {&quot;key&quot;:{&quot;maxInteger&quot;:4095,&quot;minInteger&quot;:0,&quot;type&quot;:&quot;integer&quot;},&quot;min&quot;:0}                                  
+fake_bridge       &quot;boolean&quot;                                                                                            
+lacp              {&quot;key&quot;:{&quot;enum&quot;:[&quot;set&quot;,[&quot;active&quot;,&quot;off&quot;,&quot;passive&quot;]],&quot;type&quot;:&quot;string&quot;},&quot;min&quot;:0}
+</code></pre><p>List specific columns and specific target:</p>
+<pre><code>[root@dog ~]# ovs-vsctl --columns=name,other_config,tag list port tapd4b00ffc-bb
+name                : &quot;tapd4b00ffc-bb&quot;
+other_config        : {segmentation_id=&quot;1500&quot;}
+tag                 : 3
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./bash.html" class="navigation navigation-prev " aria-label="Previous page: bash"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./gitbook.html" class="navigation navigation-next " aria-label="Next page: gitbook"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
