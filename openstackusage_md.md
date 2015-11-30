@@ -3,7 +3,6 @@ Collect the usage tips about OpenStack.
 
 ## glance
 ### HTTPInternalServerError (HTTP 500)
-#### issue
 ```
 [root@dog ~]# glance image-create --name "cirros-0.3.4-x86_64" --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
 [=============================>] 100%
@@ -18,7 +17,6 @@ openstack-db --init --service glance --password dog
 ```
 
 ### openstack-glance-api dead but pid file exists
-#### issue
 ```
 2015-09-17 07:29:05.107 3534 TRACE glance   File "/usr/lib/python2.6/site-packages/stevedore/driver.py", line 50, in _default_on_load_failure
 2015-09-17 07:29:05.107 3534 TRACE glance     raise err
@@ -31,7 +29,6 @@ openstack-db --init --service glance --password dog
 ```
 
 ### glance-manage db_sync 
-#### issue
 ```
 su -s /bin/sh -c "glance-manage db_sync" glance
 Traceback (most recent call last):
@@ -57,7 +54,6 @@ yum update python-crypto
 ```
 
 ### glance image-create fail
-#### issue
 ```
 [root@dog ~]# glance image-create --name "cirros-0.3.4-x86_64" --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
 [=============================>] 100%
