@@ -1,2 +1,1 @@
-# cmd_handbook
-The handbook to collect commands
+#The handbook to collect commands
