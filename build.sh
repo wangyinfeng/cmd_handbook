@@ -18,13 +18,14 @@ gitbook build
 # publish to gitpage
 # http://wanqingwong.com/gitbook-zh/publish/gitpages.html
 
+cp -r _book/*.* ../out_cmd_handbook/
+cp -r _book/gitbook ../out_cmd_handbook
+
+git rm -r _book/
 git pull
 git add .
 git commit -m "update"
 git push
-
-cp -r _book/*.* ../out_cmd_handbook/
-cp -r _book/gitbook ../out_cmd_handbook
 
 cd ../out_cmd_handbook
 git pull
