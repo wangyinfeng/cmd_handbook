@@ -23,7 +23,8 @@ git add .
 git commit -m "update"
 git push
 
-cp -r _book ../out_cmd_handbook/
+cp -r _book/*.* ../out_cmd_handbook/
+cp -r _book/gitbook ../out_cmd_handbook
 
 cd ../out_cmd_handbook
 git pull
