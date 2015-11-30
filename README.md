@@ -1,1 +1,1 @@
-#The handbook to collect commands
+#The handbook to collect commands, usages and thoughts
