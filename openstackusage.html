@@ -49,9 +49,9 @@
     <div class="book"
         data-level="7"
         data-chapter-title="openstack usage"
-        data-filepath="openstackusage_md.md"
+        data-filepath="openstackusage.md"
         data-basepath="."
-        data-revision="Mon Nov 30 2015 17:00:19 GMT+0800 (中国标准时间)"
+        data-revision="Tue Dec 01 2015 13:59:55 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -198,10 +198,10 @@
             
         </li>
     
-        <li class="chapter active" data-level="7" data-path="openstackusage_md.html">
+        <li class="chapter active" data-level="7" data-path="openstackusage.html">
             
                 
-                    <a href="./openstackusage_md.html">
+                    <a href="./openstackusage.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -247,7 +247,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="openstack-usage">openstack usage</h1>
-<p>Collect the usage tips about OpenStack.</p>
+<p>Collect the usage tips about OpenStack installing and running.</p>
 <h2 id="keystone">keystone</h2>
 <h3 id="invalid-openstack-identity-credentials">Invalid OpenStack Identity credentials</h3>
 <pre><code>[root@dog ~]# service keystone status
@@ -370,6 +370,48 @@ httpd: Could not reliably determine the server&apos;s fully qualified domain nam
 <h3 id="horizon-cannot-access-the-instances-console">Horizon cannot access the instance&#x2019;s console</h3>
 <p><a href="http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html" target="_blank">http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html</a></p>
 <p>Configure the vnc</p>
+<h2 id="neutron">neutron</h2>
+<h3 id="invalid-input-for-operation-physicalnetwork-physnet2-unknown-for-vlan-provider-network">Invalid input for operation: physical_network physnet2 unknown for VLAN provider network</h3>
+<h4 id="solution">solution</h4>
+<p>Do the configuration in the file plugin.ini</p>
+<pre><code>network_vlan_ranges =physnet2,default:10:4000
+</code></pre><p>Then</p>
+<pre><code>[root@dog neutron]# service neutron-server restart
+</code></pre><h3 id="not-support-multi-external-network-by-default">Not support multi external network by default</h3>
+<p>When Create router to interconnect two networks, error message raise </p>
+<pre><code>&#x201C;2015-08-26 14:24:36.100 28783 ERROR oslo_messaging._drivers.common [req-af94a551-fbcd-4077-aa86-ca26aa2be3ad ] [&apos;Traceback (most recent call last):\n&apos;, &apos;  &#x2026;in get_external_network_id\n    raise n_exc.TooManyExternalNetworks()\n&apos;, &apos;TooManyExternalNetworks: More than one external network exists\n&apos;]&#x201D;
+</code></pre><p>By default, L3 agent is not support multi external network. I create another network with flag external, so I have 2 networks with label &#x201C;external&#x201D;. </p>
+<h4 id="solution">solution</h4>
+<p>if wan to use more than one external network, follow the guide:
+<a href="http://blog.oddbit.com/2014/05/28/multiple-external-networks-wit/" target="_blank">http://blog.oddbit.com/2014/05/28/multiple-external-networks-wit/</a></p>
+<h3 id="attach-vm-to-external-network-directly">Attach VM to external network directly?</h3>
+<p>No that is not possible. External networks are only for uplinking routers that do NAT between private IPs and floating IPs (or the gateway IP).
+<a href="https://ask.openstack.org/en/question/3086/directly-connect-vm-to-external-network/" target="_blank">https://ask.openstack.org/en/question/3086/directly-connect-vm-to-external-network/</a></p>
+<h4 id="solution">solution</h4>
+<p>Using flat network:
+<a href="https://trickycloud.wordpress.com/2013/11/12/setting-up-a-flat-network-with-neutron/" target="_blank">https://trickycloud.wordpress.com/2013/11/12/setting-up-a-flat-network-with-neutron/</a></p>
+<h3 id="namesapce-not-delete-after-the-networkrouter-is-deleted">Namesapce not delete after the network/router is deleted</h3>
+<pre><code>[root@ovs images]# ip netns
+qrouter-72cb8203-67e4-4d9b-9bbf-614af6f29af4
+qrouter-21013404-bfba-4189-9f31-ca18e0765325
+qrouter-1adf4f50-8f25-4685-9af4-fda0f2309a31
+qdhcp-12756f46-a707-4f1b-8b5f-7fd6a71eb0f6
+qdhcp-71b07a6b-8eee-4e44-9818-017fe4159248
+qdhcp-48e03f60-2f3b-4b41-b3f8-85adf7a085f3
+qdhcp-0d39466a-6349-4e09-b90f-d1660285f76b
+qrouter-953b5272-c8b1-4c7e-84d0-99970ac115fa
+qdhcp-f2a951b2-b0e2-4a1c-ab58-aa5c7a57d425
+qdhcp-8cb97be7-eb0c-4b5a-b65b-472a1e61a564
+</code></pre><h4 id="solution">solution</h4>
+<p>configure the folowing parameter in the configure file:</p>
+<pre><code>router_delete_namespaces
+dhcp_delete_namespaces
+</code></pre><p><a href="https://bugs.launchpad.net/neutron/+bug/1052535" target="_blank">https://bugs.launchpad.net/neutron/+bug/1052535</a></p>
+<h3 id="not-able-to-allocate-the-floating-ip">Not able to allocate the floating IP.</h3>
+<pre><code>Error: The server has either erred or is incapable of performing the requested operation. (HTTP 500) (Request-ID: req-cb1e2a3f-160a-4786-80b8-e49a1ca373c1)
+</code></pre><h4 id="solution">solution</h4>
+<p>Configure the default_floating_pool=public &lt;- the external network</p>
+<p><a href="https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/" target="_blank">https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/</a></p>
 
                     
                     </section>
