@@ -1,5 +1,5 @@
 # openstack usage
-Collect the usage tips about OpenStack.
+Collect the usage tips about OpenStack installing and running.
 
 ## keystone
 ### Invalid OpenStack Identity credentials
