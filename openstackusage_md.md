@@ -191,5 +191,64 @@ http://docs.openstack.org/havana/config-reference/content/vnc-configuration-opti
 
 Configure the vnc
 
+## neutron
+### Invalid input for operation: physical_network physnet2 unknown for VLAN provider network
+#### solution
+Do the configuration in the file plugin.ini
+```
+network_vlan_ranges =physnet2,default:10:4000
+```
+Then
+```
+[root@dog neutron]# service neutron-server restart
+```
 
+### Not support multi external network by default
+When Create router to interconnect two networks, error message raise 
+```
+“2015-08-26 14:24:36.100 28783 ERROR oslo_messaging._drivers.common [req-af94a551-fbcd-4077-aa86-ca26aa2be3ad ] ['Traceback (most recent call last):\n', '  …in get_external_network_id\n    raise n_exc.TooManyExternalNetworks()\n', 'TooManyExternalNetworks: More than one external network exists\n']”
+```
+By default, L3 agent is not support multi external network. I create another network with flag external, so I have 2 networks with label “external”. 
+#### solution
+if wan to use more than one external network, follow the guide:
+http://blog.oddbit.com/2014/05/28/multiple-external-networks-wit/
+
+### Attach VM to external network directly?
+No that is not possible. External networks are only for uplinking routers that do NAT between private IPs and floating IPs (or the gateway IP).
+https://ask.openstack.org/en/question/3086/directly-connect-vm-to-external-network/
+#### solution
+Using flat network:
+https://trickycloud.wordpress.com/2013/11/12/setting-up-a-flat-network-with-neutron/
+
+
+### Namesapce not delete after the network/router is deleted
+```
+[root@ovs images]# ip netns
+qrouter-72cb8203-67e4-4d9b-9bbf-614af6f29af4
+qrouter-21013404-bfba-4189-9f31-ca18e0765325
+qrouter-1adf4f50-8f25-4685-9af4-fda0f2309a31
+qdhcp-12756f46-a707-4f1b-8b5f-7fd6a71eb0f6
+qdhcp-71b07a6b-8eee-4e44-9818-017fe4159248
+qdhcp-48e03f60-2f3b-4b41-b3f8-85adf7a085f3
+qdhcp-0d39466a-6349-4e09-b90f-d1660285f76b
+qrouter-953b5272-c8b1-4c7e-84d0-99970ac115fa
+qdhcp-f2a951b2-b0e2-4a1c-ab58-aa5c7a57d425
+qdhcp-8cb97be7-eb0c-4b5a-b65b-472a1e61a564
+```
+#### solution
+configure the folowing parameter in the configure file:
+```
+router_delete_namespaces
+dhcp_delete_namespaces
+```
+https://bugs.launchpad.net/neutron/+bug/1052535
+
+### Not able to allocate the floating IP.
+```
+Error: The server has either erred or is incapable of performing the requested operation. (HTTP 500) (Request-ID: req-cb1e2a3f-160a-4786-80b8-e49a1ca373c1) 
+```
+#### solution
+Configure the default_floating_pool=public <- the external network
+
+https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/
 
