@@ -1,8 +1,15 @@
 OVS command
 =========================
-#port
+# port
+## bond port
+http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/
+```
+ovs-vsctl add-bond ovsbr1 bond0 eth1 eth3 lacp=active
+ovs-appctl bond/show <bond name>
+ovs-appctl lacp/show <bond name>
+```
 
-#Database
+# Database
 
 ```
 [root@dog ~]# ovsdb-client list-dbs
