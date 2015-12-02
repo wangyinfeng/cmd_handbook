@@ -69,6 +69,10 @@ Packets are being sent to userspace faster than they can be processed. This is u
 
 The "masks" row displays the mega flow mask stats. This  row  is omitted  for datapath not implementing mega flow. "hit" displays the total number of masks visited for matching incoming packets. "total" displays number of masks in the datapath. "hit/pkt" displays the average number of masks visited per packet; the ratio between "hit" and total number of packets processed by the datapath".
 
+flow used:never  
+
+It means that a packet has never matched that flow in the datapath. The packet that generated the flow was handled by ovs-vswitchd, so it's not accounted for in the datapath flow table.
+
 
 # Database
 List database
