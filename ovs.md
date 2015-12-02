@@ -55,10 +55,11 @@ ovs-dpctl dump-flows|grep -E "udp|tcp"
 
 Check flow hit/missed/lost
 ```
-[root@kvmnode002049 ~]# ovs-dpctl show 
+[root@dog ~]# ovs-dpctl show 
 system@ovs-system:
-        lookups: hit:8437617318 missed:31511491491 lost:48260923
-        flows: 3084
+        lookups: hit:14198854105 missed:1242464087 lost:1114150373
+        flows: 1
+        masks: hit:17458094925 total:3 hit/pkt:1.13
 ```
 The  "lookups"  row  displays three stats related to flow lookup triggered by processing incoming packets in the datapath.  "hit" displays number of packets matches existing flows. "missed" displays the number of packets not matching any existing  flow  and require  user space processing.  "lost" displays number of packets destined for user space  process  but  subsequently  dropped before reaching userspace. The sum of "hit" and "miss" equals to the total number of packets datapath processed.
 
