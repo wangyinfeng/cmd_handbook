@@ -76,12 +76,12 @@ It means that a packet has never matched that flow in the datapath. The packet t
 
 
 # Database
-List database
+##List database
 ```
 [root@dog ~]# ovsdb-client list-dbs
 Open_vSwitch
 ```
-List tables
+##List tables
 ```
 [root@dog ~]# ovsdb-client dump | grep table
 Bridge table
@@ -148,7 +148,7 @@ fake_bridge       "boolean"
 lacp              {"key":{"enum":["set",["active","off","passive"]],"type":"string"},"min":0}                          
 ```
 
-List specific columns and specific target:
+##List specific columns and specific target:
 ```
 [root@dog ~]# ovs-vsctl --columns=name,other_config,tag list port tapd4b00ffc-bb
 name                : "tapd4b00ffc-bb"
@@ -159,7 +159,7 @@ tag                 : 3
 The schema:  modify it if want to add new tables `/usr/local/share/openvswitch/vswitch.ovsschema`  
 The db instance: `/usr/local/etc/openvswitch/conf.db`
 
-数据库操作:
+##数据库操作:
 ```
 ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
 ```
@@ -167,7 +167,8 @@ ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
 ovsdb-server与ovs-vswitchd通过 `/var/run/openvswitch/db.sock`通信。  
 ovs-vswitchd通过和ovsdb-server修改数据库，ovs-vsctl大部门命令都是对数据库的操作。
 
-远程控制ovsdb-server。设置manager 
+##远程控制ovsdb-server
+设置manager 
 ```
 ovs-vsctl set-manager ptcp:8881
 ```
