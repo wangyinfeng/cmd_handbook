@@ -1,8 +1,9 @@
-# openstack usage
+OpenStack usage
+=============================
 Collect the usage tips about OpenStack installing and running.
 
-## keystone
-### Invalid OpenStack Identity credentials
+# keystone
+## Invalid OpenStack Identity credentials
 ```
 [root@dog ~]# service keystone status
 keystone: unrecognized service
@@ -17,13 +18,13 @@ export OS_SERVICE_TOKEN=6c07f4b6d16c525d3493
 ```
 -> cat /etc/keystone/keystone.conf | grep admin_token
 
-## MQ
-### AMQP: [Errno 113] EHOSTUNREACH
+# MQ
+## AMQP: [Errno 113] EHOSTUNREACH
 ```
 2015-09-23 19:47:47.478 28758 INFO oslo.messaging._drivers.impl_rabbit [req-5bc81fae-e595-4fb3-b26d-1acd03af6275 ] Connecting to AMQP server on 10.27.248.252:5672
 2015-09-23 19:47:47.491 28758 ERROR oslo.messaging._drivers.impl_rabbit [req-5bc81fae-e595-4fb3-b26d-1acd03af6275 ] AMQP server on 10.27.248.252:5672 is unreachable: [Errno 113] EHOSTUNREACH. Trying again in 23 seconds.
 ```
-#### solution
+### solution
 Firewall issue! http://www.bubuko.com/infodetail-917191.html
 ```
 [root@dog ~]# iptables -I INPUT -p tcp --dport 5672 -j ACCEPT
@@ -34,14 +35,14 @@ iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
 Happened again! The MQ server already configured the iptables… Restart the iptables server solve the issue!
 
 
-## glance
-### HTTPInternalServerError (HTTP 500)
+# glance
+## HTTPInternalServerError (HTTP 500)
 ```
 [root@dog ~]# glance image-create --name "cirros-0.3.4-x86_64" --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
 [=============================>] 100%
 HTTPInternalServerError (HTTP 500)
 ```
-#### solution
+### solution
 The mysql code should set as UTF8. 
 Drop and re-create the glance db fix the issue.
 ```
@@ -49,19 +50,19 @@ openstack-db --drop --service glance
 openstack-db --init --service glance --password dog
 ```
 
-### openstack-glance-api dead but pid file exists
+## openstack-glance-api dead but pid file exists
 ```
 2015-09-17 07:29:05.107 3534 TRACE glance   File "/usr/lib/python2.6/site-packages/stevedore/driver.py", line 50, in _default_on_load_failure
 2015-09-17 07:29:05.107 3534 TRACE glance     raise err
 2015-09-17 07:29:05.107 3534 TRACE glance ImportError: No module named serialization
 ```
-#### solution
+### solution
 ```
 [root@dog ~]# yum install python-oslo-serialization
 
 ```
 
-### glance-manage db_sync 
+## glance-manage db_sync 
 ```
 su -s /bin/sh -c "glance-manage db_sync" glance
 Traceback (most recent call last):
@@ -75,7 +76,7 @@ Traceback (most recent call last):
     from Crypto import Random
 ImportError: cannot import name Random
 ```
-#### solution
+### solution
 ```
 Crypto.__version__ too low, the random include sinec 2.1
 [root@dog ~]# yum list python-crypto   
@@ -86,7 +87,7 @@ python-crypto.x86_64                             2.6.1-1.el6                    
 yum update python-crypto 
 ```
 
-### glance image-create fail
+## glance image-create fail
 ```
 [root@dog ~]# glance image-create --name "cirros-0.3.4-x86_64" --file cirros-0.3.4-x86_64-disk.img   --disk-format qcow2 --container-format bare --is-public True --progress
 [=============================>] 100%
@@ -101,14 +102,14 @@ yum update python-crypto
  </body>
 </html> (HTTP N/A)
 ```
-#### solution
+### solution
 ```
 Comment out the default_store=file under [glance_store], enable it at [default]
 Enable filesystem_store_datadir under [glance_store]
 ```
 
-## Horizon
-#### An error occurred authenticating. Please try again later
+# Horizon
+### An error occurred authenticating. Please try again later
 When login the dashboard, error happened.
 https://ask.openstack.org/en/question/4567/cant-login-to-dashboard-an-error-occurred-authenticating-please-try-again-later/
 
@@ -117,7 +118,7 @@ Disable the selinux or
 setsebool -P httpd_can_network_connect 1
 ```
 
-### Permission denied: '/tmp/.secret_key_store
+## Permission denied: '/tmp/.secret_key_store
 ```
 [Wed Sep 23 04:48:36 2015] [error] [client 10.24.74.187]   File "/usr/lib/python2.6/site-packages/horizon/utils/secret_key.py", line 56, in generate_or_read_from_file
 [Wed Sep 23 04:48:36 2015] [error] [client 10.24.74.187]     with open(key_file, 'w') as f:
@@ -126,7 +127,7 @@ setsebool -P httpd_can_network_connect 1
 Edit the file: /etc/openstack-dashboard/local_settings. Set the SECRET_KEY with string instead reading from file.
 
 
-### cinder_volum doesnot exist
+## cinder_volum doesnot exist
 Open dashboard to create instance, some error show about cinder_volum doesnot exist, check the horizon error.log
 ```
 [Wed Sep 23 12:19:59 2015] [error]     raise exceptions.ConnectionError(msg)
@@ -144,18 +145,18 @@ Service openstack-keystone restart
 2015-09-20 21:31:55.368 24249 ERROR nova.virt.libvirt.driver [-] This is no cinder_volume_group vg         No harm by now
 ```
 
-### InternalServerError: An unexpected error prevented the server from fulfilling your request
+## InternalServerError: An unexpected error prevented the server from fulfilling your request
 Check the keystone.log
 ```
 Too many connections
 ```
-#### solution
+### solution
 Increase the max_connections in /etc/my.conf
 ```
 max_connections = 1000
 ```
 
-### Dashboard only accessable on localhost
+## Dashboard only accessable on localhost
 ```
 [root@dog ~]# service httpd restart
 Stopping httpd:                                            [  OK  ]
@@ -163,10 +164,10 @@ Starting httpd: httpd: apr_sockaddr_info_get() failed for dog.cat
 httpd: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1 for ServerName
                                                            [  OK  ]
 ```
-#### solution
+### solution
 iptables issue, copy the /etc/syconfig/iptables from other server and restart iptables service
 
-### Timed out waiting for a reply to message ID
+## Timed out waiting for a reply to message ID
 ```
 2015-09-23 19:55:56.170 28758 ERROR nova.openstack.common.periodic_task [-] Error during ComputeManager._heal_instance_info_cache: Timed out waiting for a reply to message ID 0056214818ef4bcb9a18fc1788ab7241
 ```
@@ -177,7 +178,7 @@ Service iptables stop
 at compute node
 
 
-### oslo ERROR
+## oslo ERROR
 ```
 2015-09-24 07:35:41.713 2060 ERROR oslo.messaging._drivers.common [-] Returning exception _oslo_messaging_localcontext_569859d7f2df40daa10c3a3786287788 to caller
 2015-09-24 07:35:41.713 2060 ERROR oslo.messaging._drivers.common [-] ['Traceback (most recent call last):\n', '  File "/usr/lib/python2.6/site-packages/oslo/messaging/rpc/dispatcher.py", line 134, in _dispatch_and_reply\n    incoming.message))\n', '  File "/usr/lib/python2.6/site-packages/oslo/messaging/rpc/dispatcher.py", line 179, in _dispatch\n    localcontext.clear_local_context()\n', '  File "/usr/lib/python2.6/site-packages/oslo/messaging/localcontext.py", line 55, in clear_local_context\n    delattr(_STORE, _KEY)\n', 'AttributeError: _oslo_messaging_localcontext_569859d7f2df40daa10c3a3786287788\n']
@@ -186,14 +187,14 @@ http://osdir.com/ml/openstack-dev/2015-05/msg00435.html
 
 must do the monkey patching before anything else even loading another module that eventlet. – I change the monkey_path(os=False, thread=False) for debug purpose.
 
-### Horizon cannot access the instance’s console
+## Horizon cannot access the instance’s console
 http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html
 
 Configure the vnc
 
-## neutron
-### Invalid input for operation: physical_network physnet2 unknown for VLAN provider network
-#### solution
+# neutron
+## Invalid input for operation: physical_network physnet2 unknown for VLAN provider network
+### solution
 Do the configuration in the file plugin.ini
 ```
 network_vlan_ranges =physnet2,default:10:4000
@@ -203,25 +204,25 @@ Then
 [root@dog neutron]# service neutron-server restart
 ```
 
-### Not support multi external network by default
+## Not support multi external network by default
 When Create router to interconnect two networks, error message raise 
 ```
 “2015-08-26 14:24:36.100 28783 ERROR oslo_messaging._drivers.common [req-af94a551-fbcd-4077-aa86-ca26aa2be3ad ] ['Traceback (most recent call last):\n', '  …in get_external_network_id\n    raise n_exc.TooManyExternalNetworks()\n', 'TooManyExternalNetworks: More than one external network exists\n']”
 ```
 By default, L3 agent is not support multi external network. I create another network with flag external, so I have 2 networks with label “external”. 
-#### solution
+### solution
 if wan to use more than one external network, follow the guide:
 http://blog.oddbit.com/2014/05/28/multiple-external-networks-wit/
 
-### Attach VM to external network directly?
+## Attach VM to external network directly?
 No that is not possible. External networks are only for uplinking routers that do NAT between private IPs and floating IPs (or the gateway IP).
 https://ask.openstack.org/en/question/3086/directly-connect-vm-to-external-network/
-#### solution
+### solution
 Using flat network:
 https://trickycloud.wordpress.com/2013/11/12/setting-up-a-flat-network-with-neutron/
 
 
-### Namesapce not delete after the network/router is deleted
+## Namesapce not delete after the network/router is deleted
 ```
 [root@ovs images]# ip netns
 qrouter-72cb8203-67e4-4d9b-9bbf-614af6f29af4
@@ -235,7 +236,7 @@ qrouter-953b5272-c8b1-4c7e-84d0-99970ac115fa
 qdhcp-f2a951b2-b0e2-4a1c-ab58-aa5c7a57d425
 qdhcp-8cb97be7-eb0c-4b5a-b65b-472a1e61a564
 ```
-#### solution
+### solution
 configure the folowing parameter in the configure file:
 ```
 router_delete_namespaces
@@ -243,11 +244,11 @@ dhcp_delete_namespaces
 ```
 https://bugs.launchpad.net/neutron/+bug/1052535
 
-### Not able to allocate the floating IP.
+## Not able to allocate the floating IP.
 ```
 Error: The server has either erred or is incapable of performing the requested operation. (HTTP 500) (Request-ID: req-cb1e2a3f-160a-4786-80b8-e49a1ca373c1) 
 ```
-#### solution
+### solution
 Configure the default_floating_pool=public <- the external network
 
 https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/
