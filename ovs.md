@@ -15,12 +15,12 @@ ovs-appctl bond/show br-bond0
 
 
 # Database
-
+List database
 ```
 [root@dog ~]# ovsdb-client list-dbs
 Open_vSwitch
 ```
-
+List tables
 ```
 [root@dog ~]# ovsdb-client dump | grep table
 Bridge table
@@ -94,5 +94,20 @@ name                : "tapd4b00ffc-bb"
 other_config        : {segmentation_id="1500"}
 tag                 : 3
 ```
+
+The schema:  modify it if want to add new tables
+```
+/usr/local/share/openvswitch/vswitch.ovsschema
+```
+The db instance: 
+```
+/usr/local/etc/openvswitch/conf.db
+```
+
+数据库操作:
+```
+ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
+```
+
 
 
