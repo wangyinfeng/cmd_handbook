@@ -8,7 +8,10 @@ ovs-vsctl add-bond ovsbr1 bond0 eth1 eth3 lacp=active
 ovs-appctl bond/show <bond name>
 ovs-appctl lacp/show <bond name>
 ```
-
+Check bond
+```
+ovs-appctl bond/show br-bond0
+```
 # Database
 
 ```
