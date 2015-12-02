@@ -74,6 +74,10 @@ flow used:never
 
 It means that a packet has never matched that flow in the datapath. The packet that generated the flow was handled by ovs-vswitchd, so it's not accounted for in the datapath flow table.
 
+Prints a summary of configured datapaths, including statistics and a list of connected ports. The port  information includes the OpenFlow port number, datapath port number, and the type.
+```
+ovs-appctl dpif/show
+```
 
 # Database
 ##List database
