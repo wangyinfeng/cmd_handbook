@@ -67,6 +67,8 @@ More about the "lost"
 http://openvswitch.org/pipermail/dev/2014-April/039213.html
 Packets are being sent to userspace faster than they can be processed. This is usually because the packets have varying headers (e.g., a port scan) that cause misses in the exact-match flow cache in the kernel.
 
+The "masks" row displays the mega flow mask stats. This  row  is omitted  for datapath not implementing mega flow. "hit" displays the total number of masks visited for matching incoming packets. "total" displays number of masks in the datapath. "hit/pkt" displays the average number of masks visited per packet; the ratio between "hit" and total number of packets processed by the datapath".
+
 
 # Database
 List database
