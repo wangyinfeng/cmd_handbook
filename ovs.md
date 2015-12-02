@@ -43,6 +43,16 @@ system@ovs-system:
  dump duration : 2ms
 ```
 
+Enable/disable megaflows
+```
+ovs-appctl upcall/enable-megaflows
+ovs-appctl upcall/disable-megaflows
+```
+Check whether megaflows is enabled or not. The only way I know to check is by checking if the datapath flows include PORT parameters.
+```
+ovs-dpctl dump-flows|grep -E "udp|tcp"
+```
+
 # Database
 List database
 ```
