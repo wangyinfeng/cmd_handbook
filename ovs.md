@@ -62,7 +62,7 @@ system@ovs-system:
 ```
 The  "lookups"  row  displays three stats related to flow lookup triggered by processing incoming packets in the datapath.  "hit" displays number of packets matches existing flows. "missed" displays the number of packets not matching any existing  flow  and require  user space processing.  "lost" displays number of packets destined for user space  process  but  subsequently  dropped before reaching userspace. The sum of "hit" and "miss" equals to the total number of packets datapath processed.
 
-More about the "lost"
+More about the "lost"  
 http://openvswitch.org/pipermail/dev/2014-April/039213.html
 Packets are being sent to userspace faster than they can be processed. This is usually because the packets have varying headers (e.g., a port scan) that cause misses in the exact-match flow cache in the kernel.
 
