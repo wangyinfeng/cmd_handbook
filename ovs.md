@@ -13,6 +13,35 @@ Check bond port
 ovs-appctl bond/show br-bond0
 ```
 
+# Flow
+Show all/hide flows
+```
+ovs-appctl bridge/dump-flows br-int
+```
+
+Show particular userpsace bridge datapath flows
+```
+ovs-appctl dpif/dump-flows <br>
+```
+
+Show all userspace bridges datapath flows
+```
+ovs-dpctl dump-flows
+```
+Show the name of each configured datapath
+```
+ovs-appctl dpif/dump-dps
+system@br-bond1
+system@br-int
+```
+
+Check flow limit/status
+```
+ovs-appctl upcall/show
+system@ovs-system:
+ flows         : (current 2) (avg 164) (max 16622) (limit 200000)
+ dump duration : 2ms
+```
 
 # Database
 List database
@@ -108,6 +137,7 @@ The db instance:
 ```
 ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
 ```
+
 
 
 
