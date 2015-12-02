@@ -134,19 +134,28 @@ other_config        : {segmentation_id="1500"}
 tag                 : 3
 ```
 
-The schema:  modify it if want to add new tables
-```
-/usr/local/share/openvswitch/vswitch.ovsschema
-```
-The db instance: 
-```
-/usr/local/etc/openvswitch/conf.db
-```
+The schema:  modify it if want to add new tables `/usr/local/share/openvswitch/vswitch.ovsschema`
+The db instance: `/usr/local/etc/openvswitch/conf.db`
 
 数据库操作:
 ```
 ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
 ```
+
+ovsdb-server与ovs-vswitchd通过 `/var/run/openvswitch/db.sock`通信。
+ovs-vswitchd通过和ovsdb-server修改数据库，ovs-vsctl大部门命令都是对数据库的操作。
+
+远程控制ovsdb-server。设置manager 
+```
+ovs-vsctl set-manager ptcp:8881
+```
+
+在另一台server上,配置目标server的db
+```
+ovs-vsctl --db=tcp:16.158.165.153:8881
+```
+
+
 
 
 
