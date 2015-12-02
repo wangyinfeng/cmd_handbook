@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Tue Dec 01 2015 13:59:55 GMT+0800 (中国标准时间)"
+        data-revision="Wed Dec 02 2015 17:23:58 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -248,11 +248,59 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ovs-command-handbook">OVS command handbook</h1>
-<h2 id="database-command">Database command</h2>
+                        <h1 id="ovs-command">OVS command</h1>
+<h1 id="port">port</h1>
+<h2 id="bond-port">bond port</h2>
+<p><a href="http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/" target="_blank">http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/</a></p>
+<pre><code>ovs-vsctl add-bond ovsbr1 bond0 eth1 eth3 lacp=active
+ovs-appctl bond/show &lt;bond name&gt;
+ovs-appctl lacp/show &lt;bond name&gt;
+</code></pre><p>Check bond port</p>
+<pre><code>ovs-appctl bond/show br-bond0
+</code></pre><h1 id="flow">Flow</h1>
+<h2 id="show-flows">show flows</h2>
+<p>Show all/hide flows</p>
+<pre><code>ovs-appctl bridge/dump-flows br-int
+</code></pre><p>Show particular userpsace bridge datapath flows</p>
+<pre><code>ovs-appctl dpif/dump-flows &lt;br&gt;
+</code></pre><p>Show all userspace bridges datapath flows</p>
+<pre><code>ovs-dpctl dump-flows
+</code></pre><p>Show the name of each configured datapath</p>
+<pre><code>ovs-appctl dpif/dump-dps
+system@br-bond1
+system@br-int
+</code></pre><p>Check flow limit/status</p>
+<pre><code>ovs-appctl upcall/show
+system@ovs-system:
+ flows         : (current 2) (avg 164) (max 16622) (limit 200000)
+ dump duration : 2ms
+</code></pre><h2 id="megaflows">megaflows</h2>
+<p>Enable/disable megaflows</p>
+<pre><code>ovs-appctl upcall/enable-megaflows
+ovs-appctl upcall/disable-megaflows
+</code></pre><p>Check whether megaflows is enabled or not. The only way I know to check is by checking if the datapath flows include PORT parameters.</p>
+<pre><code>ovs-dpctl dump-flows|grep -E &quot;udp|tcp&quot;
+</code></pre><h2 id="flow-in-datapath">flow in datapath</h2>
+<p>Check flow hit/missed/lost</p>
+<pre><code>[root@dog ~]# ovs-dpctl show 
+system@ovs-system:
+        lookups: hit:14198854105 missed:1242464087 lost:1114150373
+        flows: 1
+        masks: hit:17458094925 total:3 hit/pkt:1.13
+</code></pre><p>The  &quot;lookups&quot;  row  displays three stats related to flow lookup triggered by processing incoming packets in the datapath.  &quot;hit&quot; displays number of packets matches existing flows. &quot;missed&quot; displays the number of packets not matching any existing  flow  and require  user space processing.  &quot;lost&quot; displays number of packets destined for user space  process  but  subsequently  dropped before reaching userspace. The sum of &quot;hit&quot; and &quot;miss&quot; equals to the total number of packets datapath processed.</p>
+<p>More about the &quot;lost&quot;<br><a href="http://openvswitch.org/pipermail/dev/2014-April/039213.html" target="_blank">http://openvswitch.org/pipermail/dev/2014-April/039213.html</a>
+Packets are being sent to userspace faster than they can be processed. This is usually because the packets have varying headers (e.g., a port scan) that cause misses in the exact-match flow cache in the kernel.</p>
+<p>The &quot;masks&quot; row displays the mega flow mask stats. This  row  is omitted  for datapath not implementing mega flow. &quot;hit&quot; displays the total number of masks visited for matching incoming packets. &quot;total&quot; displays number of masks in the datapath. &quot;hit/pkt&quot; displays the average number of masks visited per packet; the ratio between &quot;hit&quot; and total number of packets processed by the datapath&quot;.</p>
+<p>flow used:never  </p>
+<p>It means that a packet has never matched that flow in the datapath. The packet that generated the flow was handled by ovs-vswitchd, so it&apos;s not accounted for in the datapath flow table.</p>
+<p>Prints a summary of configured datapaths, including statistics and a list of connected ports. The port  information includes the OpenFlow port number, datapath port number, and the type.</p>
+<pre><code>ovs-appctl dpif/show
+</code></pre><h1 id="database">Database</h1>
+<h2 id="list-database">List database</h2>
 <pre><code>[root@dog ~]# ovsdb-client list-dbs
 Open_vSwitch
-</code></pre><pre><code>[root@dog ~]# ovsdb-client dump | grep table
+</code></pre><h2 id="list-tables">List tables</h2>
+<pre><code>[root@dog ~]# ovsdb-client dump | grep table
 Bridge table
 Controller table
 Flow_Sample_Collector_Set table
@@ -309,11 +357,20 @@ bond_fake_iface   &quot;boolean&quot;
 tag               {&quot;key&quot;:{&quot;maxInteger&quot;:4095,&quot;minInteger&quot;:0,&quot;type&quot;:&quot;integer&quot;},&quot;min&quot;:0}                                  
 fake_bridge       &quot;boolean&quot;                                                                                            
 lacp              {&quot;key&quot;:{&quot;enum&quot;:[&quot;set&quot;,[&quot;active&quot;,&quot;off&quot;,&quot;passive&quot;]],&quot;type&quot;:&quot;string&quot;},&quot;min&quot;:0}
-</code></pre><p>List specific columns and specific target:</p>
+</code></pre><h2 id="list-specific-columns-and-specific-target">List specific columns and specific target:</h2>
 <pre><code>[root@dog ~]# ovs-vsctl --columns=name,other_config,tag list port tapd4b00ffc-bb
 name                : &quot;tapd4b00ffc-bb&quot;
 other_config        : {segmentation_id=&quot;1500&quot;}
 tag                 : 3
+</code></pre><p>The schema:  modify it if want to add new tables <code>/usr/local/share/openvswitch/vswitch.ovsschema</code><br>The db instance: <code>/usr/local/etc/openvswitch/conf.db</code></p>
+<h2 id="&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;">&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;:</h2>
+<pre><code>ovs-vsctl list/set/get/add/remove/clear/destroy table record column [value]
+</code></pre><p>ovsdb-server&#x4E0E;ovs-vswitchd&#x901A;&#x8FC7; <code>/var/run/openvswitch/db.sock</code>&#x901A;&#x4FE1;&#x3002;<br>ovs-vswitchd&#x901A;&#x8FC7;&#x548C;ovsdb-server&#x4FEE;&#x6539;&#x6570;&#x636E;&#x5E93;&#xFF0C;ovs-vsctl&#x5927;&#x90E8;&#x95E8;&#x547D;&#x4EE4;&#x90FD;&#x662F;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<h2 id="&#x8FDC;&#x7A0B;&#x63A7;&#x5236;ovsdbserver">&#x8FDC;&#x7A0B;&#x63A7;&#x5236;ovsdb-server</h2>
+<p>&#x8BBE;&#x7F6E;manager </p>
+<pre><code>ovs-vsctl set-manager ptcp:8881
+</code></pre><p>&#x5728;&#x53E6;&#x4E00;&#x53F0;server&#x4E0A;,&#x914D;&#x7F6E;&#x76EE;&#x6807;server&#x7684;db</p>
+<pre><code>ovs-vsctl --db=tcp:16.158.165.153:8881
 </code></pre>
                     
                     </section>
