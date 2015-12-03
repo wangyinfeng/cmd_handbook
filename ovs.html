@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Wed Dec 02 2015 17:23:58 GMT+0800 (中国标准时间)"
+        data-revision="Thu Dec 03 2015 14:06:25 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -250,13 +250,76 @@
                     
                         <h1 id="ovs-command">OVS command</h1>
 <h1 id="port">port</h1>
-<h2 id="bond-port">bond port</h2>
+<h2 id="dump-port-statistics">dump port statistics</h2>
+<pre><code>[root@kvmnode002108 ~]# ovs-ofctl dump-ports br-bond1  
+OFPST_PORT reply (xid=0x2): 3 ports
+  port  8: rx pkts=173661128, bytes=26733568116, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2011912554, bytes=448454625257, drop=0, errs=0, coll=0
+  port LOCAL: rx pkts=6, bytes=468, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2030080686, bytes=334610413022, drop=9877323096, errs=0, coll=0
+  port  1: rx pkts=20991153020, bytes=3026825890957, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=1320548559, bytes=468321506901, drop=0, errs=0, coll=0
+</code></pre><p>or</p>
+<pre><code>[root@dog neutron]# ovs-vsctl get interface eth1 statistics
+{collisions=0, rx_bytes=14449413, rx_crc_err=0, rx_dropped=0, rx_errors=0, rx_frame_err=0, rx_over_err=0, rx_packets=57270, tx_bytes=601444, tx_dropped=0, tx_errors=0, tx_packets=9320}
+</code></pre><h2 id="checkchange-tx-queue">check/change tx queue</h2>
+<p>Check tx queue length</p>
+<pre><code>[root@fish ~]# ip link
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP qlen 1000
+    link/ether 6c:92:bf:07:14:99 brd ff:ff:ff:ff:ff:ff
+</code></pre><p>or</p>
+<pre><code>[root@fish ~]# cat /sys/class/net/qvbcbf85285-5d/tx_queue_len                       
+1000
+</code></pre><p>change tx queue length</p>
+<pre><code>[root@fish ~]# echo 1000 &gt; /sys/class/net/qvbcbf85285-5d/tx_queue_len 
+[root@fish ~]# ifconfig qvbcbf85285-5d                                
+qvbcbf85285-5d Link encap:Ethernet  HWaddr D2:87:EA:A7:7E:7F  
+          inet6 addr: fe80::d087:eaff:fea7:7e7f/64 Scope:Link
+          UP BROADCAST RUNNING PROMISC MULTICAST  MTU:1500  Metric:1
+          RX packets:6 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:468 (468.0 b)  TX bytes:678 (678.0 b)
+</code></pre><p>or</p>
+<pre><code>[root@fish ~]# ip link set txqueuelen 1000 dev qvbcbf85285-5d
+</code></pre><h2 id="bond-port">bond port</h2>
 <p><a href="http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/" target="_blank">http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/</a></p>
 <pre><code>ovs-vsctl add-bond ovsbr1 bond0 eth1 eth3 lacp=active
 ovs-appctl bond/show &lt;bond name&gt;
 ovs-appctl lacp/show &lt;bond name&gt;
 </code></pre><p>Check bond port</p>
 <pre><code>ovs-appctl bond/show br-bond0
+</code></pre><h2 id="patch-port">patch port</h2>
+<pre><code>ovs-vsctl add-port br-ex patch-int
+ovs-vsctl set interface patch-int type=patch
+ovs-vsctl set interface &lt;port name&gt; options:peer=&lt;peer name&gt;
+</code></pre><h2 id="vlan">vlan</h2>
+<pre><code>ovs-vsctl set port eth0 vlan_mode=native-untagged trunks=0,11,33,44,55,66,99
+</code></pre><p>native-untagged: accept both tagged and untagged packet  </p>
+<p>clean port trunk</p>
+<pre><code>ovs-vsctl clear port eth0 trunks
+ovs-vsctl set port eth0 trunks=[]
+</code></pre><h2 id="fdb">fdb</h2>
+<p>show fdb table</p>
+<pre><code>[root@dog ~]# ovs-appctl fdb/show br-eth1
+ port  VLAN  MAC                Age
+    4  1500  90:e2:ba:68:e1:d0  202
+    8  1100  fa:16:3e:00:5a:a0  146
+    8  1100  fa:16:3e:c8:7a:34  122
+    8  1100  fa:16:3e:8b:0c:2b   77
+    4  1100  90:e2:ba:68:e1:d0   61
+    8  1100  fa:16:3e:70:9c:27   11
+    8  1100  fa:16:3e:64:7f:91    1
+</code></pre><p>flush fdb table</p>
+<pre><code>[root@dog ~]# ovs-appctl fdb/flush br-eth1
+table successfully flushed
+</code></pre><h2 id="list-bridge">list bridge</h2>
+<pre><code>[root@kvmnode002108 ~]# ovs-vsctl list-br
+br-bond1
+br-ha
+br-int
 </code></pre><h1 id="flow">Flow</h1>
 <h2 id="show-flows">show flows</h2>
 <p>Show all/hide flows</p>
@@ -371,6 +434,12 @@ tag                 : 3
 <pre><code>ovs-vsctl set-manager ptcp:8881
 </code></pre><p>&#x5728;&#x53E6;&#x4E00;&#x53F0;server&#x4E0A;,&#x914D;&#x7F6E;&#x76EE;&#x6807;server&#x7684;db</p>
 <pre><code>ovs-vsctl --db=tcp:16.158.165.153:8881
+</code></pre><h1 id="controller">Controller</h1>
+<h2 id="fail-mode">fail mode</h2>
+<p>OpenvSwitch &#x5728;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#x65F6;&#x5019;&#xFF08;fail mode&#xFF09;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E24;&#x79CD;fail&#x72B6;&#x6001;&#xFF0C;&#x4E00;&#x79CD;&#x662F;standalone&#xFF0C;&#x4E00;&#x79CD;&#x662F;secure&#x72B6;&#x6001;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;standalone&#xFF08;&#x6216;&#x8005;&#x672A;&#x8BBE;&#x7F6E;fail mode&#xFF09;mode&#xFF0C;&#x5728;&#x4E09;&#x6B21;&#x63A2;&#x6D4B;&#x63A7;&#x5236;&#x5668;&#x8FDE;&#x63A5;&#x4E0D;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x6B64;&#x65F6;ovs-vswitchd&#x5C06;&#x4F1A;&#x63A5;&#x7BA1;&#x8F6C;&#x53D1;&#x903B;&#x8F91;&#xFF08;&#x540E;&#x53F0;&#x4ECD;&#x7136;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x4E00;&#x65E6;&#x8FDE;&#x63A5;&#x5219;&#x9000;&#x51FA;fail&#x72B6;&#x6001;&#xFF09;&#xFF0C;OpenvSwitch&#x5C06;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;MAC-learning&#x7684;&#x4E8C;&#x5C42;&#x4EA4;&#x6362;&#x673A;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;secure mode&#xFF0C;&#x5219;ovs-vswitchd&#x5C06;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x65B0;&#x7684;&#x8F6C;&#x53D1;&#x6D41;&#x8868;&#xFF0C;OpenvSwitch&#x5C06;&#x6309;&#x7167;&#x539F;&#x5148;&#x6709;&#x7684;&#x6D41;&#x8868;&#x8F6C;&#x53D1;&#x3002;  &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x3002;</p>
+<pre><code>ovs-vsctl get-fail-mode &lt;bridge&gt;
+ovs-vsctl del-fail-mode &lt;bridge&gt;
+ovs-vsctl set-fail-mode &lt;bridge&gt; &lt;standalone|secure&gt;
 </code></pre>
                     
                     </section>

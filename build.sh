@@ -1,5 +1,10 @@
 #!/bin/sh
 
+git pull
+git add .
+git commit -m "update"
+git push
+
 # init the gitbook, create md files from SUMMARY.md
 #gitbook init
 
@@ -22,10 +27,6 @@ cp -r _book/*.* ../out_cmd_handbook/
 cp -r _book/gitbook ../out_cmd_handbook
 
 git rm -r _book/
-git pull
-git add .
-git commit -m "update"
-git push
 
 cd ../out_cmd_handbook
 git pull

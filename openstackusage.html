@@ -51,7 +51,7 @@
         data-chapter-title="openstack usage"
         data-filepath="openstackusage.md"
         data-basepath="."
-        data-revision="Wed Dec 02 2015 17:23:58 GMT+0800 (中国标准时间)"
+        data-revision="Thu Dec 03 2015 14:06:25 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -248,6 +248,71 @@
                     
                         <h1 id="openstack-usage">OpenStack usage</h1>
 <p>Collect the usage tips about OpenStack installing and running.</p>
+<h1 id="nova">nova</h1>
+<h2 id="no-vnc-access-from-horizon">No vnc access from horizon</h2>
+<h3 id="solution">solution</h3>
+<pre><code>service  openstack-nova-novncproxy start
+service openstack-nova-consoleauth start
+</code></pre><p>And maybe the issue about configuration<br><a href="https://ask.openstack.org/en/question/520/vnc-console-in-dashboard-fails-to-connect-ot-server-code-1006/" target="_blank">https://ask.openstack.org/en/question/520/vnc-console-in-dashboard-fails-to-connect-ot-server-code-1006/</a></p>
+<h2 id="cannot-ping-the-floating-ip-from-outside-or-from-the-vm-itself">cannot ping the floating ip from outside or from the VM itself</h2>
+<p>Not sure the following matters</p>
+<pre><code>[root@ovs etc]# sysctl net.ipv4.conf.default.rp_filter=0
+net.ipv4.conf.default.rp_filter = 0
+[root@ovs etc]# sysctl net.ipv4.conf.all.rp_filter=0
+net.ipv4.conf.all.rp_filter = 0
+</code></pre><h3 id="solution">solution</h3>
+<p>security group issue</p>
+<pre><code>[root@ovs ~(keystone_admin)]# nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+[root@ovs ~(keystone_admin)]# nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
+</code></pre><h2 id="cannot-find-suitable-emulator-for-x8664">Cannot find suitable emulator for x86_64</h2>
+<pre><code>[root@dog nova]# tail compute.log 
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup     if ret == -1: raise libvirtError (&apos;virConnectGetVersion() failed&apos;, conn=self)
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup libvirtError: internal error: Cannot find suitable emulator for x86_64
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup
+
+[root@dog nova]# qemu-system-x86_64 &#x2013;help
+libvirt does not start because libusb_get_port_numbers symbol is undefined
+</code></pre><h3 id="solution">solution</h3>
+<pre><code>yum install libusbx
+</code></pre><p>Should auto install the dependence!</p>
+<h2 id="error-connectionerror-connection-aborted-error111-connection-refused">ERROR (ConnectionError): (&apos;Connection aborted.&apos;, error(111, &apos;Connection refused&apos;))</h2>
+<pre><code>[root@dog ~]# nova service-list
+ERROR (ConnectionError): (&apos;Connection aborted.&apos;, error(111, &apos;Connection refused&apos;))
+
+[root@dog nova]# tail -f api.log 
+2015-09-23 04:31:14.736 17632 INFO nova.osapi_compute.wsgi.server [-] (17632) wsgi starting up on http://0.0.0.0:8774/
+2015-09-23 04:31:15.019 17558 ERROR nova.wsgi [-] Could not bind to 0.0.0.0:8775
+2015-09-23 04:31:15.020 17558 CRITICAL nova [-] error: [Errno 98] Address already in use
+</code></pre><h3 id="solution">solution</h3>
+<p>Check who use the port</p>
+<pre><code>[root@dog nova]# fuser 8775/tcp
+Add &#x2013;k to kill all the process using that port
+[root@dog nova]# fuser -k 8775/tcp
+</code></pre><p>Another way is  <code>tcpkill -9 port PORT_NUMBER</code> &#x2013; not verifed</p>
+<h2 id="migrate-instance">Migrate instance</h2>
+<pre><code>Error: Failed to launch instance &quot;1&quot;: Please try again later [Error: Unexpected error while running command. Command: ssh 10.27.248.3 mkdir -p /var/lib/nova/instances/3185f730-f52e-4e0a-8958-83dd1262936e Exit code: 255 Stdout: u&apos;&apos; Stderr: u&apos;Host key verification failed.\r\n&apos;].
+</code></pre><h3 id="solution">solution</h3>
+<p>Solve the passwordless login</p>
+<pre><code>[root@dog ~]# ssh-copy-id -i .ssh/id_rsa.pub 10.27.248.3
+</code></pre><p><a href="http://paste.openstack.org/show/220970/" target="_blank">http://paste.openstack.org/show/220970/</a><br><a href="https://bugzilla.redhat.com/show_bug.cgi?id=975014#c3" target="_blank">https://bugzilla.redhat.com/show_bug.cgi?id=975014#c3</a><br>Set nova&#x2019;s password, copy nova&#x2019;s ssh key to make password less login</p>
+<h2 id="change-the-location-of-instance-image">Change the location of instance image</h2>
+<p>Change the configure file <code>/etc/nova/nova.conf</code></p>
+<pre><code>state_path  = /home/instance
+</code></pre><p>The image will store in <code>/home/instance/instances</code>, So need to create the <code>instances</code> dir also</p>
+<h2 id="valueerror-io-operation-on-closed-file">&#x201C;ValueError: I/O operation on closed file&#x201D;</h2>
+<p><a href="https://bugs.launchpad.net/horizon/+bug/1451429" target="_blank">https://bugs.launchpad.net/horizon/+bug/1451429</a></p>
+<h2 id="no-valid-host-was-found-there-are-not-enough-hosts-available">&#x201C;No valid host was found. There are not enough hosts available.&#x201D;</h2>
+<p>Check the log: <code>Unexpected vif_type=binding_failed</code>  </p>
+<ul>
+<li>Maybe the VT not enabled in the bios</li>
+<li>Work fine for VXLAN network, not work for VLAN network</li>
+<li><a href="https://bugs.launchpad.net/neutron/+bug/1464554" target="_blank">https://bugs.launchpad.net/neutron/+bug/1464554</a></li>
+<li>Work fine after restart the network related services</li>
+<li>OVS related issues. Not exactly know how!<ul>
+<li>neutron-openvswitch-agent not start</li>
+</ul>
+</li>
+</ul>
 <h1 id="keystone">keystone</h1>
 <h2 id="invalid-openstack-identity-credentials">Invalid OpenStack Identity credentials</h2>
 <pre><code>[root@dog ~]# service keystone status
@@ -371,6 +436,19 @@ httpd: Could not reliably determine the server&apos;s fully qualified domain nam
 <p><a href="http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html" target="_blank">http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html</a></p>
 <p>Configure the vnc</p>
 <h1 id="neutron">neutron</h1>
+<h2 id="neutronserver-cannot-start">neutron-server cannot start</h2>
+<pre><code>[root@dog ~]# service neutron-server start 
+[root@dog ~]# service neutron-server status
+neutron is stopped
+</code></pre><h3 id="solution">solution</h3>
+<p>check the neutron-server process, make sure the configure <code>plugin.ini</code> location is correct.</p>
+<pre><code>neutron   2830  1.4  0.0 396372 60980 ?        S    02:55   0:01 /usr/bin/python /usr/bin/neutron-server --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugin.ini --log-file /var/log/neutron/server.log
+[root@dog neutron]# ln -s /etc/neutron/plugins/ml2/ml2_conf.ini plugin.ini
+</code></pre><h2 id="unable-to-establish-connection-to-http10272482529696v20agentsjson">Unable to establish connection to <a href="http://10.27.248.252:9696/v2.0/agents.json" target="_blank">http://10.27.248.252:9696/v2.0/agents.json</a></h2>
+<pre><code>[root@dog ~]# neutron agent-list
+Unable to establish connection to http://10.27.248.252:9696/v2.0/agents.json
+</code></pre><h3 id="solution">solution</h3>
+<p>Make sure keystone is running</p>
 <h2 id="invalid-input-for-operation-physicalnetwork-physnet2-unknown-for-vlan-provider-network">Invalid input for operation: physical_network physnet2 unknown for VLAN provider network</h2>
 <h3 id="solution">solution</h3>
 <p>Do the configuration in the file plugin.ini</p>
