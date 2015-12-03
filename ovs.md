@@ -3,7 +3,13 @@ OVS command
 # port
 ## check/change tx queue
 Check tx queue length
-
+```
+[root@fish ~]# ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP qlen 1000
+    link/ether 6c:92:bf:07:14:99 brd ff:ff:ff:ff:ff:ff
+```
 
 change tx queue length
 ```
