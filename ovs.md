@@ -46,6 +46,26 @@ Check bond port
 ovs-appctl bond/show br-bond0
 ```
 
+## fdb
+show fdb table
+```
+[root@dog ~]# ovs-appctl fdb/show br-eth1
+ port  VLAN  MAC                Age
+    4  1500  90:e2:ba:68:e1:d0  202
+    8  1100  fa:16:3e:00:5a:a0  146
+    8  1100  fa:16:3e:c8:7a:34  122
+    8  1100  fa:16:3e:8b:0c:2b   77
+    4  1100  90:e2:ba:68:e1:d0   61
+    8  1100  fa:16:3e:70:9c:27   11
+    8  1100  fa:16:3e:64:7f:91    1
+```    
+
+flush fdb table
+```
+[root@dog ~]# ovs-appctl fdb/flush
+table successfully flushed
+```
+
 ##list bridge
 ```
 [root@kvmnode002108 ~]# ovs-vsctl list-br
