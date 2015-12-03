@@ -2,6 +2,83 @@ OpenStack usage
 =============================
 Collect the usage tips about OpenStack installing and running.
 
+# nova
+## No vnc access from horizon
+### solution
+```
+service  openstack-nova-novncproxy start
+service openstack-nova-consoleauth start
+```
+And maybe the issue about configuration  
+https://ask.openstack.org/en/question/520/vnc-console-in-dashboard-fails-to-connect-ot-server-code-1006/
+
+## cannot ping the floating ip from outside or from the VM itself 
+Not sure the following matters
+```
+[root@ovs etc]# sysctl net.ipv4.conf.default.rp_filter=0
+net.ipv4.conf.default.rp_filter = 0
+[root@ovs etc]# sysctl net.ipv4.conf.all.rp_filter=0
+net.ipv4.conf.all.rp_filter = 0
+```
+
+### solution
+security group issue
+```
+[root@ovs ~(keystone_admin)]# nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+[root@ovs ~(keystone_admin)]# nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
+```
+
+## Cannot find suitable emulator for x86_64
+```
+[root@dog nova]# tail compute.log 
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup     if ret == -1: raise libvirtError ('virConnectGetVersion() failed', conn=self)
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup libvirtError: internal error: Cannot find suitable emulator for x86_64
+2015-09-18 06:13:24.759 384 TRACE nova.openstack.common.threadgroup
+
+[root@dog nova]# qemu-system-x86_64 –help
+libvirt does not start because libusb_get_port_numbers symbol is undefined
+```
+
+### solution
+```
+yum install libusbx
+```
+Should auto install the dependence!
+
+## ERROR (ConnectionError): ('Connection aborted.', error(111, 'Connection refused'))
+```
+[root@dog ~]# nova service-list
+ERROR (ConnectionError): ('Connection aborted.', error(111, 'Connection refused'))
+
+[root@dog nova]# tail -f api.log 
+2015-09-23 04:31:14.736 17632 INFO nova.osapi_compute.wsgi.server [-] (17632) wsgi starting up on http://0.0.0.0:8774/
+2015-09-23 04:31:15.019 17558 ERROR nova.wsgi [-] Could not bind to 0.0.0.0:8775
+2015-09-23 04:31:15.020 17558 CRITICAL nova [-] error: [Errno 98] Address already in use
+```
+
+### solution
+Check who use the port
+```
+[root@dog nova]# fuser 8775/tcp
+Add –k to kill all the process using that port
+[root@dog nova]# fuser -k 8775/tcp
+```
+Another way is  `tcpkill -9 port PORT_NUMBER` – not verifed
+
+## Migrate instance
+```
+Error: Failed to launch instance "1": Please try again later [Error: Unexpected error while running command. Command: ssh 10.27.248.3 mkdir -p /var/lib/nova/instances/3185f730-f52e-4e0a-8958-83dd1262936e Exit code: 255 Stdout: u'' Stderr: u'Host key verification failed.\r\n']. 
+```
+### solution
+Solve the passwordless login
+```
+[root@dog ~]# ssh-copy-id -i .ssh/id_rsa.pub 10.27.248.3
+```
+http://paste.openstack.org/show/220970/  
+https://bugzilla.redhat.com/show_bug.cgi?id=975014#c3  
+Set nova’s password, copy nova’s ssh key to make password less login
+
+
 # keystone
 ## Invalid OpenStack Identity credentials
 ```
