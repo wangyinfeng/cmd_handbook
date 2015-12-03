@@ -23,6 +23,11 @@ qvbcbf85285-5d Link encap:Ethernet  HWaddr D2:87:EA:A7:7E:7F
           collisions:0 txqueuelen:1000 
           RX bytes:468 (468.0 b)  TX bytes:678 (678.0 b)
 ```
+or
+```
+[root@fish ~]# ip link set txqueuelen 1000 dev qvbcbf85285-5d
+```
+
 
 ## bond port
 http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/
