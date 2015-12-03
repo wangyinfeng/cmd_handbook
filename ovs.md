@@ -81,7 +81,7 @@ show fdb table
 
 flush fdb table
 ```
-[root@dog ~]# ovs-appctl fdb/flush
+[root@dog ~]# ovs-appctl fdb/flush br-eth1
 table successfully flushed
 ```
 
