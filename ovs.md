@@ -46,6 +46,25 @@ Check bond port
 ovs-appctl bond/show br-bond0
 ```
 
+## patch port
+```
+ovs-vsctl add-port br-ex patch-int
+ovs-vsctl set interface patch-int type=patch
+ovs-vsctl set interface <port name> options:peer=<peer name>
+```
+
+## vlan
+```
+ovs-vsctl set port eth0 vlan_mode=native-untagged trunks=0,11,33,44,55,66,99
+```
+native-untagged: accept both tagged and untagged packet  
+
+clean port trunk
+```
+ovs-vsctl clear port eth0 trunks
+ovs-vsctl set port eth0 trunks=[]
+```
+
 ## fdb
 show fdb table
 ```
