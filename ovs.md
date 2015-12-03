@@ -13,6 +13,25 @@ Check bond port
 ovs-appctl bond/show br-bond0
 ```
 
+##list bridge
+```
+[root@kvmnode002108 ~]# ovs-vsctl list-br
+br-bond1
+br-ha
+br-int
+```
+##dump port statistics
+```
+[root@kvmnode002108 ~]# ovs-ofctl dump-ports br-bond1  
+OFPST_PORT reply (xid=0x2): 3 ports
+  port  8: rx pkts=173661128, bytes=26733568116, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2011912554, bytes=448454625257, drop=0, errs=0, coll=0
+  port LOCAL: rx pkts=6, bytes=468, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2030080686, bytes=334610413022, drop=9877323096, errs=0, coll=0
+  port  1: rx pkts=20991153020, bytes=3026825890957, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=1320548559, bytes=468321506901, drop=0, errs=0, coll=0
+```
+
 # Flow
 ##show flows
 Show all/hide flows
