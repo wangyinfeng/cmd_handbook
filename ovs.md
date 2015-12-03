@@ -1,6 +1,23 @@
 OVS command
 =========================
 # port
+## check/change tx queue
+Check tx queue length
+
+
+change tx queue length
+```
+[root@fish ~]# echo 1000 > /sys/class/net/qvbcbf85285-5d/tx_queue_len 
+[root@fish ~]# ifconfig qvbcbf85285-5d                                
+qvbcbf85285-5d Link encap:Ethernet  HWaddr D2:87:EA:A7:7E:7F  
+          inet6 addr: fe80::d087:eaff:fea7:7e7f/64 Scope:Link
+          UP BROADCAST RUNNING PROMISC MULTICAST  MTU:1500  Metric:1
+          RX packets:6 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:468 (468.0 b)  TX bytes:678 (678.0 b)
+```
+
 ## bond port
 http://blog.scottlowe.org/2012/10/19/link-aggregation-and-lacp-with-open-vswitch/
 ```
