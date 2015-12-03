@@ -10,6 +10,11 @@ Check tx queue length
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP qlen 1000
     link/ether 6c:92:bf:07:14:99 brd ff:ff:ff:ff:ff:ff
 ```
+or
+```
+[root@fish ~]# cat /sys/class/net/qvbcbf85285-5d/tx_queue_len                       
+1000
+```
 
 change tx queue length
 ```
