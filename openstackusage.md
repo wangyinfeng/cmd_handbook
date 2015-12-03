@@ -78,6 +78,24 @@ http://paste.openstack.org/show/220970/
 https://bugzilla.redhat.com/show_bug.cgi?id=975014#c3  
 Set nova’s password, copy nova’s ssh key to make password less login
 
+## Change the location of instance image
+Change the configure file `/etc/nova/nova.conf`
+```
+state_path  = /home/instance
+```
+The image will store in `/home/instance/instances`, So need to create the `instances` dir also
+
+## “ValueError: I/O operation on closed file”
+https://bugs.launchpad.net/horizon/+bug/1451429
+
+## “No valid host was found. There are not enough hosts available.”
+Check the log: `Unexpected vif_type=binding_failed`  
+ - Maybe the VT not enabled in the bios
+ - Work fine for VXLAN network, not work for VLAN network
+ - https://bugs.launchpad.net/neutron/+bug/1464554
+ - Work fine after restart the network related services
+ - OVS related issues. Not exactly know how!
+    - neutron-openvswitch-agent not start
 
 # keystone
 ## Invalid OpenStack Identity credentials
