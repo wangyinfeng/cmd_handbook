@@ -288,6 +288,29 @@ http://docs.openstack.org/havana/config-reference/content/vnc-configuration-opti
 Configure the vnc
 
 # neutron
+## neutron-server cannot start
+```
+[root@dog ~]# service neutron-server start 
+[root@dog ~]# service neutron-server status
+neutron is stopped
+```
+### solution
+check the neutron-server process, make sure the configure `plugin.ini` location is correct.
+```
+neutron   2830  1.4  0.0 396372 60980 ?        S    02:55   0:01 /usr/bin/python /usr/bin/neutron-server --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugin.ini --log-file /var/log/neutron/server.log
+[root@dog neutron]# ln -s /etc/neutron/plugins/ml2/ml2_conf.ini plugin.ini
+```
+
+## Unable to establish connection to http://10.27.248.252:9696/v2.0/agents.json
+```
+[root@dog ~]# neutron agent-list
+Unable to establish connection to http://10.27.248.252:9696/v2.0/agents.json
+```
+### solution
+Make sure keystone is running
+
+
+
 ## Invalid input for operation: physical_network physnet2 unknown for VLAN provider network
 ### solution
 Do the configuration in the file plugin.ini
