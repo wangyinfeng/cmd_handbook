@@ -64,10 +64,11 @@ Check bond port
 ovs-appctl bond/show br-bond0
 ```
 
-set the bond mode
+set the bond mode to [balance-slb](http://openvswitch.org/pipermail/dev/2011-July/010028.html)
 ```
 ovs-vsctl set port bond0 bond_mode=balance-slb
 ```
+> SLB bonding allows a limited form of load balancing without the remote switch's knowledge or cooperation.  The basics of SLB are simple.  SLB assigns each source MAC+VLAN pair to a link and transmits all packets  from that MAC+VLAN through that link.  Learning in the remote switch causes it to send packets to that MAC+VLAN through the same link.
 
 ## patch port
 ```
