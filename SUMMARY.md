@@ -9,5 +9,6 @@
 * [bash](bash.md)
 * [ovs](ovs.md)
 * [gitbook](gitbook.md)
+* [git](git.md)
 * [openstack usage](openstackusage.md)
 
