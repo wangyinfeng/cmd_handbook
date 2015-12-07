@@ -133,6 +133,7 @@ ovs-appctl dpif/dump-flows <br>
 Show all userspace bridges datapath flows
 ```
 ovs-dpctl dump-flows
+ovs-appctl dpif/show
 ```
 Show the name of each configured datapath
 ```
