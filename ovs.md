@@ -65,7 +65,9 @@ ovs-appctl bond/show br-bond0
 ```
 
 set the bond mode
+```
 ovs-vsctl set port bond0 bond_mode=balance-slb
+```
 
 ## patch port
 ```
