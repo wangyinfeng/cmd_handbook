@@ -1,7 +1,8 @@
 network
 ==============================
 
-# curl
+# FTP
+
 
 CURLE_LOGIN_DENIED (67)
 
