@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>find | The handbook to collect commands, usages and thoughts</title>
+        <title>network | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./system.html" />
+    <link rel="next" href="./bash.html" />
     
     
-    <link rel="prev" href="./apt-get.html" />
+    <link rel="prev" href="./system.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="find"
-        data-filepath="find.md"
+        data-level="4"
+        data-chapter-title="network"
+        data-filepath="network.md"
         data-basepath="."
         data-revision="Mon Dec 07 2015 12:13:17 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -125,7 +125,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="find.html">
+        <li class="chapter " data-level="2" data-path="find.html">
             
                 
                     <a href="./find.html">
@@ -155,7 +155,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4" data-path="network.html">
+        <li class="chapter active" data-level="4" data-path="network.html">
             
                 
                     <a href="./network.html">
@@ -278,7 +278,17 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="find">find</h1>
+                        <h1 id="network">network</h1>
+<h1 id="ftp">FTP</h1>
+<h2 id="curl">curl</h2>
+<p>curl also able to do file download/upload to FTP server</p>
+<pre><code>curl -T file -s ftp://ftpuser:ftppaasswd@192.168.1.101/pub
+</code></pre><h3 id="issues">issues</h3>
+<p>Not able to access the ftp server</p>
+<pre><code>CURLE_LOGIN_DENIED (67)
+The remote server denied curl to login
+</code></pre><p><a href="http://curl.haxx.se/mail/archive-2005-12/0008.html" target="_blank">http://curl.haxx.se/mail/archive-2005-12/0008.html</a><br>Maybe the password has special character, use <em>simple</em> password resolve the issue. Maybe issue about SSL/TSL?</p>
+<p>trace the detail process <code>curl --trace -n -v COMMAND</code></p>
 
                     
                     </section>
@@ -289,10 +299,10 @@
         </div>
 
         
-        <a href="./apt-get.html" class="navigation navigation-prev " aria-label="Previous page: apt-get"><i class="fa fa-angle-left"></i></a>
+        <a href="./system.html" class="navigation navigation-prev " aria-label="Previous page: system"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./system.html" class="navigation navigation-next " aria-label="Next page: system"><i class="fa fa-angle-right"></i></a>
+        <a href="./bash.html" class="navigation navigation-next " aria-label="Next page: bash"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
