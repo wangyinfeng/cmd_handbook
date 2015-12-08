@@ -38,7 +38,8 @@ static struct genl_ops dp_flow_genl_ops[] = {
 };
 ```
 # new flow
-
+ovs_flow_cmd_new -> ovs_flow_alloc -> ovs_match_init -> ovs_flow_mask_key -> ovs_nla_copy_actions ->  ovs_flow_cmd_alloc_info -> get_dp ovs_flow_tbl_lookup -> ovs_flow_tbl_insert -> ovs_flow_cmd_fill_info
+ 
 # set flow
 
 # delete flow
