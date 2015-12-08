@@ -1,5 +1,17 @@
 ovs flow
 ===========================
+OVS kernel module generic netlink types:
+datapath, vport, flow, packet
+Each type has 4 operations: NEW, DEL, GET, SET, different operation map to different handler
+```
+static struct genl_family *dp_genl_families[] = {
+	&dp_datapath_genl_family,
+	&dp_vport_genl_family,
+	&dp_flow_genl_family,
+	&dp_packet_genl_family,
+};
+```
+
 # new flow
 
 # set flow
