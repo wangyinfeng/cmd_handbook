@@ -5,12 +5,17 @@ OVS command
 ```
 ovs-vsctl --no-wait set Open_vSwitch . other_config:n-handler-threads=12
 ```
+Specifies the number of threads for software datapaths to use for handling new flows. The default the number of online CPU cores minus the number of revalidators.
+This configuration is per datapath.  If you have more than one software datapath (e.g. some system bridges and some Netdev bridges), then the total number of threads is n-handler-threads times the number of software datapaths.
 
 ```
 ovs-vsctl --no-wait set Open_vSwitch . other_config:n-revalidator-threads=8
 ```
-Specifies the number of threads for software datapaths to use for handling new flows. The default the number of online CPU cores minus the number of revalidators.
-This configuration is per datapath.  If you have more than one software datapath (e.g. some system bridges and some Netdev bridges), then the total number of threads is n-handler-threads times the number of software datapaths.
+Specifies the number of threads for software datapaths to use for revalidating flows in the datapath.  Typically, there is a direct  correlation between the number of revalidator threads, and the number of flows allowed in the datapath.  The default is the number of cpu cores divided by four plus one.  If n-handler-threads is set, the default  changes to the number of cpu cores minus the number of handler threads.
+
+This configuration is per datapath.  If you have more than one software datapath (e.g. some system bridges and some netdev bridges), then the total number of threads is n-handler-threads times the number of software datapaths.
+
+
 
 # port
 ##dump port statistics
