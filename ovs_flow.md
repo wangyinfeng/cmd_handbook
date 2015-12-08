@@ -61,3 +61,16 @@ flow_lookup
 
 ovs_dp_process_received_packet -> ovs_flow_key_extract -> ovs_dp_process_packet_with_key -> ovs_flow_tbl_lookup_stats -> flow_lookup -> masked_flow_lookup
 
+
+flow limit calculate
+```
+            if (duration > 2000) {
+                flow_limit /= duration / 1000;
+            } else if (duration > 1300) {
+                flow_limit = flow_limit * 3 / 4;
+            } else if (duration < 1000 && n_flows > 2000
+                       && flow_limit < n_flows * 1000 / duration) {
+                flow_limit += 1000;
+            }
+            flow_limit = MIN(ofproto_flow_limit, MAX(flow_limit, 1000));
+```
