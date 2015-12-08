@@ -63,6 +63,8 @@ ovs_dp_process_received_packet -> ovs_flow_key_extract -> ovs_dp_process_packet_
 
 
 ## flow limit calculate
+Flow limit is between 1000 to 200000.
+
 ```
             if (duration > 2000) {
                 flow_limit /= duration / 1000;
