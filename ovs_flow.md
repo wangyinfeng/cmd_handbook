@@ -2,7 +2,7 @@ ovs flow
 ===========================
 
 key_extract
-
+```
 struct sw_flow_key {
 	struct ovs_key_ipv4_tunnel tun_key;  /* Encapsulating tunnel key. */
 	struct {
@@ -54,7 +54,7 @@ struct sw_flow_key {
 		} ipv6;
 	};
 } __aligned(BITS_PER_LONG/8); /* Ensure that we can do comparisons as longs. */
-
+```
 
 
 flow_lookup
