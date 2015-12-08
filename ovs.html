@@ -37,7 +37,7 @@
         
     
     
-    <link rel="next" href="./gitbook.html" />
+    <link rel="next" href="./ovs_flow.html" />
     
     
     <link rel="prev" href="./bash.html" />
@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Mon Dec 07 2015 12:13:17 GMT+0800 (中国标准时间)"
+        data-revision="Tue Dec 08 2015 23:21:43 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -200,14 +200,29 @@
             
         </li>
     
-        <li class="chapter " data-level="7" data-path="gitbook.html">
+        <li class="chapter " data-level="7" data-path="ovs_flow.html">
+            
+                
+                    <a href="./ovs_flow.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        ovs flow
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="gitbook.html">
             
                 
                     <a href="./gitbook.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>7.</b>
+                            <b>8.</b>
                         
                         gitbook
                     </a>
@@ -215,14 +230,14 @@
             
         </li>
     
-        <li class="chapter " data-level="8" data-path="git.html">
+        <li class="chapter " data-level="9" data-path="git.html">
             
                 
                     <a href="./git.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>8.</b>
+                            <b>9.</b>
                         
                         git
                     </a>
@@ -230,14 +245,14 @@
             
         </li>
     
-        <li class="chapter " data-level="9" data-path="openstackusage.html">
+        <li class="chapter " data-level="10" data-path="openstackusage.html">
             
                 
                     <a href="./openstackusage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>9.</b>
+                            <b>10.</b>
                         
                         openstack usage
                     </a>
@@ -279,6 +294,14 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="ovs-command">OVS command</h1>
+<h1 id="system">system</h1>
+<h2 id="set-the-number-of-handlerrevalidator-threads">set the number of handler/revalidator threads</h2>
+<pre><code>ovs-vsctl --no-wait set Open_vSwitch . other_config:n-handler-threads=12
+</code></pre><p>Specifies the number of threads for software datapaths to use for handling new flows. The default the number of online CPU cores minus the number of revalidators.
+This configuration is per datapath.  If you have more than one software datapath (e.g. some system bridges and some Netdev bridges), then the total number of threads is n-handler-threads times the number of software datapaths.</p>
+<pre><code>ovs-vsctl --no-wait set Open_vSwitch . other_config:n-revalidator-threads=8
+</code></pre><p>Specifies the number of threads for software datapaths to use for revalidating flows in the datapath.  Typically, there is a direct  correlation between the number of revalidator threads, and the number of flows allowed in the datapath.  The default is the number of cpu cores divided by four plus one.  If n-handler-threads is set, the default  changes to the number of cpu cores minus the number of handler threads.</p>
+<p>This configuration is per datapath.  If you have more than one software datapath (e.g. some system bridges and some netdev bridges), then the total number of threads is n-handler-threads times the number of software datapaths.</p>
 <h1 id="port">port</h1>
 <h2 id="dump-port-statistics">dump port statistics</h2>
 <pre><code>[root@kvmnode002108 ~]# ovs-ofctl dump-ports br-bond1  
@@ -350,6 +373,12 @@ ovs-vsctl set port eth0 trunks=[]
 </code></pre><p>flush fdb table</p>
 <pre><code>[root@dog ~]# ovs-appctl fdb/flush br-eth1
 table successfully flushed
+</code></pre><h2 id="set-mac-aging-time">set MAC aging time</h2>
+<p>The maximum number of seconds to retain a MAC learning entry for which no packets have been seen.  The default is currently 300 seconds (5 minutes).  The value, if specified, is forced into a reasonable range, currently 15 to 3600 seconds</p>
+<pre><code>ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-aging-time=100
+</code></pre><h2 id="set-mac-table-size">set MAC table size</h2>
+<p>The maximum number of MAC addresses to learn.  The default is currently 2048.  The value, if specified, is forced into a reasonable range, currently 10 to 1,000,000.</p>
+<pre><code>ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-table-size=100
 </code></pre><h2 id="list-bridge">list bridge</h2>
 <pre><code>[root@kvmnode002108 ~]# ovs-vsctl list-br
 br-bond1
@@ -363,6 +392,7 @@ br-int
 <pre><code>ovs-appctl dpif/dump-flows &lt;br&gt;
 </code></pre><p>Show all userspace bridges datapath flows</p>
 <pre><code>ovs-dpctl dump-flows
+ovs-appctl dpif/show
 </code></pre><p>Show the name of each configured datapath</p>
 <pre><code>ovs-appctl dpif/dump-dps
 system@br-bond1
@@ -372,6 +402,9 @@ system@br-int
 system@ovs-system:
  flows         : (current 2) (avg 164) (max 16622) (limit 200000)
  dump duration : 2ms
+</code></pre><h2 id="set-flow-limit">set flow limit</h2>
+<p>This command is only needed for advanced debugging. Max 200000, min 1000</p>
+<pre><code>ovs-appctl upcall/set-flow-limit 200000
 </code></pre><h2 id="megaflows">megaflows</h2>
 <p>Enable/disable megaflows</p>
 <pre><code>ovs-appctl upcall/enable-megaflows
@@ -393,6 +426,8 @@ Packets are being sent to userspace faster than they can be processed. This is u
 <p>It means that a packet has never matched that flow in the datapath. The packet that generated the flow was handled by ovs-vswitchd, so it&apos;s not accounted for in the datapath flow table.</p>
 <p>Prints a summary of configured datapaths, including statistics and a list of connected ports. The port  information includes the OpenFlow port number, datapath port number, and the type.</p>
 <pre><code>ovs-appctl dpif/show
+</code></pre><h2 id="trace-flow">trace flow</h2>
+<pre><code>ovs-appctl ofproto/trace &lt;flow&gt;
 </code></pre><h1 id="database">Database</h1>
 <h2 id="list-database">List database</h2>
 <pre><code>[root@dog ~]# ovsdb-client list-dbs
@@ -488,7 +523,7 @@ ovs-vsctl set-fail-mode &lt;bridge&gt; &lt;standalone|secure&gt;
         <a href="./bash.html" class="navigation navigation-prev " aria-label="Previous page: bash"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./gitbook.html" class="navigation navigation-next " aria-label="Next page: gitbook"><i class="fa fa-angle-right"></i></a>
+        <a href="./ovs_flow.html" class="navigation navigation-next " aria-label="Next page: ovs flow"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

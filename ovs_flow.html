@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>git | The handbook to collect commands, usages and thoughts</title>
+        <title>ovs flow | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./openstackusage.html" />
+    <link rel="next" href="./gitbook.html" />
     
     
-    <link rel="prev" href="./gitbook.html" />
+    <link rel="prev" href="./ovs.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="9"
-        data-chapter-title="git"
-        data-filepath="git.md"
+        data-level="7"
+        data-chapter-title="ovs flow"
+        data-filepath="ovs_flow.md"
         data-basepath="."
         data-revision="Tue Dec 08 2015 23:21:43 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -200,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7" data-path="ovs_flow.html">
+        <li class="chapter active" data-level="7" data-path="ovs_flow.html">
             
                 
                     <a href="./ovs_flow.html">
@@ -230,7 +230,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="9" data-path="git.html">
+        <li class="chapter " data-level="9" data-path="git.html">
             
                 
                     <a href="./git.html">
@@ -293,16 +293,110 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="git">git</h1>
-<h1 id="config">config</h1>
-<h1 id="show">show</h1>
-<p>show specific commit changes</p>
-<pre><code>git show &lt;revhash&gt;
-</code></pre><h2 id="diff">diff</h2>
-<p>diff between commits</p>
-<pre><code>git diff &lt;revhash-a&gt; &lt;revhash-b&gt;
-</code></pre><h1 id="merge">merge</h1>
-
+                        <h1 id="ovs-flow">ovs flow</h1>
+<p>OVS kernel module generic netlink types: datapath, vport, flow, packet<br>Each type has 4 operations: NEW, DEL, GET, SET, different operation map to different handler</p>
+<pre><code>static struct genl_family *dp_genl_families[] = {
+    &amp;dp_datapath_genl_family,
+    &amp;dp_vport_genl_family,
+    &amp;dp_flow_genl_family,
+    &amp;dp_packet_genl_family,
+};
+</code></pre><p>Flow operations:</p>
+<pre><code>static struct genl_ops dp_flow_genl_ops[] = {
+    { .cmd = OVS_FLOW_CMD_NEW,
+      .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+      .policy = flow_policy,
+      .doit = ovs_flow_cmd_new
+    },
+    { .cmd = OVS_FLOW_CMD_DEL,
+      .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+      .policy = flow_policy,
+      .doit = ovs_flow_cmd_del
+    },
+    { .cmd = OVS_FLOW_CMD_GET,
+      .flags = 0,            /* OK for unprivileged users. */
+      .policy = flow_policy,
+      .doit = ovs_flow_cmd_get,
+      .dumpit = ovs_flow_cmd_dump
+    },
+    { .cmd = OVS_FLOW_CMD_SET,
+      .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+      .policy = flow_policy,
+      .doit = ovs_flow_cmd_set,
+    },
+};
+</code></pre><h1 id="new-flow">new flow</h1>
+<p>ovs_flow_cmd_new -&gt; ovs_flow_alloc -&gt; ovs_match_init -&gt; ovs_flow_mask_key -&gt; ovs_nla_copy_actions -&gt;  ovs_flow_cmd_alloc_info -&gt; get_dp ovs_flow_tbl_lookup -&gt; ovs_flow_tbl_insert -&gt; ovs_flow_cmd_fill_info</p>
+<h1 id="set-flow">set flow</h1>
+<h1 id="delete-flow">delete flow</h1>
+<h1 id="dump-flow">dump flow</h1>
+<h1 id="flow-match">flow match</h1>
+<h2 id="keyextract">key_extract</h2>
+<pre><code>struct sw_flow_key {
+    struct ovs_key_ipv4_tunnel tun_key;  /* Encapsulating tunnel key. */
+    struct {
+        u32    priority;    /* Packet QoS priority. */
+        u32    skb_mark;    /* SKB mark. */
+        u16    in_port;    /* Input switch port (or DP_MAX_PORTS). */
+    } __packed phy; /* Safe when right after &apos;tun_key&apos;. */
+    u32 ovs_flow_hash;        /* Datapath computed hash value.  */
+    u32 recirc_id;            /* Recirculation ID.  */
+    struct {
+        u8     src[ETH_ALEN];    /* Ethernet source address. */
+        u8     dst[ETH_ALEN];    /* Ethernet destination address. */
+        __be16 tci;        /* 0 if no VLAN, VLAN_TAG_PRESENT set otherwise. */
+        __be16 type;        /* Ethernet frame type. */
+    } eth;
+    struct {
+        u8     proto;        /* IP protocol or lower 8 bits of ARP opcode. */
+        u8     tos;        /* IP ToS. */
+        u8     ttl;        /* IP TTL/hop limit. */
+        u8     frag;        /* One of OVS_FRAG_TYPE_*. */
+    } ip;
+    struct {
+        __be16 src;        /* TCP/UDP/SCTP source port. */
+        __be16 dst;        /* TCP/UDP/SCTP destination port. */
+        __be16 flags;        /* TCP flags. */
+    } tp;
+    union {
+        struct {
+            struct {
+                __be32 src;    /* IP source address. */
+                __be32 dst;    /* IP destination address. */
+            } addr;
+            struct {
+                u8 sha[ETH_ALEN];    /* ARP source hardware address. */
+                u8 tha[ETH_ALEN];    /* ARP target hardware address. */
+            } arp;
+        } ipv4;
+        struct {
+            struct {
+                struct in6_addr src;    /* IPv6 source address. */
+                struct in6_addr dst;    /* IPv6 destination address. */
+            } addr;
+            __be32 label;            /* IPv6 flow label. */
+            struct {
+                struct in6_addr target;    /* ND target address. */
+                u8 sll[ETH_ALEN];    /* ND source link layer address. */
+                u8 tll[ETH_ALEN];    /* ND target link layer address. */
+            } nd;
+        } ipv6;
+    };
+} __aligned(BITS_PER_LONG/8); /* Ensure that we can do comparisons as longs. */
+</code></pre><h2 id="flowlookup">flow_lookup</h2>
+<p>ovs_dp_process_received_packet -&gt; ovs_flow_key_extract -&gt; ovs_dp_process_packet_with_key -&gt; ovs_flow_tbl_lookup_stats -&gt; flow_lookup -&gt; masked_flow_lookup</p>
+<h2 id="flow-limit-calculate">flow limit calculate</h2>
+<p>Flow limit is between 1000 to 200000.</p>
+<pre><code>            if (duration &gt; 2000) {
+                flow_limit /= duration / 1000;
+            } else if (duration &gt; 1300) {
+                flow_limit = flow_limit * 3 / 4;
+            } else if (duration &lt; 1000 &amp;&amp; n_flows &gt; 2000
+                       &amp;&amp; flow_limit &lt; n_flows * 1000 / duration) {
+                flow_limit += 1000;
+            }
+            flow_limit = MIN(ofproto_flow_limit, MAX(flow_limit, 1000));
+</code></pre>
                     
                     </section>
                 
@@ -312,10 +406,10 @@
         </div>
 
         
-        <a href="./gitbook.html" class="navigation navigation-prev " aria-label="Previous page: gitbook"><i class="fa fa-angle-left"></i></a>
+        <a href="./ovs.html" class="navigation navigation-prev " aria-label="Previous page: ovs"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./openstackusage.html" class="navigation navigation-next " aria-label="Next page: openstack usage"><i class="fa fa-angle-right"></i></a>
+        <a href="./gitbook.html" class="navigation navigation-next " aria-label="Next page: gitbook"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
