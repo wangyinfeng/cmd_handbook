@@ -1,5 +1,13 @@
 OVS command
 =========================
+# system
+## set the number of handler/revalidator threads
+```
+ovs-vsctl --no-wait set Open_vSwitch . other_config:n-handler-threads=12
+ovs-vsctl --no-wait set Open_vSwitch . other_config:n-revalidator-threads=8
+```
+
+
 # port
 ##dump port statistics
 ```
