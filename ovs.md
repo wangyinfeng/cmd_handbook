@@ -185,6 +185,12 @@ Prints a summary of configured datapaths, including statistics and a list of con
 ovs-appctl dpif/show
 ```
 
+## trace flow
+```
+ovs-appctl ofproto/trace <flow>
+```
+
+
 # Database
 ##List database
 ```
