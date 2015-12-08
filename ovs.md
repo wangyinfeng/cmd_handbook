@@ -149,6 +149,11 @@ system@ovs-system:
  flows         : (current 2) (avg 164) (max 16622) (limit 200000)
  dump duration : 2ms
 ```
+## set flow limit
+This command is only needed for advanced debugging. Max 200000, min 1000
+```
+ovs-appctl upcall/set-flow-limit 200000
+```
 
 ##megaflows
 Enable/disable megaflows
