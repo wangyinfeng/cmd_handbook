@@ -191,11 +191,7 @@ ovs-appctl dpif/show
 ovs-appctl ofproto/trace <flow>
 ```
 
-## set flow limit
-This command is only needed for advanced debugging. Max 200000, min 1000
-```
-ovs-appctl upcall/set-flow-limit 200000
-```
+
 
 # Database
 ##List database
