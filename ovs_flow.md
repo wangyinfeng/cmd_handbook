@@ -11,6 +11,32 @@ static struct genl_family *dp_genl_families[] = {
 };
 ```
 
+Flow operations:
+```
+static struct genl_ops dp_flow_genl_ops[] = {
+	{ .cmd = OVS_FLOW_CMD_NEW,
+	  .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+	  .policy = flow_policy,
+	  .doit = ovs_flow_cmd_new
+	},
+	{ .cmd = OVS_FLOW_CMD_DEL,
+	  .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+	  .policy = flow_policy,
+	  .doit = ovs_flow_cmd_del
+	},
+	{ .cmd = OVS_FLOW_CMD_GET,
+	  .flags = 0,		    /* OK for unprivileged users. */
+	  .policy = flow_policy,
+	  .doit = ovs_flow_cmd_get,
+	  .dumpit = ovs_flow_cmd_dump
+	},
+	{ .cmd = OVS_FLOW_CMD_SET,
+	  .flags = GENL_ADMIN_PERM, /* Requires CAP_NET_ADMIN privilege. */
+	  .policy = flow_policy,
+	  .doit = ovs_flow_cmd_set,
+	},
+};
+```
 # new flow
 
 # set flow
