@@ -126,6 +126,16 @@ flush fdb table
 table successfully flushed
 ```
 
+## set MAC aging time
+```
+ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-aging-time=100
+```
+
+## set MAC table size
+```
+ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-table-size=100
+```
+
 ##list bridge
 ```
 [root@kvmnode002108 ~]# ovs-vsctl list-br
