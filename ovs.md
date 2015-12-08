@@ -133,6 +133,7 @@ ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-aging-time=100
 ```
 
 ## set MAC table size
+The maximum number of MAC addresses to learn.  The default is currently 2048.  The value, if specified, is forced into a reasonable range, currently 10 to 1,000,000.
 ```
 ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-table-size=100
 ```
