@@ -127,6 +127,7 @@ table successfully flushed
 ```
 
 ## set MAC aging time
+The maximum number of seconds to retain a MAC learning entry for which no packets have been seen.  The default is currently 300 seconds (5 minutes).  The value, if specified, is forced into a reasonable range, currently 15 to 3600 seconds
 ```
 ovs-vsctl --no-wait set bridge br-eth1  other_config:mac-aging-time=100
 ```
