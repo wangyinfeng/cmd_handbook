@@ -32,6 +32,13 @@ Set SR-IOV
 82:10.1 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)
 ```
 
+Another way is 
+```
+modprobe -r igb
+modprobe igb max_vfs=7
+```
+remove the dirver will make the ethernet card unavaliable.
+
 List VF device
 ```
 [root@fish devices]# virsh nodedev-list | grep 0000_82_10  
