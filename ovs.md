@@ -340,6 +340,26 @@ ovs-vsctl del-fail-mode <bridge>
 ovs-vsctl set-fail-mode <bridge> <standalone|secure>
 ```
 
+# debug
+## show coverage counters
+```
+[root@fish ~]# ovs-appctl coverage/show 
+Event coverage, avg rate over last: 5 seconds, last minute, last hour,  hash=f3e5372c:
+nln_changed                0.0/sec     0.000/sec        0.0000/sec   total: 123
+netlink_received          26.8/sec    26.083/sec       24.2886/sec   total: 11559962
+netlink_recv_jumbo         0.0/sec     0.000/sec        0.0003/sec   total: 34
+netlink_sent              25.6/sec    25.117/sec       23.5153/sec   total: 11153462
+netdev_set_policing        0.0/sec     0.000/sec        0.0000/sec   total: 39
+netdev_get_ifindex         0.0/sec     0.000/sec        0.0000/sec   total: 36
+netdev_get_hwaddr          0.0/sec     0.000/sec        0.0000/sec   total: 36
+netdev_set_hwaddr          0.0/sec     0.000/sec        0.0000/sec   total: 2
+netdev_get_ethtool         0.0/sec     0.000/sec        0.0000/sec   total: 60
+netdev_set_ethtool         0.0/sec     0.000/sec        0.0000/sec   total: 4
+vconn_received             2.4/sec     2.400/sec        2.4822/sec   total: 726455
+vconn_sent                 1.8/sec     1.800/sec        1.8617/sec   total: 544813
+util_xalloc              1352.8/sec  1408.983/sec     1199.9022/sec   total: 556267078
+unixctl_received           0.0/sec     0.033/sec        0.0006/sec   total: 11
+```
 
 
 
