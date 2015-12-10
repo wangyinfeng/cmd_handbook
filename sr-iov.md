@@ -10,7 +10,7 @@ SR-IOV
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 ```
 
-Check SR-IOV driver, igb is for 82576
+Check SR-IOV driver, igb is for 82576, different NIC has different driver.
 ```
 [root@fish devices]# lsmod | grep igb
 igbvf                  34514  0 
