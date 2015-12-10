@@ -37,7 +37,7 @@ Another way is
 modprobe -r igb
 modprobe igb max_vfs=7
 ```
-**remove the dirver will make the ethernet card unavaliable.**
+**Remove the dirver will make the ethernet card unavaliable. And this way will effect all cards.**
 
 List VF device
 ```
