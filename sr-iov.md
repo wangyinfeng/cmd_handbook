@@ -31,3 +31,31 @@ Set SR-IOV
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 82:10.1 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)
 ```
+
+List VF device
+```
+[root@fish devices]# virsh nodedev-list | grep 0000_82_10  
+pci_0000_82_10_1
+[root@fish devices]# virsh nodedev-dumpxml pci_0000_82_10_1
+<device>
+  <name>pci_0000_82_10_1</name>
+  <path>/sys/devices/pci0000:80/0000:80:01.0/0000:82:10.1</path>
+  <parent>pci_0000_80_01_0</parent>
+  <driver>
+    <name>igbvf</name>
+  </driver>
+  <capability type='pci'>
+    <domain>0</domain>
+    <bus>130</bus>
+    <slot>16</slot>
+    <function>1</function>
+    <product id='0x10ca'>82576 Virtual Function</product>
+    <vendor id='0x8086'>Intel Corporation</vendor>
+    <capability type='phys_function'>
+      <address domain='0x0000' bus='0x82' slot='0x00' function='0x1'/>
+    </capability>
+  </capability>
+</device>
+```
+
+
