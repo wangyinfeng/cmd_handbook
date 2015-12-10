@@ -23,7 +23,7 @@ i2c_core               31084  3 igb,i2c_algo_bit,i2c_i801
 
 Set SR-IOV
 ```
-echo 1 > /sys/bus/pci/devices/0000\:82\:00.1/sriov_numvfs 
+[root@fish devices]# echo 1 > /sys/bus/pci/devices/0000\:82\:00.1/sriov_numvfs 
 [root@fish devices]# lspci | grep Ethernet
 07:00.0 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
 07:00.1 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
