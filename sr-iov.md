@@ -11,3 +11,12 @@ SR-IOV
 ```
 
 
+```
+[root@fish devices]# lsmod | grep igb
+igbvf                  34514  0 
+igb                   197536  0 
+dca                     7101  1 igb
+i2c_algo_bit            5935  1 igb
+ptp                     9614  1 igb
+i2c_core               31084  3 igb,i2c_algo_bit,i2c_i801
+```
