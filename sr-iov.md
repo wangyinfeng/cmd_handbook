@@ -19,6 +19,11 @@ Neutron security groups cannot be used with SR-IOV enabled instances.
 
 Vendors: Intel, Broadcom, Mellanox and Emulex.
 
+## issues
+the ability to plug/unplug a SR-IOV port on the fly which is currently not available
+
+Live Migration support. An SR-IOV Neutron port may be directly connected to its VF as shown above (vnic_type ‘direct’) or it may be connected with a macvtap device that resides on the Compute (vnic_type ‘macvtap’), which is then connected to the corresponding VF. The macvtap option provides a baseline for implementing Live Migration for SR-IOV enabled instances. 
+
 # Enable SR-IOV driver
 `lspci` to check the ethernet card type, 82576 and I350 both support SR-IOV.
 ```
