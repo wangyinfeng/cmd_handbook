@@ -1,11 +1,11 @@
 find-grep
 ========================
 # find
-find [PATH] -name FILENAME -print, 按FILENAME在PATH中查找。
-find [PATH] -type f -atime +100 -print, 查找PATH下最近100天没有使用过的程序。
-find [PATH] -type f -mtime -1 -print, 查找[PATH]中24小时内修改过的文件。
-find [PATH] -name *.exe -printf -xdev, 可以查询挂载的其他文件系统中的文件。
-find [PATH] -name FILENAME -exec COMMAND \; 将find结果作为COMMAND的输入参数。 
+按FILENAME在PATH中查找 `find [PATH] -name FILENAME -print`  
+查找PATH下最近100天没有使用过的程序 `find [PATH] -type f -atime +100 -print`  
+查找[PATH]中24小时内修改过的文件 `find [PATH] -type f -mtime -1 -print`  
+可以查询挂载的其他文件系统中的文件 `find [PATH] -name *.exe -printf -xdev`  
+将find结果作为COMMAND的输入参数`find [PATH] -name FILENAME -exec COMMAND \`  
 
 查找文件中字符串
 find $PATH -name "*" | xargs grep STRING
