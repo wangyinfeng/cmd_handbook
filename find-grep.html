@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>gitbook | The handbook to collect commands, usages and thoughts</title>
+        <title>find-grep | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./git.html" />
+    <link rel="next" href="./system.html" />
     
     
-    <link rel="prev" href="./sr-iov.html" />
+    <link rel="prev" href="./apt-get.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="9"
-        data-chapter-title="gitbook"
-        data-filepath="gitbook.md"
+        data-level="2"
+        data-chapter-title="find-grep"
+        data-filepath="find-grep.md"
         data-basepath="."
         data-revision="Sat Dec 12 2015 00:30:45 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -125,7 +125,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2" data-path="find-grep.html">
+        <li class="chapter active" data-level="2" data-path="find-grep.html">
             
                 
                     <a href="./find-grep.html">
@@ -230,7 +230,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="9" data-path="gitbook.html">
+        <li class="chapter " data-level="9" data-path="gitbook.html">
             
                 
                     <a href="./gitbook.html">
@@ -308,7 +308,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="gitbook">gitbook</h1>
+                        <h1 id="findgrep">find-grep</h1>
+<h1 id="find">find</h1>
+<p>&#x6309;FILENAME&#x5728;PATH&#x4E2D;&#x67E5;&#x627E; <code>find [PATH] -name FILENAME -print</code><br>&#x67E5;&#x627E;PATH&#x4E0B;&#x6700;&#x8FD1;100&#x5929;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x8FC7;&#x7684;&#x7A0B;&#x5E8F; <code>find [PATH] -type f -atime +100 -print</code><br>&#x67E5;&#x627E;[PATH]&#x4E2D;24&#x5C0F;&#x65F6;&#x5185;&#x4FEE;&#x6539;&#x8FC7;&#x7684;&#x6587;&#x4EF6; <code>find [PATH] -type f -mtime -1 -print</code><br>&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x6302;&#x8F7D;&#x7684;&#x5176;&#x4ED6;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6587;&#x4EF6; <code>find [PATH] -name *.exe -printf -xdev</code><br>&#x5C06;find&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;COMMAND&#x7684;&#x8F93;&#x5165;&#x53C2;&#x6570;<code>find [PATH] -name FILENAME -exec COMMAND \</code>  </p>
+<p>&#x67E5;&#x627E;&#x6587;&#x4EF6;&#x4E2D;&#x5B57;&#x7B26;&#x4E32; <code>find $PATH -name &quot;*&quot; | xargs grep STRING</code>  OR <code>grep STRING $PATH -r</code><br>&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32; <code>find . -name &quot;*.c&quot; -o -name &quot;*.h*&quot; | xargs grep -r &quot;STRING&quot;</code>  </p>
+<h1 id="grep">grep</h1>
+<p>grep exclude keyword <code>grep -v &quot;unwanted_word&quot; file | grep XXXXXXXX</code><br>grep multiple patterns <code>grep -E &apos;word1|word2&apos; *.txt</code><br>&#x67E5;&#x627E;&#x591A;&#x4E2A;&#x5173;&#x952E;&#x5B57;,KEY1&#x6216;KEY2 <code>grep -r -E &apos;KEY1|KEY2&apos;</code><br>KEY1 AND KEY2 <code>grep -r -E &apos;KEY1&apos; ./* | grep &apos;KEY2&apos;</code><br>-r &#x9012;&#x5F52;&#xFF0C;-E&#xFF1A;&#x6B63;&#x5219;  -l&#xFF1A;&#x53EA;&#x663E;&#x793A;&#x6587;&#x4EF6;&#x540D;</p>
 
                     
                     </section>
@@ -319,10 +324,10 @@
         </div>
 
         
-        <a href="./sr-iov.html" class="navigation navigation-prev " aria-label="Previous page: sr-iov"><i class="fa fa-angle-left"></i></a>
+        <a href="./apt-get.html" class="navigation navigation-prev " aria-label="Previous page: apt-get"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./git.html" class="navigation navigation-next " aria-label="Next page: git"><i class="fa fa-angle-right"></i></a>
+        <a href="./system.html" class="navigation navigation-next " aria-label="Next page: system"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
