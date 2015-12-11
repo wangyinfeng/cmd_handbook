@@ -3,6 +3,8 @@ SR-IOV
 # Specification
 http://redhatstackblog.redhat.com/2015/03/05/red-hat-enterprise-linux-openstack-platform-6-sr-iov-networking-part-i-understanding-the-basics/  
 http://redhatstackblog.redhat.com/2015/04/29/red-hat-enterprise-linux-openstack-platform-6-sr-iov-networking-part-ii-walking-through-the-implementation/  
+https://wiki.openstack.org/wiki/SR-IOV-Passthrough-For-Networking  
+http://docs.openstack.org/networking-guide/adv_config_sriov.html  
 
 SR-IOV...Allocating a VF to a virtual machine instance enables network traffic to **bypass the software layer of the hypervisor** and flow directly between the VF and the virtual machine... a near line-rate performance.
 
