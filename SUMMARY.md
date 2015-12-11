@@ -4,7 +4,7 @@
 * Software manager
    * [yum](yum.md)
    * [apt-get](apt-get.md)
-* [find](find.md)
+* [find-grep](find-grep.md)
 * [system](system.md)
 * [network](network.md)
 * [bash](bash.md)
