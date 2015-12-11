@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Thu Dec 10 2015 08:45:12 GMT+0800 (中国标准时间)"
+        data-revision="Fri Dec 11 2015 10:04:05 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -215,14 +215,29 @@
             
         </li>
     
-        <li class="chapter " data-level="8" data-path="gitbook.html">
+        <li class="chapter " data-level="8" data-path="sr-iov.html">
+            
+                
+                    <a href="./sr-iov.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        sr-iov
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="gitbook.html">
             
                 
                     <a href="./gitbook.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>8.</b>
+                            <b>9.</b>
                         
                         gitbook
                     </a>
@@ -230,14 +245,14 @@
             
         </li>
     
-        <li class="chapter " data-level="9" data-path="git.html">
+        <li class="chapter " data-level="10" data-path="git.html">
             
                 
                     <a href="./git.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>9.</b>
+                            <b>10.</b>
                         
                         git
                     </a>
@@ -245,14 +260,14 @@
             
         </li>
     
-        <li class="chapter " data-level="10" data-path="openstackusage.html">
+        <li class="chapter " data-level="11" data-path="openstackusage.html">
             
                 
                     <a href="./openstackusage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>10.</b>
+                            <b>11.</b>
                         
                         openstack usage
                     </a>
@@ -510,6 +525,24 @@ tag                 : 3
 <pre><code>ovs-vsctl get-fail-mode &lt;bridge&gt;
 ovs-vsctl del-fail-mode &lt;bridge&gt;
 ovs-vsctl set-fail-mode &lt;bridge&gt; &lt;standalone|secure&gt;
+</code></pre><h1 id="debug">debug</h1>
+<h2 id="show-coverage-counters">show coverage counters</h2>
+<pre><code>[root@fish ~]# ovs-appctl coverage/show 
+Event coverage, avg rate over last: 5 seconds, last minute, last hour,  hash=f3e5372c:
+nln_changed                0.0/sec     0.000/sec        0.0000/sec   total: 123
+netlink_received          26.8/sec    26.083/sec       24.2886/sec   total: 11559962
+netlink_recv_jumbo         0.0/sec     0.000/sec        0.0003/sec   total: 34
+netlink_sent              25.6/sec    25.117/sec       23.5153/sec   total: 11153462
+netdev_set_policing        0.0/sec     0.000/sec        0.0000/sec   total: 39
+netdev_get_ifindex         0.0/sec     0.000/sec        0.0000/sec   total: 36
+netdev_get_hwaddr          0.0/sec     0.000/sec        0.0000/sec   total: 36
+netdev_set_hwaddr          0.0/sec     0.000/sec        0.0000/sec   total: 2
+netdev_get_ethtool         0.0/sec     0.000/sec        0.0000/sec   total: 60
+netdev_set_ethtool         0.0/sec     0.000/sec        0.0000/sec   total: 4
+vconn_received             2.4/sec     2.400/sec        2.4822/sec   total: 726455
+vconn_sent                 1.8/sec     1.800/sec        1.8617/sec   total: 544813
+util_xalloc              1352.8/sec  1408.983/sec     1199.9022/sec   total: 556267078
+unixctl_received           0.0/sec     0.033/sec        0.0006/sec   total: 11
 </code></pre>
                     
                     </section>
