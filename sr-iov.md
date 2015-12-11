@@ -5,6 +5,8 @@ SR-IOV...Allocating a VF to a virtual machine instance enables network traffic t
 
 The overall bandwidth available to the PF is shared between all VFs associated with it.
 
+Vendors: Intel, Broadcom, Mellanox and Emulex.
+
 # Enable SR-IOV driver
 `lspci` to check the ethernet card type, 82576 and I350 both support SR-IOV.
 ```
