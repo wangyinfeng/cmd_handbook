@@ -13,6 +13,8 @@ With the introduction of SR-IOV networking support, it is now possible to associ
 
 When a packet comes in to the physical port on the network adapter, it is **placed into a specific VF pool based on the MAC address or VLAN tag**. This lends to a direct memory access transfer of packets to and from the virtual machine. The **hypervisor is not involved** in the packet processing to move the packet, thus removing bottlenecks in the path. Virtual machine instances using SR-IOV ports and virtual machine instances using regular ports (e.g., linked to Open vSwitch bridge) can communicate with each other across the network as long as the appropriate configuration (i.e., flat, VLAN) is in place.
 
+SR-IOV support is required on several layers on the Compute node, namely the BIOS, the base operating system, and the physical network adapter.
+
 Vendors: Intel, Broadcom, Mellanox and Emulex.
 
 # Enable SR-IOV driver
