@@ -11,12 +11,12 @@ find-grep
 指定文件类型，查找字符串 `find . -name "*.c" -o -name "*.h*" | xargs grep -r "STRING"`  
 
 # grep
-grep exclude keyword `grep -v "unwanted_word" file | grep XXXXXXXX`
-
-grep multiple patterns `grep -E 'word1|word2' *.txt`
-
+grep exclude keyword `grep -v "unwanted_word" file | grep XXXXXXXX`  
+grep multiple patterns `grep -E 'word1|word2' *.txt`  
 查找多个关键字,KEY1或KEY2 `grep -r -E 'KEY1|KEY2'`  
-KEY1 AND KEY2 `grep -r -E 'KEY1' ./* | grep 'KEY2'` 
+KEY1 AND KEY2 `grep -r -E 'KEY1' ./* | grep 'KEY2'`  
 -r 递归，-E：正则  -l：只显示文件名
+
+
 
 
