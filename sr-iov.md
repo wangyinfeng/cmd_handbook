@@ -1,7 +1,7 @@
 SR-IOV
 ========================
 # Specification
-SR-IOV...Allocating a VF to a virtual machine instance enables network traffic to bypass the software layer of the hypervisor and flow directly between the VF and the virtual machine.
+SR-IOV...Allocating a VF to a virtual machine instance enables network traffic to bypass the software layer of the hypervisor and flow directly between the VF and the virtual machine... a near line-rate performance.
 
 The overall bandwidth available to the PF is shared between all VFs associated with it.
 
