@@ -15,6 +15,8 @@ When a packet comes in to the physical port on the network adapter, it is **plac
 
 SR-IOV support is required on several layers on the Compute node, namely the BIOS(VT-d), the base operating system, and the physical network adapter.
 
+Neutron security groups cannot be used with SR-IOV enabled instances.
+
 Vendors: Intel, Broadcom, Mellanox and Emulex.
 
 # Enable SR-IOV driver
