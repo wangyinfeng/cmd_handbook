@@ -7,15 +7,8 @@ find-grep
 可以查询挂载的其他文件系统中的文件 `find [PATH] -name *.exe -printf -xdev`  
 将find结果作为COMMAND的输入参数`find [PATH] -name FILENAME -exec COMMAND \`  
 
-查找文件中字符串
-find $PATH -name "*" | xargs grep STRING
-grep STRING $PATH -r
-
-指定文件类型，查找字符串
-find . -name "*.c" -o -name "*.h*" | xargs grep -r "STRING"
-
-
-
+查找文件中字符串 `find $PATH -name "*" | xargs grep STRING`  OR `grep STRING $PATH -r`  
+指定文件类型，查找字符串 `find . -name "*.c" -o -name "*.h*" | xargs grep -r "STRING"`  
 
 # grep
 grep exclude keyword `grep -v "unwanted_word" file | grep XXXXXXXX`
