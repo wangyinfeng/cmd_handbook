@@ -1,5 +1,41 @@
 OVS command
 =========================
+# OVS compment 
+- ovs-appctl发送命令消息，运行相关daemon
+- ovs-vswitchd 守护程序，实现交换功能，和Linux内核模块一起，实现基于流的交换flow-based switching。
+- ovsdb-server轻量级的数据库服务，保存OVS的配置信息
+- ovsdb-tool
+- ovsdb-client
+- ovs-l3ping
+- ovs-vlan-test
+- ovs-benchmark
+- ovs-vsctl获取或者更改ovs-vswitchd的配置信息，此工具操作的时候会更新ovsdb-server中的数据库
+- ovs-bugtool
+- ovs-dpctl 配置交换机内核模块
+- ovs-dpctl-top
+- ovs-parse-backtrace
+- ovs-test
+- ovs-pcap
+- ovs-vlan-bug-workaround 
+- ovs-appctl发送命令消息，运行相关daemon
+- ovs-vswitchd 守护程序，实现交换功能，和Linux内核模块一起，实现基于流的交换flow-based switching。
+- ovsdb-server轻量级的数据库服务，保存OVS的配置信息
+- ovsdb-tool
+- ovsdb-client
+- ovs-l3ping
+- ovs-vlan-test
+- ovs-benchmark
+- ovs-vsctl获取或者更改ovs-vswitchd的配置信息，此工具操作的时候会更新ovsdb-server中的数据库
+- ovs-bugtool
+- ovs-dpctl 配置交换机内核模块
+- ovs-dpctl-top
+- ovs-parse-backtrace
+- ovs-test
+- ovs-pcap
+- ovs-vlan-bug-workaround 
+
+
+
 # system
 ## set the number of handler/revalidator threads
 ```
