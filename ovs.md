@@ -1,18 +1,18 @@
 OVS command
 =========================
 # OVS compment 
-
+## ovs-vswitchd
 Core component in the system
-Communicates with outside world using OpenFlow
-Communicates with ovsdb-server using management protocol
-Communicates with kernel module over netlink
-Communicates with the system through netdev abstract interface
+- Communicates with outside world using OpenFlow
+- Communicates with ovsdb-server using management protocol
+- Communicates with kernel module over netlink
+- Communicates with the system through netdev abstract interface
 Supports multiple independent datapaths (bridges)
 Packet classifier supports efficient flow lookup with wildcards and “explodes” these (possibly) wildcard rules for fast processing by the datapath
 Implements mirroring, bonding, and VLANs through modifications of the same flow table exposed through OpenFlow
 Check datapath flow counters to handle flow expiration and stats request
 
-openvswitch_mod.ko
+## openvswitch_mod.ko
 Kernel module that handles switching and tunneling
 Exact-match cache of flows
 Designed to be fast and simple
