@@ -14,12 +14,12 @@ Check datapath flow counters to handle flow expiration and stats request
 
 ## openvswitch_mod.ko
 Kernel module that handles switching and tunneling
-Exact-match cache of flows
-Designed to be fast and simple
-Packet comes in, if found, associated actions executed and counters updated. Otherwise, sent to userspace
-Does no flow expiration
-Knows nothing of OpenFlow
-Implements tunnels
+- Exact-match cache of flows
+- Designed to be fast and simple
+- Packet comes in, if found, associated actions executed and counters updated. Otherwise, sent to userspace
+- Does no flow expiration
+- Knows nothing of OpenFlow
+- Implements tunnels
 
 
 - ovs-appctl发送命令消息，运行相关daemon
