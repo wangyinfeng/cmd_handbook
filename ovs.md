@@ -1,6 +1,27 @@
 OVS command
 =========================
 # OVS compment 
+
+Core component in the system
+Communicates with outside world using OpenFlow
+Communicates with ovsdb-server using management protocol
+Communicates with kernel module over netlink
+Communicates with the system through netdev abstract interface
+Supports multiple independent datapaths (bridges)
+Packet classifier supports efficient flow lookup with wildcards and “explodes” these (possibly) wildcard rules for fast processing by the datapath
+Implements mirroring, bonding, and VLANs through modifications of the same flow table exposed through OpenFlow
+Check datapath flow counters to handle flow expiration and stats request
+
+openvswitch_mod.ko
+Kernel module that handles switching and tunneling
+Exact-match cache of flows
+Designed to be fast and simple
+Packet comes in, if found, associated actions executed and counters updated. Otherwise, sent to userspace
+Does no flow expiration
+Knows nothing of OpenFlow
+Implements tunnels
+
+
 - ovs-appctl发送命令消息，运行相关daemon
 - ovs-vswitchd 守护程序，实现交换功能，和Linux内核模块一起，实现基于流的交换flow-based switching。
 - ovsdb-server轻量级的数据库服务，保存OVS的配置信息
