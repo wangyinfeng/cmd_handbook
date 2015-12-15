@@ -331,6 +331,20 @@ ovs-vsctl set-manager ptcp:8881
 ovs-vsctl --db=tcp:16.158.165.153:8881
 ```
 
+# sflow
+
+```
+ovs-vsctl -- --id=@sflow create sflow agent=${AGENT_IP} target=\"${COLLECTOR_IP}:${COLLECTOR_PORT}\" header=${HEADER_BYTES} sampling=${SAMPLING_N} polling=${POLLING_SECS} -- set bridge br-int sflow=@sflow
+
+[root@kvmnode002108 ~]# cat .sflow 
+COLLECTOR_IP=10.27.248.3
+COLLECTOR_PORT=6343
+AGENT_IP=127.0.0.1
+HEADER_BYTES=128
+SAMPLING_N=64
+POLLING_SECS=10
+```
+
 # Controller
 ## fail mode
 OpenvSwitch 在无法连接到控制器时候（fail mode）可以选择两种fail状态，一种是standalone，一种是secure状态。如果是配置了standalone（或者未设置fail mode）mode，在三次探测控制器连接不成功后，此时ovs-vswitchd将会接管转发逻辑（后台仍然尝试连接到控制器，一旦连接则退出fail状态），OpenvSwitch将作为一个正常的MAC-learning的二层交换机。如果是配置了secure mode，则ovs-vswitchd将不会自动配置新的转发流表，OpenvSwitch将按照原先有的流表转发。  可以通过下面命令进行管理。
