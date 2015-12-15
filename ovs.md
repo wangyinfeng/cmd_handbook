@@ -7,6 +7,7 @@ Core component in the system
 - Communicates with ovsdb-server using management protocol
 - Communicates with kernel module over netlink
 - Communicates with the system through netdev abstract interface
+
 Supports multiple independent datapaths (bridges)  
 Packet classifier supports efficient flow lookup with wildcards and “explodes” these (possibly) wildcard rules for fast processing by the datapath  
 Implements mirroring, bonding, and VLANs through modifications of the same flow table exposed through OpenFlow  
