@@ -8,7 +8,7 @@ Also do not resolve the port name
 > -nn    Don’t convert protocol and port numbers etc. to names either.
 
 Specify the buffer size
-> -B <SIZE>
+> -B SIZE
 
 
 
