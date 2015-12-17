@@ -16,4 +16,4 @@ Set the buffer size with `tcpdump -B 4096`, the unit is KB.
 ## where does the packets be captured
 [Between kernel stack and device driver.](http://www.cubrid.org/blog/dev-platform/understanding-tcp-ip-network-stack/)
 
-[TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver. The stack will send TCP LSO frames up to about 64K, and the adapter will segment them down to the IP stack supplied MSS.](https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html)
+[TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver.](https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html)
