@@ -1,10 +1,11 @@
 tcpdump
 ================================
 # Parameters
+Do not resolve IP to NAME
+> -n     Don’t convert host addresses to names.  This can be used to avoid DNS lookups.
 
-       -n     Don’t convert host addresses to names.  This can be used to avoid DNS lookups.
-
-       -nn    Don’t convert protocol and port numbers etc. to names either.
+Also do not resolve the port name
+> -nn    Don’t convert protocol and port numbers etc. to names either.
        
 
 # issues
