@@ -13,5 +13,6 @@ What's the `packets dropped by kernel`?
 
 Set the buffer size with `tcpdump -B 4096`, the unit is KB.
 
-
+## where does the packets be captured
+[Between kernel stack and device driver.](http://www.cubrid.org/blog/dev-platform/understanding-tcp-ip-network-stack/)
 
