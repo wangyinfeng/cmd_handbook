@@ -3,6 +3,7 @@ pdb
 Debug trips with pdb.
 
 # set condition breakpointer
+b bpnumber [condition]
 ```
 (Pdb) b 12
 Breakpoint 1 at /root/deploy/p.py:12
