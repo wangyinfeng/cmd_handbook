@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>apt-get | The handbook to collect commands, usages and thoughts</title>
+        <title>pdb | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,8 @@
         
     
     
-    <link rel="next" href="./find-grep.html" />
     
-    
-    <link rel="prev" href="./yum.html" />
+    <link rel="prev" href="./openstackusage.html" />
     
 
         
@@ -49,9 +47,9 @@
         
         
     <div class="book"
-        data-level="1.2"
-        data-chapter-title="apt-get"
-        data-filepath="apt-get.md"
+        data-level="14"
+        data-chapter-title="pdb"
+        data-filepath="pdb.md"
         data-basepath="."
         data-revision="Fri Dec 18 2015 18:06:07 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -105,7 +103,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="apt-get.html">
+        <li class="chapter " data-level="1.2" data-path="apt-get.html">
             
                 
                     <a href="./apt-get.html">
@@ -305,7 +303,7 @@
             
         </li>
     
-        <li class="chapter " data-level="14" data-path="pdb.html">
+        <li class="chapter active" data-level="14" data-path="pdb.html">
             
                 
                     <a href="./pdb.html">
@@ -353,8 +351,34 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="aptget">apt-get</h1>
-
+                        <h1 id="pdb">pdb</h1>
+<p>Debug trips with pdb.</p>
+<h1 id="enable-pdb-debug">enable pdb debug</h1>
+<p>Use <code>-m pdb</code> to import pdb module, and break before running.</p>
+<pre><code>python -m pdb myscript.py
+</code></pre><p>OR import the pdb module in the code</p>
+<pre><code>import pdb
+...
+pdb.set_trace()
+...
+</code></pre><h1 id="set-condition-breakpointer">set condition breakpointer</h1>
+<p>b bpnumber [condition]</p>
+<pre><code>(Pdb) b 12
+Breakpoint 1 at /root/deploy/p.py:12
+(Pdb) b
+Num Type         Disp Enb   Where
+1   breakpoint   keep yes   at /root/deploy/p.py:12
+(Pdb) condition 1 i==30
+(Pdb) b
+Num Type         Disp Enb   Where
+1   breakpoint   keep yes   at /root/deploy/p.py:12
+        stop only if i==30
+</code></pre><h1 id="set-variable-value">set variable value</h1>
+<p>use <code>!key=value</code></p>
+<pre><code>(Pdb) !i=20 
+(Pdb) p i
+20
+</code></pre>
                     
                     </section>
                 
@@ -364,10 +388,8 @@
         </div>
 
         
-        <a href="./yum.html" class="navigation navigation-prev " aria-label="Previous page: yum"><i class="fa fa-angle-left"></i></a>
+        <a href="./openstackusage.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: openstack usage"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./find-grep.html" class="navigation navigation-next " aria-label="Next page: find-grep"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
