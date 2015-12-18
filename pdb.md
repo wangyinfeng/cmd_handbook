@@ -17,4 +17,9 @@ Num Type         Disp Enb   Where
         stop only if i==30
 ```
 
-
+# set variable value
+```
+(Pdb) !i=20 
+(Pdb) p i
+20
+```
