@@ -49,11 +49,11 @@
         
         
     <div class="book"
-        data-level="6"
+        data-level="7"
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Sat Dec 12 2015 00:30:45 GMT+0800 (中国标准时间)"
+        data-revision="Fri Dec 18 2015 09:29:10 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -170,14 +170,29 @@
             
         </li>
     
-        <li class="chapter " data-level="5" data-path="bash.html">
+        <li class="chapter " data-level="5" data-path="tcpdump.html">
+            
+                
+                    <a href="./tcpdump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        tcpdump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="bash.html">
             
                 
                     <a href="./bash.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.</b>
+                            <b>6.</b>
                         
                         bash
                     </a>
@@ -185,14 +200,14 @@
             
         </li>
     
-        <li class="chapter active" data-level="6" data-path="ovs.html">
+        <li class="chapter active" data-level="7" data-path="ovs.html">
             
                 
                     <a href="./ovs.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.</b>
+                            <b>7.</b>
                         
                         ovs
                     </a>
@@ -200,14 +215,14 @@
             
         </li>
     
-        <li class="chapter " data-level="7" data-path="ovs_flow.html">
+        <li class="chapter " data-level="8" data-path="ovs_flow.html">
             
                 
                     <a href="./ovs_flow.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>7.</b>
+                            <b>8.</b>
                         
                         ovs flow
                     </a>
@@ -215,14 +230,14 @@
             
         </li>
     
-        <li class="chapter " data-level="8" data-path="sr-iov.html">
+        <li class="chapter " data-level="9" data-path="sr-iov.html">
             
                 
                     <a href="./sr-iov.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>8.</b>
+                            <b>9.</b>
                         
                         sr-iov
                     </a>
@@ -230,14 +245,29 @@
             
         </li>
     
-        <li class="chapter " data-level="9" data-path="gitbook.html">
+        <li class="chapter " data-level="10" data-path="dpdk.html">
+            
+                
+                    <a href="./dpdk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        dpdk
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="gitbook.html">
             
                 
                     <a href="./gitbook.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>9.</b>
+                            <b>11.</b>
                         
                         gitbook
                     </a>
@@ -245,14 +275,14 @@
             
         </li>
     
-        <li class="chapter " data-level="10" data-path="git.html">
+        <li class="chapter " data-level="12" data-path="git.html">
             
                 
                     <a href="./git.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>10.</b>
+                            <b>12.</b>
                         
                         git
                     </a>
@@ -260,14 +290,14 @@
             
         </li>
     
-        <li class="chapter " data-level="11" data-path="openstackusage.html">
+        <li class="chapter " data-level="13" data-path="openstackusage.html">
             
                 
                     <a href="./openstackusage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>11.</b>
+                            <b>13.</b>
                         
                         openstack usage
                     </a>
@@ -309,6 +339,61 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="ovs-command">OVS command</h1>
+<h1 id="ovs-compment">OVS compment</h1>
+<h2 id="ovsvswitchd">ovs-vswitchd</h2>
+<p>Core component in the system</p>
+<ul>
+<li>Communicates with outside world using OpenFlow</li>
+<li>Communicates with ovsdb-server using management protocol</li>
+<li>Communicates with kernel module over netlink</li>
+<li>Communicates with the system through netdev abstract interface</li>
+</ul>
+<p>Supports multiple independent datapaths (bridges)<br>Packet classifier supports efficient flow lookup with wildcards and &#x201C;explodes&#x201D; these (possibly) wildcard rules for fast processing by the datapath<br>Implements mirroring, bonding, and VLANs through modifications of the same flow table exposed through OpenFlow<br>Check datapath flow counters to handle flow expiration and stats request  </p>
+<h2 id="openvswitchmodko">openvswitch_mod.ko</h2>
+<p>Kernel module that handles switching and tunneling</p>
+<ul>
+<li>Exact-match cache of flows</li>
+<li>Designed to be fast and simple</li>
+<li>Packet comes in, if found, associated actions executed and counters updated. Otherwise, sent to userspace</li>
+<li>Does no flow expiration</li>
+<li>Knows nothing of OpenFlow</li>
+<li>Implements tunnels</li>
+</ul>
+<h2 id="commands">commands</h2>
+<ul>
+<li>ovs-appctl&#x53D1;&#x9001;&#x547D;&#x4EE4;&#x6D88;&#x606F;&#xFF0C;&#x8FD0;&#x884C;&#x76F8;&#x5173;daemon</li>
+<li>ovs-vswitchd &#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B9E;&#x73B0;&#x4EA4;&#x6362;&#x529F;&#x80FD;&#xFF0C;&#x548C;Linux&#x5185;&#x6838;&#x6A21;&#x5757;&#x4E00;&#x8D77;&#xFF0C;&#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x6D41;&#x7684;&#x4EA4;&#x6362;flow-based switching&#x3002;</li>
+<li>ovsdb-server&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#xFF0C;&#x4FDD;&#x5B58;OVS&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</li>
+<li>ovsdb-tool</li>
+<li>ovsdb-client</li>
+<li>ovs-l3ping</li>
+<li>ovs-vlan-test</li>
+<li>ovs-benchmark</li>
+<li>ovs-vsctl&#x83B7;&#x53D6;&#x6216;&#x8005;&#x66F4;&#x6539;ovs-vswitchd&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x6B64;&#x5DE5;&#x5177;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x66F4;&#x65B0;ovsdb-server&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5E93;</li>
+<li>ovs-bugtool</li>
+<li>ovs-dpctl &#x914D;&#x7F6E;&#x4EA4;&#x6362;&#x673A;&#x5185;&#x6838;&#x6A21;&#x5757;</li>
+<li>ovs-dpctl-top</li>
+<li>ovs-parse-backtrace</li>
+<li>ovs-test</li>
+<li>ovs-pcap</li>
+<li>ovs-vlan-bug-workaround </li>
+<li>ovs-appctl&#x53D1;&#x9001;&#x547D;&#x4EE4;&#x6D88;&#x606F;&#xFF0C;&#x8FD0;&#x884C;&#x76F8;&#x5173;daemon</li>
+<li>ovs-vswitchd &#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B9E;&#x73B0;&#x4EA4;&#x6362;&#x529F;&#x80FD;&#xFF0C;&#x548C;Linux&#x5185;&#x6838;&#x6A21;&#x5757;&#x4E00;&#x8D77;&#xFF0C;&#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x6D41;&#x7684;&#x4EA4;&#x6362;flow-based switching&#x3002;</li>
+<li>ovsdb-server&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;&#xFF0C;&#x4FDD;&#x5B58;OVS&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</li>
+<li>ovsdb-tool</li>
+<li>ovsdb-client</li>
+<li>ovs-l3ping</li>
+<li>ovs-vlan-test</li>
+<li>ovs-benchmark</li>
+<li>ovs-vsctl&#x83B7;&#x53D6;&#x6216;&#x8005;&#x66F4;&#x6539;ovs-vswitchd&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x6B64;&#x5DE5;&#x5177;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x66F4;&#x65B0;ovsdb-server&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5E93;</li>
+<li>ovs-bugtool</li>
+<li>ovs-dpctl &#x914D;&#x7F6E;&#x4EA4;&#x6362;&#x673A;&#x5185;&#x6838;&#x6A21;&#x5757;</li>
+<li>ovs-dpctl-top</li>
+<li>ovs-parse-backtrace</li>
+<li>ovs-test</li>
+<li>ovs-pcap</li>
+<li>ovs-vlan-bug-workaround </li>
+</ul>
 <h1 id="system">system</h1>
 <h2 id="set-the-number-of-handlerrevalidator-threads">set the number of handler/revalidator threads</h2>
 <pre><code>ovs-vsctl --no-wait set Open_vSwitch . other_config:n-handler-threads=12
@@ -519,6 +604,17 @@ tag                 : 3
 <pre><code>ovs-vsctl set-manager ptcp:8881
 </code></pre><p>&#x5728;&#x53E6;&#x4E00;&#x53F0;server&#x4E0A;,&#x914D;&#x7F6E;&#x76EE;&#x6807;server&#x7684;db</p>
 <pre><code>ovs-vsctl --db=tcp:16.158.165.153:8881
+</code></pre><h1 id="sflow">sflow</h1>
+<p>Configure sflow</p>
+<pre><code>ovs-vsctl -- --id=@sflow create sflow agent=${AGENT_IP} target=\&quot;${COLLECTOR_IP}:${COLLECTOR_PORT}\&quot; header=${HEADER_BYTES} sampling=${SAMPLING_N} polling=${POLLING_SECS} -- set bridge br-int sflow=@sflow
+
+[root@kvmnode002108 ~]# cat .sflow 
+COLLECTOR_IP=10.27.248.3
+COLLECTOR_PORT=6343
+AGENT_IP=127.0.0.1
+HEADER_BYTES=128
+SAMPLING_N=64
+POLLING_SECS=10
 </code></pre><h1 id="controller">Controller</h1>
 <h2 id="fail-mode">fail mode</h2>
 <p>OpenvSwitch &#x5728;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#x65F6;&#x5019;&#xFF08;fail mode&#xFF09;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E24;&#x79CD;fail&#x72B6;&#x6001;&#xFF0C;&#x4E00;&#x79CD;&#x662F;standalone&#xFF0C;&#x4E00;&#x79CD;&#x662F;secure&#x72B6;&#x6001;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;standalone&#xFF08;&#x6216;&#x8005;&#x672A;&#x8BBE;&#x7F6E;fail mode&#xFF09;mode&#xFF0C;&#x5728;&#x4E09;&#x6B21;&#x63A2;&#x6D4B;&#x63A7;&#x5236;&#x5668;&#x8FDE;&#x63A5;&#x4E0D;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x6B64;&#x65F6;ovs-vswitchd&#x5C06;&#x4F1A;&#x63A5;&#x7BA1;&#x8F6C;&#x53D1;&#x903B;&#x8F91;&#xFF08;&#x540E;&#x53F0;&#x4ECD;&#x7136;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x4E00;&#x65E6;&#x8FDE;&#x63A5;&#x5219;&#x9000;&#x51FA;fail&#x72B6;&#x6001;&#xFF09;&#xFF0C;OpenvSwitch&#x5C06;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;MAC-learning&#x7684;&#x4E8C;&#x5C42;&#x4EA4;&#x6362;&#x673A;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;secure mode&#xFF0C;&#x5219;ovs-vswitchd&#x5C06;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x65B0;&#x7684;&#x8F6C;&#x53D1;&#x6D41;&#x8868;&#xFF0C;OpenvSwitch&#x5C06;&#x6309;&#x7167;&#x539F;&#x5148;&#x6709;&#x7684;&#x6D41;&#x8868;&#x8F6C;&#x53D1;&#x3002;  &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x3002;</p>

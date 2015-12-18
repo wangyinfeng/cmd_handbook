@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>git | The handbook to collect commands, usages and thoughts</title>
+        <title>tcpdump | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./openstackusage.html" />
+    <link rel="next" href="./bash.html" />
     
     
-    <link rel="prev" href="./gitbook.html" />
+    <link rel="prev" href="./network.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="12"
-        data-chapter-title="git"
-        data-filepath="git.md"
+        data-level="5"
+        data-chapter-title="tcpdump"
+        data-filepath="tcpdump.md"
         data-basepath="."
         data-revision="Fri Dec 18 2015 09:29:10 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -170,7 +170,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5" data-path="tcpdump.html">
+        <li class="chapter active" data-level="5" data-path="tcpdump.html">
             
                 
                     <a href="./tcpdump.html">
@@ -275,7 +275,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="12" data-path="git.html">
+        <li class="chapter " data-level="12" data-path="git.html">
             
                 
                     <a href="./git.html">
@@ -338,15 +338,33 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="git">git</h1>
-<h1 id="config">config</h1>
-<h1 id="show">show</h1>
-<p>show specific commit changes</p>
-<pre><code>git show &lt;revhash&gt;
-</code></pre><h2 id="diff">diff</h2>
-<p>diff between commits</p>
-<pre><code>git diff &lt;revhash-a&gt; &lt;revhash-b&gt;
-</code></pre><h1 id="merge">merge</h1>
+                        <h1 id="tcpdump">tcpdump</h1>
+<h1 id="parameters">Parameters</h1>
+<p>Do not resolve IP to NAME</p>
+<blockquote>
+<p>-n     Don&#x2019;t convert host addresses to names.  This can be used to avoid DNS lookups.</p>
+</blockquote>
+<p>Also do not resolve the port name</p>
+<blockquote>
+<p>-nn    Don&#x2019;t convert protocol and port numbers etc. to names either.</p>
+</blockquote>
+<p>Specify the buffer size</p>
+<blockquote>
+<p>-B SIZE</p>
+</blockquote>
+<h1 id="issues">issues</h1>
+<h2 id="packets-dropped-by-kernel">packets dropped by kernel</h2>
+<p>What&apos;s the <code>packets dropped by kernel</code>?</p>
+<pre><code>1537 packets captured
+2023 packets received by filter
+477 packets dropped by kernel
+</code></pre><blockquote>
+<p>&quot;packets dropped by kernel&quot; (this is the number of packets that were dropped, due to a lack of buffer space, by the packet capture mechanism in the OS on which tcpdump is running, if the OS reports that information to applications; if not, it will be reported as 0).</p>
+</blockquote>
+<p>Set the buffer size with <code>tcpdump -B 4096</code>, the unit is KB.</p>
+<h2 id="where-does-the-packets-be-captured">where does the packets be captured</h2>
+<p><a href="http://www.cubrid.org/blog/dev-platform/understanding-tcp-ip-network-stack/" target="_blank">Between kernel stack and device driver.</a></p>
+<p><a href="https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html" target="_blank">TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver.</a></p>
 
                     
                     </section>
@@ -357,10 +375,10 @@
         </div>
 
         
-        <a href="./gitbook.html" class="navigation navigation-prev " aria-label="Previous page: gitbook"><i class="fa fa-angle-left"></i></a>
+        <a href="./network.html" class="navigation navigation-prev " aria-label="Previous page: network"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./openstackusage.html" class="navigation navigation-next " aria-label="Next page: openstack usage"><i class="fa fa-angle-right"></i></a>
+        <a href="./bash.html" class="navigation navigation-next " aria-label="Next page: bash"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
