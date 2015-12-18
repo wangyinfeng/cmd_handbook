@@ -1,6 +1,19 @@
 pdb
 ============================
 Debug trips with pdb.
+# enable pdb debug
+Use `-m pdb` to import pdb module, and break before running.
+```
+python -m pdb myscript.py
+```
+
+OR import the pdb module in the code
+```
+import pdb
+...
+pdb.set_trace()
+...
+```
 
 # set condition breakpointer
 b bpnumber [condition]
