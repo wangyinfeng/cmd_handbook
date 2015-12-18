@@ -18,6 +18,7 @@ Num Type         Disp Enb   Where
 ```
 
 # set variable value
+use `!a=b`
 ```
 (Pdb) !i=20 
 (Pdb) p i
