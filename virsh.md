@@ -17,7 +17,8 @@ Commands collection for virsh
 `virt-clone -o OriginalVMname -n NewVMname -f /var/libvirt/image/new_vm.img` [Clone VM](http://www.havetheknowhow.com/Configure-the-server/KVM-clone-a-vm.html)
 
 #Issues
-Install ubuntu on Centos7, change the bridge to OVS br-int, error message reported： unable to add bridge br0 port vnet0 operation not supported
+Install ubuntu on Centos7, change the bridge to OVS br-int, error message reported： 
+`unable to add bridge br0 port vnet0 operation not supported`
 
 Add the virtual port to the VM configure file, 
 ```
