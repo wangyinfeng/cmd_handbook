@@ -23,7 +23,7 @@ virsh start ABC
 Clone VM
 virt-clone -o OriginalVMname -n NewVMname -f /var/libvirt/image/new_vm.img
 
-Issues:
+#Issues
 Install ubuntu on Centos7, change the bridge to OVS br-int, error message reported： unable to add bridge br0 port vnet0 operation not supported
 
 Add the virtual port to the VM configure file, 
