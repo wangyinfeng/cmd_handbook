@@ -20,7 +20,7 @@ virsh undefine ABC
 start VM
 virsh start ABC
 
-Clone VM
+[Clone VM](http://www.havetheknowhow.com/Configure-the-server/KVM-clone-a-vm.html)
 virt-clone -o OriginalVMname -n NewVMname -f /var/libvirt/image/new_vm.img
 
 #Issues
