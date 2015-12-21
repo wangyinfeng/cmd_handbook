@@ -2,26 +2,19 @@ virsh
 ============================
 Commands collection for virsh
 
-show running VMs
-virsh list
+`virsh list` show running VMs
 
-show all define VMs
-virsh list --all
+`virsh list --all` show all define VMs
 
-create a new VM
-virsh define ABC.xml
+`virsh define ABC.xml` create a new VM
 
-stop a VM
-virsh destroy ABC
+`virsh destroy ABC` stop a VM
 
-delete a VM, will delete both image and xml files
-virsh undefine ABC
+`virsh undefine ABC` delete a VM, will delete both image and xml files
 
-start VM
-virsh start ABC
+`virsh start ABC` start VM
 
-[Clone VM](http://www.havetheknowhow.com/Configure-the-server/KVM-clone-a-vm.html)
-virt-clone -o OriginalVMname -n NewVMname -f /var/libvirt/image/new_vm.img
+`virt-clone -o OriginalVMname -n NewVMname -f /var/libvirt/image/new_vm.img` [Clone VM](http://www.havetheknowhow.com/Configure-the-server/KVM-clone-a-vm.html)
 
 #Issues
 Install ubuntu on Centos7, change the bridge to OVS br-int, error message reported： unable to add bridge br0 port vnet0 operation not supported
