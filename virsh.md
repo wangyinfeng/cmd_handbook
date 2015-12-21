@@ -20,6 +20,7 @@ Commands collection for virsh
 Install ubuntu on Centos7, change the bridge to OVS br-int, error message reported： 
 `unable to add bridge br0 port vnet0 operation not supported`
 
+Solution  
 Add the virtual port to the VM configure file, 
 ```
 virsh edit <vm>
