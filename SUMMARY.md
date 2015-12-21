@@ -16,5 +16,6 @@
 * [gitbook](gitbook.md)
 * [git](git.md)
 * [openstack usage](openstackusage.md)
+* [virsh](virsh.md)
 * [pdb](pdb.md)
 
