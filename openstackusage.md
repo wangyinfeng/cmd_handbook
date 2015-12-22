@@ -97,6 +97,25 @@ Check the log: `Unexpected vif_type=binding_failed`
  - OVS related issues. Not exactly know how!
     - neutron-openvswitch-agent not start
 
+## TAP port speed show incorrectly
+Check the TAP port speed with ethtool
+```
+[root@kvmnode002108 ~]# ethtool tapec3e5834-83
+Settings for tapec3e5834-83:
+        Supported ports: [ ]
+        Supported link modes:   Not reported
+        Supported pause frame use: No
+        Supports auto-negotiation: No
+        Advertised link modes:  Not reported
+        Advertised pause frame use: No
+        Advertised auto-negotiation: No
+        Speed: 10Mb/s
+```
+The `speed` is 10Mb/s. That's definitely incorrect.  
+Explain from https://bugzilla.redhat.com/show_bug.cgi?id=1168478
+> vNIC reported "speed" is an utterly fake number, that has nothing to do with vNIC QoS capping.
+
+
 # keystone
 ## Invalid OpenStack Identity credentials
 ```
