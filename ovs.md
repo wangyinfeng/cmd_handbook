@@ -390,7 +390,7 @@ ovs-vsctl --db=tcp:16.158.165.153:8881
 ```
 
 # sflow
-Configure sflow
+## Configure sflow
 ```
 ovs-vsctl -- --id=@sflow create sflow agent=${AGENT_IP} target=\"${COLLECTOR_IP}:${COLLECTOR_PORT}\" header=${HEADER_BYTES} sampling=${SAMPLING_N} polling=${POLLING_SECS} -- set bridge br-int sflow=@sflow
 
@@ -401,6 +401,23 @@ AGENT_IP=127.0.0.1
 HEADER_BYTES=128
 SAMPLING_N=64
 POLLING_SECS=10
+```
+
+## list flow configuration
+```
+[root@dog ~]# ovs-vsctl list sflow
+_uuid               : 705b5f89-4d58-4777-86d9-e44fe81271db
+agent               : "eth0"
+external_ids        : {}
+header              : 128
+polling             : 10
+sampling            : 512
+targets             : ["10.24.74.73:6343"]
+```
+
+## delete sflow configuration
+```
+[root@dog ~]# ovs-vsctl remove bridge br-int sflow 705b5f89-4d58-4777-86d9-e44fe81271db
 ```
 
 # Controller
