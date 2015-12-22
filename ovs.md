@@ -416,6 +416,19 @@ targets             : ["10.24.74.73:6343"]
 ```
 
 ## delete sflow configuration
+Check sflow belone to which bridge
+```
+[root@fish ~]# ovs-vsctl list bridge | grep sflow
+sflow               : 20f8d4bf-e3f2-4235-bfce-b2c2689f7da8
+sflow               : 3ecbe3cb-70fc-4a38-a657-e68c8acfca87
+sflow               : []
+sflow               : []
+sflow               : []
+sflow               : []
+sflow               : []
+```
+
+Delete sflow from that bridge
 ```
 [root@dog ~]# ovs-vsctl remove bridge br-int sflow 705b5f89-4d58-4777-86d9-e44fe81271db
 ```
