@@ -422,10 +422,6 @@ Check sflow belone to which bridge
 sflow               : 20f8d4bf-e3f2-4235-bfce-b2c2689f7da8
 sflow               : 3ecbe3cb-70fc-4a38-a657-e68c8acfca87
 sflow               : []
-sflow               : []
-sflow               : []
-sflow               : []
-sflow               : []
 ```
 
 Delete sflow from that bridge
