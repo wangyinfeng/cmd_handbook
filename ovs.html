@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Fri Dec 18 2015 18:06:07 GMT+0800 (中国标准时间)"
+        data-revision="Tue Dec 22 2015 20:55:45 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -305,14 +305,29 @@
             
         </li>
     
-        <li class="chapter " data-level="14" data-path="pdb.html">
+        <li class="chapter " data-level="14" data-path="virsh.html">
+            
+                
+                    <a href="./virsh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        virsh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="pdb.html">
             
                 
                     <a href="./pdb.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>14.</b>
+                            <b>15.</b>
                         
                         pdb
                     </a>
@@ -620,7 +635,7 @@ tag                 : 3
 </code></pre><p>&#x5728;&#x53E6;&#x4E00;&#x53F0;server&#x4E0A;,&#x914D;&#x7F6E;&#x76EE;&#x6807;server&#x7684;db</p>
 <pre><code>ovs-vsctl --db=tcp:16.158.165.153:8881
 </code></pre><h1 id="sflow">sflow</h1>
-<p>Configure sflow</p>
+<h2 id="configure-sflow">Configure sflow</h2>
 <pre><code>ovs-vsctl -- --id=@sflow create sflow agent=${AGENT_IP} target=\&quot;${COLLECTOR_IP}:${COLLECTOR_PORT}\&quot; header=${HEADER_BYTES} sampling=${SAMPLING_N} polling=${POLLING_SECS} -- set bridge br-int sflow=@sflow
 
 [root@kvmnode002108 ~]# cat .sflow 
@@ -630,6 +645,23 @@ AGENT_IP=127.0.0.1
 HEADER_BYTES=128
 SAMPLING_N=64
 POLLING_SECS=10
+</code></pre><h2 id="list-flow-configuration">list flow configuration</h2>
+<pre><code>[root@dog ~]# ovs-vsctl list sflow
+_uuid               : 705b5f89-4d58-4777-86d9-e44fe81271db
+agent               : &quot;eth0&quot;
+external_ids        : {}
+header              : 128
+polling             : 10
+sampling            : 512
+targets             : [&quot;10.24.74.73:6343&quot;]
+</code></pre><h2 id="delete-sflow-configuration">delete sflow configuration</h2>
+<p>Check sflow belone to which bridge</p>
+<pre><code>[root@fish ~]# ovs-vsctl list bridge | grep sflow
+sflow               : 20f8d4bf-e3f2-4235-bfce-b2c2689f7da8
+sflow               : 3ecbe3cb-70fc-4a38-a657-e68c8acfca87
+sflow               : []
+</code></pre><p>Delete sflow from that bridge</p>
+<pre><code>[root@dog ~]# ovs-vsctl remove bridge br-int sflow 705b5f89-4d58-4777-86d9-e44fe81271db
 </code></pre><h1 id="controller">Controller</h1>
 <h2 id="fail-mode">fail mode</h2>
 <p>OpenvSwitch &#x5728;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#x65F6;&#x5019;&#xFF08;fail mode&#xFF09;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E24;&#x79CD;fail&#x72B6;&#x6001;&#xFF0C;&#x4E00;&#x79CD;&#x662F;standalone&#xFF0C;&#x4E00;&#x79CD;&#x662F;secure&#x72B6;&#x6001;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;standalone&#xFF08;&#x6216;&#x8005;&#x672A;&#x8BBE;&#x7F6E;fail mode&#xFF09;mode&#xFF0C;&#x5728;&#x4E09;&#x6B21;&#x63A2;&#x6D4B;&#x63A7;&#x5236;&#x5668;&#x8FDE;&#x63A5;&#x4E0D;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x6B64;&#x65F6;ovs-vswitchd&#x5C06;&#x4F1A;&#x63A5;&#x7BA1;&#x8F6C;&#x53D1;&#x903B;&#x8F91;&#xFF08;&#x540E;&#x53F0;&#x4ECD;&#x7136;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x5230;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x4E00;&#x65E6;&#x8FDE;&#x63A5;&#x5219;&#x9000;&#x51FA;fail&#x72B6;&#x6001;&#xFF09;&#xFF0C;OpenvSwitch&#x5C06;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;MAC-learning&#x7684;&#x4E8C;&#x5C42;&#x4EA4;&#x6362;&#x673A;&#x3002;&#x5982;&#x679C;&#x662F;&#x914D;&#x7F6E;&#x4E86;secure mode&#xFF0C;&#x5219;ovs-vswitchd&#x5C06;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x65B0;&#x7684;&#x8F6C;&#x53D1;&#x6D41;&#x8868;&#xFF0C;OpenvSwitch&#x5C06;&#x6309;&#x7167;&#x539F;&#x5148;&#x6709;&#x7684;&#x6D41;&#x8868;&#x8F6C;&#x53D1;&#x3002;  &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x3002;</p>

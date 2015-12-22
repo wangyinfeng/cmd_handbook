@@ -37,7 +37,7 @@
         
     
     
-    <link rel="next" href="./pdb.html" />
+    <link rel="next" href="./virsh.html" />
     
     
     <link rel="prev" href="./git.html" />
@@ -53,7 +53,7 @@
         data-chapter-title="openstack usage"
         data-filepath="openstackusage.md"
         data-basepath="."
-        data-revision="Fri Dec 18 2015 18:06:07 GMT+0800 (中国标准时间)"
+        data-revision="Tue Dec 22 2015 20:55:45 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -305,14 +305,29 @@
             
         </li>
     
-        <li class="chapter " data-level="14" data-path="pdb.html">
+        <li class="chapter " data-level="14" data-path="virsh.html">
+            
+                
+                    <a href="./virsh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        virsh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="pdb.html">
             
                 
                     <a href="./pdb.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>14.</b>
+                            <b>15.</b>
                         
                         pdb
                     </a>
@@ -420,6 +435,22 @@ Add &#x2013;k to kill all the process using that port
 </ul>
 </li>
 </ul>
+<h2 id="tap-port-speed-show-incorrectly">TAP port speed show incorrectly</h2>
+<p>Check the TAP port speed with ethtool</p>
+<pre><code>[root@kvmnode002108 ~]# ethtool tapec3e5834-83
+Settings for tapec3e5834-83:
+        Supported ports: [ ]
+        Supported link modes:   Not reported
+        Supported pause frame use: No
+        Supports auto-negotiation: No
+        Advertised link modes:  Not reported
+        Advertised pause frame use: No
+        Advertised auto-negotiation: No
+        Speed: 10Mb/s
+</code></pre><p>The <code>speed</code> is 10Mb/s. That&apos;s definitely incorrect.<br>Explain from <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1168478" target="_blank">https://bugzilla.redhat.com/show_bug.cgi?id=1168478</a></p>
+<blockquote>
+<p>vNIC reported &quot;speed&quot; is an utterly fake number, that has nothing to do with vNIC QoS capping.</p>
+</blockquote>
 <h1 id="keystone">keystone</h1>
 <h2 id="invalid-openstack-identity-credentials">Invalid OpenStack Identity credentials</h2>
 <pre><code>[root@dog ~]# service keystone status
@@ -610,7 +641,7 @@ dhcp_delete_namespaces
         <a href="./git.html" class="navigation navigation-prev " aria-label="Previous page: git"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./pdb.html" class="navigation navigation-next " aria-label="Next page: pdb"><i class="fa fa-angle-right"></i></a>
+        <a href="./virsh.html" class="navigation navigation-next " aria-label="Next page: virsh"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
