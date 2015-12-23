@@ -32,4 +32,7 @@ Set the buffer size with `tcpdump -B 4096`, the unit is KB.
 ## Can not capture some packet
 Sometimes when do tcpdump for ping packet, can't capture the icmp packet on the physical interface.  
 For example `tcpdump -i eth1 icmp` has no captured result. It's because the packet is encapsulated in VLAN. Packets can be captured by `tcpdump -i eth1 vlan and icmp`. 
+> Note that the first vlan keyword encountered in expression changes the decoding offsets for the remainder of expression on the assumption that the packet is a VLAN packet.
+
+
 
