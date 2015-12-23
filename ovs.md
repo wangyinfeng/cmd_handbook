@@ -403,7 +403,7 @@ SAMPLING_N=64
 POLLING_SECS=10
 ```
 
-## list flow configuration
+## list sflow configuration
 ```
 [root@dog ~]# ovs-vsctl list sflow
 _uuid               : 705b5f89-4d58-4777-86d9-e44fe81271db
