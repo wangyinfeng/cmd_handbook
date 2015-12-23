@@ -30,4 +30,6 @@ Set the buffer size with `tcpdump -B 4096`, the unit is KB.
 [TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver.](https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html)
 
 ## Can not capture some packet
-Sometimes when do tcpdump for ping packet, can't capture the icmp packet on the physical interface.
+Sometimes when do tcpdump for ping packet, can't capture the icmp packet on the physical interface.  
+For example `tcpdump -i eth1 icmp` has no captured result. It's because the packet is encapsulated in VLAN. Packets can be captured by `tcpdump -i eth1 vlan and icmp`. 
+
