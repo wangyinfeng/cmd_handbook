@@ -18,4 +18,5 @@
 * [openstack usage](openstackusage.md)
 * [virsh](virsh.md)
 * [pdb](pdb.md)
+* [mysql](mysql.md)
 
