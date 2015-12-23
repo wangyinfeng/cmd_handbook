@@ -28,3 +28,6 @@ Set the buffer size with `tcpdump -B 4096`, the unit is KB.
 [Between kernel stack and device driver.](http://www.cubrid.org/blog/dev-platform/understanding-tcp-ip-network-stack/)
 
 [TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver.](https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html)
+
+## Can not capture some packet
+Sometimes when do tcpdump for ping packet, can't capture the icmp packet on the physical interface.
