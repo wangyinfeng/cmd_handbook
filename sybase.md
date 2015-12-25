@@ -89,17 +89,17 @@ create database zxinmeasure on zxin_dev=500 log on zxin_log=500
 ```
 步骤:  
  a. 用disk init初始化二个数据库设备:一是数据库数据设备,二是日志设备
-        ```
+
          1>disk init name=逻辑设备名,
          2>physname=“物理设备名”,
          3>size=页个数(2K为单位)
-         ```
+
 b.  用create database创建用户数据库
-        ```
+
         1>create database 用户数据库名
         2>on 数据设备逻辑名=大小(M为单位)
         3>log on日志设备逻辑名=大小(M为单位)
-        ```
+
 
 
 #查看数据库空余空间
