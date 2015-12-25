@@ -22,7 +22,7 @@ isql -Usa -P -SNAME
 ```
 
 # 设置
-1.内存
+## 内存
 sp_configure "max memory",1500000 重启生效（设置为共享内存的75%）
 sp_configure "allocate max shared mem",1 启动的时候自动分配max memory指定的最大
 内存
