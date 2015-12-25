@@ -9,15 +9,19 @@ Express     Edition，简称XE，这是个快速版，不需要license，可长�
 Enterprise Edition，简称EE，这是个企业版，不安装license的情况下，只有一个月的使用期，无license的这一个月期间，所有功能都可以用。
 
 # 启动停止
+```
 startserver -f NAME
 isql -Usa -P -SNAME
 >shutdown
 >go
+```
 
-查看及配置端口
+# 查看及配置端口
+```
 /home/sybase/interfaces
+```
 
-设置
+# 设置
 1.内存
 sp_configure "max memory",1500000 重启生效（设置为共享内存的75%）
 sp_configure "allocate max shared mem",1 启动的时候自动分配max memory指定的最大
