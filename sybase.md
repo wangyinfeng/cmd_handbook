@@ -87,7 +87,7 @@ create database zxinsys on zxin_dev=400 log on zxin_log=400
 create database zxinalarm on zxin_dev=500 log on zxin_log=500
 create database zxinmeasure on zxin_dev=500 log on zxin_log=500
 ```
-步骤:
+步骤:  
  a. 用disk init初始化二个数据库设备:一是数据库数据设备,二是日志设备
         ```
          1>disk init name=逻辑设备名,
