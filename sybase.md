@@ -101,7 +101,6 @@ b.  用create database创建用户数据库
         3>log on日志设备逻辑名=大小(M为单位)
 
 
-
 #查看数据库空余空间
 ```
 >sp_helpdb dbname
