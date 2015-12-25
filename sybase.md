@@ -3,13 +3,12 @@ sybase
 Operation tips for sybase
 
 
-
-版本
-Developer  Edition，简称DE，这是个开发版，不需要license，可长久使用，只不过有些功能使用受限。
-Express     Edition，简称XE，这是个快速版，不需要license，可长久使用，只不过有些功能使用受限。
+# 版本
+Developer  Edition，简称DE，这是个开发版，不需要license，可长久使用，只不过有些功能使用受限。  
+Express     Edition，简称XE，这是个快速版，不需要license，可长久使用，只不过有些功能使用受限。  
 Enterprise Edition，简称EE，这是个企业版，不安装license的情况下，只有一个月的使用期，无license的这一个月期间，所有功能都可以用。
 
-启动停止
+# 启动停止
 startserver -f NAME
 isql -Usa -P -SNAME
 >shutdown
