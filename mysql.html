@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>system | The handbook to collect commands, usages and thoughts</title>
+        <title>mysql | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./network.html" />
+    <link rel="next" href="./oracle.html" />
     
     
-    <link rel="prev" href="./find-grep.html" />
+    <link rel="prev" href="./pdb.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="system"
-        data-filepath="system.md"
+        data-level="16"
+        data-chapter-title="mysql"
+        data-filepath="mysql.md"
         data-basepath="."
         data-revision="Mon Dec 28 2015 18:03:51 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -140,7 +140,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="system.html">
+        <li class="chapter " data-level="3" data-path="system.html">
             
                 
                     <a href="./system.html">
@@ -335,7 +335,7 @@
             
         </li>
     
-        <li class="chapter " data-level="16" data-path="mysql.html">
+        <li class="chapter active" data-level="16" data-path="mysql.html">
             
                 
                     <a href="./mysql.html">
@@ -413,8 +413,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="system">system</h1>
-
+                        <h1 id="mysql">mysql</h1>
+<p>Mysql operation tips</p>
+<h1 id="&#x6570;&#x636E;&#x5E93;&#x5BFC;&#x51FA;&#x6062;&#x590D;">&#x6570;&#x636E;&#x5E93;&#x5BFC;&#x51FA;/&#x6062;&#x590D;</h1>
+<p><a href="http://www.cnblogs.com/xuejie/archive/2013/01/11/2856911.html" target="_blank">http://www.cnblogs.com/xuejie/archive/2013/01/11/2856911.html</a></p>
+<h2 id="&#x5BFC;&#x51FA;">&#x5BFC;&#x51FA;</h2>
+<pre><code>mysqldump -u wcnc -p -d --add-drop-table smgp_apps_wcnc &gt;d:\wcnc_db.sql
+# -d &#x4E0D;&#x5BFC;&#x51FA;&#x6570;&#x636E;&#x53EA;&#x5BFC;&#x51FA;&#x7ED3;&#x6784; --add-drop-table &#x5728;&#x6BCF;&#x4E2A;create&#x8BED;&#x53E5;&#x4E4B;&#x524D;&#x589E;&#x52A0;&#x4E00;&#x4E2A;drop table
+</code></pre><pre><code>mysqldump -uusername -ppassword databasename &gt; backupfile.sql
+mysqldump -uusername -ppassword databasename specific_table1 specific_table2 &gt; backupfile.sql
+mysqldump &#x2013;all-databases &gt; allbackupfile.sql
+</code></pre><h2 id="&#x6062;&#x590D;">&#x6062;&#x590D;</h2>
+<pre><code>mysql -hhostname -uusername -ppassword databasename &lt; backupfile.sql
+</code></pre><p>&#x5BFC;&#x5165;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5E38;&#x7528;source &#x547D;&#x4EE4;</p>
+<pre><code>#&#x8FDB;&#x5165;mysql&#x6570;&#x636E;&#x5E93;&#x63A7;&#x5236;&#x53F0;&#xFF0C;
+mysql -u root -p
+mysql&gt;use &#x6570;&#x636E;&#x5E93;
+mysql&gt;set names utf8; &#xFF08;&#x5148;&#x786E;&#x8BA4;&#x7F16;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x8BBE;&#x7F6E;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4E71;&#x7801;&#xFF0C;&#x6CE8;&#x610F;&#x4E0D;&#x662F;UTF-8&#xFF09;
+mysql&gt;source d:\wcnc_db.sql
+</code></pre>
                     
                     </section>
                 
@@ -424,10 +441,10 @@
         </div>
 
         
-        <a href="./find-grep.html" class="navigation navigation-prev " aria-label="Previous page: find-grep"><i class="fa fa-angle-left"></i></a>
+        <a href="./pdb.html" class="navigation navigation-prev " aria-label="Previous page: pdb"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./network.html" class="navigation navigation-next " aria-label="Next page: network"><i class="fa fa-angle-right"></i></a>
+        <a href="./oracle.html" class="navigation navigation-next " aria-label="Next page: oracle"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

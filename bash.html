@@ -53,7 +53,7 @@
         data-chapter-title="bash"
         data-filepath="bash.md"
         data-basepath="."
-        data-revision="Tue Dec 22 2015 20:55:45 GMT+0800 (中国标准时间)"
+        data-revision="Mon Dec 28 2015 18:03:51 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -335,6 +335,51 @@
             
         </li>
     
+        <li class="chapter " data-level="16" data-path="mysql.html">
+            
+                
+                    <a href="./mysql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        mysql
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="oracle.html">
+            
+                
+                    <a href="./oracle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        oracle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="sybase.html">
+            
+                
+                    <a href="./sybase.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        sybase
+                    </a>
+            
+            
+        </li>
+    
 
 
             
@@ -526,6 +571,20 @@ echo $string -&gt; hello
 </code></pre><h1 id="sed">sed</h1>
 <pre><code>sed -e /^$/d FILE     #&#x5220;&#x9664;&#x7A7A;&#x884C;. -e &#x8868;&#x793A;&#x53EF;&#x7F16;&#x8F91;
 sed -e &quot;s/$OLD/$NEW/g&quot; FILE #  &#x66FF;&#x6362;$OLD&#x4E3A;$NEW
+</code></pre><h1 id="string">string</h1>
+<h2 id="string-contains-substring">String contains substring</h2>
+<h3 id="star-wildcard">Star Wildcard</h3>
+<pre><code>if [[ &quot;$string&quot; == *&quot;$substring&quot;* ]]; then
+    echo &quot;&apos;$string&apos; contains &apos;$substring&apos;&quot;;
+else
+    echo &quot;&apos;$string&apos; does not contain &apos;$substring&apos;&quot;;
+fi
+</code></pre><h3 id="regular-expressions">Regular Expressions</h3>
+<pre><code>if [[ &quot;$string&quot; =~ &quot;$substring&quot; ]]; then
+    echo &quot;&apos;$string&apos; contains &apos;$substring&apos;&quot;;
+else
+    echo &quot;&apos;$string&apos; does not contain &apos;$substring&apos;&quot;;
+fi
 </code></pre>
                     
                     </section>

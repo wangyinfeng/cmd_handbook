@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>system | The handbook to collect commands, usages and thoughts</title>
+        <title>oracle | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./network.html" />
+    <link rel="next" href="./sybase.html" />
     
     
-    <link rel="prev" href="./find-grep.html" />
+    <link rel="prev" href="./mysql.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="system"
-        data-filepath="system.md"
+        data-level="17"
+        data-chapter-title="oracle"
+        data-filepath="oracle.md"
         data-basepath="."
         data-revision="Mon Dec 28 2015 18:03:51 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -140,7 +140,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="system.html">
+        <li class="chapter " data-level="3" data-path="system.html">
             
                 
                     <a href="./system.html">
@@ -350,7 +350,7 @@
             
         </li>
     
-        <li class="chapter " data-level="17" data-path="oracle.html">
+        <li class="chapter active" data-level="17" data-path="oracle.html">
             
                 
                     <a href="./oracle.html">
@@ -413,8 +413,64 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="system">system</h1>
+                        <h1 id="oracle">oracle</h1>
+<p>oracle operation tips</p>
+<p>&#x67E5;&#x770B;&#x7528;&#x6237;&#x4FE1;&#x606F;</p>
+<pre><code>lsnrctl
+</code></pre><p>&#x67E5;&#x770B;&#x5B9E;&#x4F8B;</p>
+<pre><code>&gt;select * from dba_users
+</code></pre><p>&#x67E5;&#x770B;&#x5F53;&#x524D;&#x7528;&#x6237;&#x8868;&#x4FE1;&#x606F;</p>
+<pre><code>&gt;select * from v$database;
+&gt;select * from v$instance;
+</code></pre><p>&#x67E5;&#x770B;&#x8868;&#x7A7A;&#x95F4;&#x4F7F;&#x7528;&#x60C5;&#x51B5;</p>
+<pre><code>&gt;select * from user_users
 
+&gt;SELECT   a.tablespace_name   &quot;Tablespace name&quot;,total/1024/1024   &quot;size(M)&quot;,free/1024/1024   &quot;free(M)&quot;,  (total-free)/1024/1024   &quot;used(M)&quot;,   ROUND((total-free)/total,4)*100   &quot;usage %&quot;  FROM     (SELECT   tablespace_name,SUM(bytes)   free   FROM   DBA_FREE_SPACE   GROUP   BY   tablespace_name)   a,   (SELECT   tablespace_name,SUM(bytes)   total   FROM   DBA_DATA_FILES   GROUP   BY   tablespace_name)   b   WHERE   a.tablespace_name=b.tablespace_name;
+</code></pre><p>&#x9ED8;&#x8BA4;&#x7BA1;&#x7406;&#x7528;&#x6237;&#x767B;&#x5F55;</p>
+<pre><code># sqlplus system/manager
+</code></pre><p>&#x767B;&#x5F55;&#x5230;&#x76F8;&#x5E94;&#x5E93;</p>
+<pre><code># sqlplus zxinsys/zxinsys@zxin
+</code></pre><p>&#x4FEE;&#x6539;&#x5E93;&#x5BC6;&#x7801;:</p>
+<pre><code># sqlplus system/manager
+&gt; alter user zxinsys identified by zxinsys;
+&gt; commit;
+</code></pre><p>&#x6267;&#x884C;&#x811A;&#x672C;</p>
+<pre><code>sqlplus user/password@instancename&lt; /home/sql/sqlfile.sql
+</code></pre><p>or</p>
+<pre><code>cat sqlfile.sql | sqlplus user/password@instancename
+</code></pre><p>or</p>
+<pre><code>sqlplus /nolog
+&gt;connect user/password@instancename
+&gt;start /home/sql/sqlfile.sql
+</code></pre><p>or</p>
+<pre><code>sqlplus /nolog
+&gt;connect user/password@instancename
+&gt;@/home/sql/sqlfile.sql
+</code></pre><p>&#x521B;&#x5EFA;tablespace</p>
+<pre><code>CREATE [UNDO] TABLESPACE tablespace_name
+[DATAFILE datefile_spec1 [,datefile_spec2] ......
+[ { MININUM EXTENT integer [k|m]
+| BLOCKSIZE integer [k]
+|logging clause
+|FORCE LOGGING
+|DEFAULT {data_segment_compression} storage_clause
+|[online|offline]
+|[PERMANENT|TEMPORARY]
+|extent_manager_clause
+|segment_manager_clause}]
+</code></pre><p>EXAMPLE:</p>
+<pre><code>CREATE TABLESPACE &quot;SIGTRAN&quot; NOLOGGING DATAFILE &apos;$ORACLE_DATA/sigtrandb.dbf&apos; SIZ
+E 100M REUSE AUTOEXTEND ON NEXT  100M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL
+SEGMENT SPACE MANAGEMENT  AUTO;
+</code></pre><p>&#x5220;&#x9664;tablespace</p>
+<pre><code>DROP TABLESPACE SIGTRAN INCLUDING CONTENTS AND DATAFILES
+</code></pre><p>&#x589E;&#x52A0;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x5C3A;&#x5BF8;</p>
+<pre><code>ALTER DATABASE DATAFILE &apos;sigtrandb.dbf&apos; RESIZE 4000M;
+</code></pre><p>&#x547D;&#x4EE4;&#x884C;&#x67E5;&#x770B;&#x811A;&#x672C;&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre><code>show error
+</code></pre><p>&#x8D4B;&#x4E88;&#x8868;&#x6743;&#x9650;&#x7ED9;&#x67D0;&#x7528;&#x6237;</p>
+<pre><code>grant all on db.table to USER
+</code></pre>
                     
                     </section>
                 
@@ -424,10 +480,10 @@
         </div>
 
         
-        <a href="./find-grep.html" class="navigation navigation-prev " aria-label="Previous page: find-grep"><i class="fa fa-angle-left"></i></a>
+        <a href="./mysql.html" class="navigation navigation-prev " aria-label="Previous page: mysql"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./network.html" class="navigation navigation-next " aria-label="Next page: network"><i class="fa fa-angle-right"></i></a>
+        <a href="./sybase.html" class="navigation navigation-next " aria-label="Next page: sybase"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

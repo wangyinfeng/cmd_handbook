@@ -53,7 +53,7 @@
         data-chapter-title="tcpdump"
         data-filepath="tcpdump.md"
         data-basepath="."
-        data-revision="Tue Dec 22 2015 20:55:45 GMT+0800 (中国标准时间)"
+        data-revision="Mon Dec 28 2015 18:03:51 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -335,6 +335,51 @@
             
         </li>
     
+        <li class="chapter " data-level="16" data-path="mysql.html">
+            
+                
+                    <a href="./mysql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        mysql
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="oracle.html">
+            
+                
+                    <a href="./oracle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        oracle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="sybase.html">
+            
+                
+                    <a href="./sybase.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        sybase
+                    </a>
+            
+            
+        </li>
+    
 
 
             
@@ -389,12 +434,17 @@
 2023 packets received by filter
 477 packets dropped by kernel
 </code></pre><blockquote>
-<p>&quot;packets dropped by kernel&quot; (this is the number of packets that were dropped, due to a lack of buffer space, by the packet capture mechanism in the OS on which tcpdump is running, if the OS reports that information to applications; if not, it will be reported as 0).</p>
+<p>packets dropped by kernel&quot; (this is the number of packets that were dropped, due to a lack of buffer space, by the packet capture mechanism in the OS on which tcpdump is running, if the OS reports that information to applications; if not, it will be reported as 0).</p>
 </blockquote>
 <p>Set the buffer size with <code>tcpdump -B 4096</code>, the unit is KB.</p>
 <h2 id="where-does-the-packets-be-captured">where does the packets be captured</h2>
 <p><a href="http://www.cubrid.org/blog/dev-platform/understanding-tcp-ip-network-stack/" target="_blank">Between kernel stack and device driver.</a></p>
 <p><a href="https://www.myricom.com/software/myri10ge/349-when-i-view-traffic-with-tcpdump-why-do-i-see-packets-larger-than-the-mtu.html" target="_blank">TCPdump hooks above the driver, and does not see what is sent on the wire. Rather it sees what is sent from the stack to the driver.</a></p>
+<h2 id="can-not-capture-some-packet">Can not capture some packet</h2>
+<p>Sometimes when do tcpdump for ping packet, can&apos;t capture the icmp packet on the physical interface.<br>For example <code>tcpdump -i eth1 icmp</code> has no captured result. It&apos;s because the packet is encapsulated in VLAN. Packets can be captured by <code>tcpdump -i eth1 vlan and icmp</code>. </p>
+<blockquote>
+<p>Note that the first vlan keyword encountered in expression changes the decoding offsets for the remainder of expression on the assumption that the packet is a VLAN packet.</p>
+</blockquote>
 
                     
                     </section>
