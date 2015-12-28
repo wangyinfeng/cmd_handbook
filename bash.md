@@ -209,3 +209,23 @@ sed -e /^$/d FILE     #删除空行. -e 表示可编辑
 sed -e "s/$OLD/$NEW/g" FILE #  替换$OLD为$NEW
 ```
 
+#string
+## String contains substring
+###Star Wildcard
+```
+if [[ "$string" == *"$substring"* ]]; then
+    echo "'$string' contains '$substring'";
+else
+    echo "'$string' does not contain '$substring'";
+fi
+```
+
+###Regular Expressions
+```
+if [[ "$string" =~ "$substring" ]]; then
+    echo "'$string' contains '$substring'";
+else
+    echo "'$string' does not contain '$substring'";
+fi
+```
+
