@@ -228,6 +228,12 @@ else
     echo "'$string' does not contain '$substring'";
 fi
 ```
-
+## check if a variable is a number
+```
+re='^[0-9]+$'
+if ! [[ $yournumber =~ $re ]] ; then
+   echo "error: Not a number" >&2; exit 1
+fi
+```
 
 
