@@ -34,5 +34,11 @@ Sometimes when do tcpdump for ping packet, can't capture the icmp packet on the 
 For example `tcpdump -i eth1 icmp` has no captured result. It's because the packet is encapsulated in VLAN. Packets can be captured by `tcpdump -i eth1 vlan and icmp`. 
 > Note that the first vlan keyword encountered in expression changes the decoding offsets for the remainder of expression on the assumption that the packet is a VLAN packet.
 
+## The capture file appears to have been cut short in the middle of a packet
+http://stackoverflow.com/questions/13563523/the-capture-file-appears-to-have-been-cut-short-in-the-middle-of-a-packet-how
+
+Use `kill -INT` instead of `kill` to stop the process.  
+`kill` default signal is `TERM`.  
+
 
 
