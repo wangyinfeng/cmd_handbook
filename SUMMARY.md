@@ -6,7 +6,7 @@
    * [apt-get](apt-get.md)
 * [find-grep](find-grep.md)
 * [Linux tools](linuxtool.md)
-* [Linux system configuration](linux_system.md)
+* [Linux system configuration](linuxsystem.md)
 * [network](network.md)
 * [tcpdump](tcpdump.md)
 * [bash](bash.md)
