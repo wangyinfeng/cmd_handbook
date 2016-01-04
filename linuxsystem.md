@@ -1,6 +1,6 @@
 Linux system configuration
 ======================================
-Configuration tips for Linux system
+Configuration tips for Linux system.
 
 运行级别：操作系统当前的功能级别。在/etc/inittab中指定。
 
