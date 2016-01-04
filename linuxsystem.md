@@ -140,3 +140,17 @@ Linux有一个称为crond的守护程序，主要功能是周期性地检查 /va
   Job 1 at 2007－04－09 12:00
 在2007－04－09 12:00时候自动发一标题为“Have a lunch”，内容为plan.txt文件内容的邮件给Roger。
 
+RedHat单网卡多IP
+例：将eht0 添加新地址 eth0:1
+1.  拷贝/etc/sysconfig/network-scripts/ifcfg-eth0文件为ifcfg-eth0:1
+2.  修改其中DEVICE=eth0:1
+3.  根据需要修改IP地址(IPADD)和掩码（NETMASK）,可以删除NETWORK、BROADCAST、HWADDR
+4.  重启网络服务#service network restart
+route add default gw xxx.xxx.xxx.xxx netmask xxx.xxx.xxx.xxx
+Check ethernet interface status
+
+	* cat /sys/class/net/ethX/operstate
+	* dmesg | grep eth
+	* ethtool ethX
+
+
