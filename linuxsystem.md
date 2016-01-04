@@ -45,6 +45,44 @@ smbclient //IPADDRESS/share_dir -u username     OR
 mount -t smbs username=USER, passwords=PASSWORD //IPADDRESS/share_dir $HOME/SHARE
      访问共享文件夹
 
+XDM服务开启在Suse上配置远程图形登录(xdmcp)支持需要下面4个步骤：
+1. 修改/etc/X11/xdm/Xaccess，设置哪些主机可以连接X
+#* # any host can get a login window
+去掉#
+2. 修改/etc/sysconfig/displaymanager
+确认displaymanager为kdm
+DISPLAYMANAGER="kdm"
+DISPLAYMANAGER_REMOTE_ACCESS="yes"
+
+3. 修改/etc/opt/kde3/share/config/kdm/kdmrc      (KDE)
+/etc/opt/gnome/gdm/gdm.conf                      (GNOME)
+( RedHat:/etc/X11/gdm/gdm.conf )
+[Xdmcp]([xdmcp])段
+Enable=true ，如果没有则添上'Enable=true'
+
+4. 启用并重启xdm
+# insserv xdm
+# rcxdm restart
+( # /etc/init.d/xdm restart )
+
+服务器访问控制
+/etc/hosts.allow和/etc/hosts.deny
+这两个文件是tcpd服务器的配置文件，tcpd服务器可以控制外部IP对本机服务的访问。这两个配置文件的格式如下：
+#服务进程名:主机列表:当规则匹配时可选的命令操作
+server_name:hosts-list[:command]
+/etc/hosts.allow控制可以访问本机的IP地址，/etc/hosts.deny控制禁止访问本机的IP。如果两个文件的配置有冲突，以/etc/hosts.deny为准。下面是一个/etc/hosts.allow的示例：
+ALL:127.0.0.1         #允许本机访问本机所有服务进程
+smbd:192.168.0.0/255.255.255.0     #允许192.168.0.网段的IP访问smbd服务
+ALL关键字匹配所有情况，EXCEPT匹配除了某些项之外的情况，PARANOID匹配你想控制的IP地址和它的域名不匹配时(域名伪装)的情况。
+
+/etc/ftpusers
+配置登录用户限制
+
+/etc/issue.net
+/etc/motd
+设置远程登录界面提示信息
+issue.net用于登录前提示信息
+motd用于登录后提示信息
 
 
 这个命令强制把系统时间写入CMOS
@@ -64,5 +102,41 @@ uptime     time since system up
 Linux系统时间生成
 HardwareTimer(RTC) -> tick -> walltime/up time
 
+自启动管理
 
+1 开机自启动
+
+Linux加载后,运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。 通常情况下，修改放置在 /etc/rc，/etc/rc.d或/etc/rc.d/rc.local或/etc/rcN.d目录下的脚本文件， 可以使init自动启动其它程序。例如：
+
+vim /etc/rc.d/rc.loacl
+........
+/usr/bin/MYPROGRAMME  [option]
+........
+
+2 登录自启动
+
+用户登录时，bash首先自动执行系统管理员建立的全局登录script：/ect/profile。 然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：/.bash_profile、/.bash_login、/.profile， 但只执行最先找到的一个。只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序。
+
+3 退出自动运行
+
+退出登录时，bash自动执行个人的退出登录脚本/.bash_logout。 例如：
+
+vim /.bash_logout
+...............
+tar －cvzf c.source.tgz *.c #退出登录时自动执行 "tar" 备份 *.c 文件。
+...............
+
+4 定期自动运行
+
+Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容， 并在设定的时间执行这些文件中的命令。用户可以通过crontab 命令来建立、修改、删除这些命令文件。
+
+5 定时自动运行程序 –– 一次
+
+定时执行命令at 与crond 类似（但它只执行一次）：命令在给定的时间执行，但不自动重复。 at命令的一般格式为：at [ －f file ] time ，在指定的时间执行file文件中所给出的所有命令。 也可直接从键盘输入命令：
+
+  $ at 12:00
+  at>mailto Roger －s ″Have a lunch″ < plan.txt
+  at>Ctr－D
+  Job 1 at 2007－04－09 12:00
+在2007－04－09 12:00时候自动发一标题为“Have a lunch”，内容为plan.txt文件内容的邮件给Roger。
 
