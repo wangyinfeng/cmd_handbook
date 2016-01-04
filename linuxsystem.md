@@ -153,6 +153,15 @@ Check ethernet interface status
 	* dmesg | grep eth
 	* ethtool ethX
 
+Change the NIC name
+editing /etc/default/grub and adding "net.ifnames=0" to GRUB_CMDLINE_LINUX variable.
+Then run regenerate GRUB configuration with updated kernel parameters.
+$ grub2-mkconfig -o /boot/grub2/grub.cfg
+Next, edit (or create) a udev network naming rule file (/etc/udev/rules.d/70-persistent-net.rules), and add the following line. Replace MAC address and interface with your own.
+$ vi /etc/udev/rules.d/70-persistent-net.rules
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="08:00:27:a9:7a:e1", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+Then reboot
+
 
 First of all, you need a proxy server...
 
