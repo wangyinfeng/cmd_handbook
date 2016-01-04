@@ -154,3 +154,14 @@ Check ethernet interface status
 	* ethtool ethX
 
 
+First of all, you need a proxy server...
+
+yum配置代理
+echo "proxy=http://192.168.255.130:655" >> /etc/yum.conf
+
+wget配置代理
+[root@ ~]# cat .wgetrc 
+http_proxy = http://192.168.255.130:655
+ftp_proxy = http://192.168.255.130:655
+use_proxy = on
+wait = 15
