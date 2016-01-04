@@ -1,6 +1,26 @@
 Linux system configuration
 ======================================
 
+运行级别：操作系统当前的功能级别。在/etc/inittab中指定。
+
+0 – halt(DO NOT set initdefault to this)
+1 – Single user mode
+2 – Mutiuser,without NFS
+3 – Full mutiuser mode
+4 – unused
+5 – X11 (远程gui登陆需要设置为这个运行级别)
+6 – reboot(DO NOT set initdefault to this)
+最先运行的是位于/etc/rc.d下的文件，启动脚本一般位于/etc/rc.d/init.d中，这些脚本被用ln连接到/etc/rc.d/rcn.d，(n表示运行级别0~6)。
+
+运行级别的配置
+15:5:wait:/etc/rc.d/rc 5
+第一个字段为一个任意标示；第二个字段表示运行级别(5)，第三个字段表示init等待第四个字段的命令运行结束(wait)。 第四个字段做实际工作，启动没有运行的服务，停止该运行级别下不该有的服务。
+
+单用户模式可以在丢失root口令情况下使用passwd重新设定root口令。
+
+具体参考info inittab或man inittab。
+
+
 Linux系统时间修改
 Linux下一般使用“date -s”命令来修改系统时间。
 如将系统时间设定成1999年12月9日的命令如下：#date -s 12/09/99
