@@ -1,5 +1,38 @@
 OVS components and commands
 =========================
+# build and compile
+## Compile form source code
+Kerenel version support from 2.6.32 - 3.14(read the FAQ)
+```
+./boot.sh
+./configure --prefix=/usr --with-linux=/lib/modules/`uname -r`/build
+make
+make modules_install
+make install
+modprobe openvswitch
+```
+(Has issues, configure hang when write to db; and port cannot be seen with ip link)
+(to verify http://blog.onos.top/linux/2015/01/06/install-openvswitch-on-ubuntu14.04lts/ )
+
+## Build deb package 
+(http://www.docoreos.com/?p=79 )  
+检查下是否依赖包已经安装完毕`dpkg-checkbuilddeps`  
+构建安装包
+```
+DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
+dpkg -i openvswitch-common_2.3.2-1_amd64.deb  openvswitch-switch_2.3.2-1_amd64.deb
+
+Build rpm package(https://pario.no/2015/05/26/installing-open-vswitch-on-centos-7/）
+yum groupinstall "Development Tools"
+mkdir -p ~/rpmbuild/SOURCES
+cd ~/rpmbuild/SOURCES
+wget http://openvswitch.org/releases/openvswitch-2.3.1.tar.gz
+tar xfz openvswitch-2.3.1.tar.gz
+sed 's/openvswitch-kmod, //g' openvswitch-2.3.1/rhel/openvswitch.spec > openvswitch-2.3.1/rhel/openvswitch_no_kmod.spec
+rpmbuild -bb --nocheck ~/openvswitch-2.3.1/rhel/openvswitch_no_kmod.spec
+yum localinstall /home/ovswitch/rpmbuild/RPMS/x86_64/openvswitch-2.3.1-1.x86_64.rpm
+```
+
 # OVS components 
 ## ovs-vswitchd
 Core component in the system
