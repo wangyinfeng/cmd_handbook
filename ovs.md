@@ -1,6 +1,6 @@
-OVS compments and commands
+OVS components and commands
 =========================
-# OVS compment 
+# OVS components 
 ## ovs-vswitchd
 Core component in the system
 - Communicates with outside world using OpenFlow
