@@ -11,7 +11,7 @@ make modules_install
 make install
 modprobe openvswitch
 ```
-(Has issues, configure hang when write to db; and port cannot be seen with ip link)
+(Has issues, configure hang when write to db; and port cannot be seen with ip link)  
 (to verify http://blog.onos.top/linux/2015/01/06/install-openvswitch-on-ubuntu14.04lts/ )
 
 ## Build deb package 
