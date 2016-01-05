@@ -21,8 +21,11 @@ modprobe openvswitch
 ```
 DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
 dpkg -i openvswitch-common_2.3.2-1_amd64.deb  openvswitch-switch_2.3.2-1_amd64.deb
+```
 
-Build rpm package(https://pario.no/2015/05/26/installing-open-vswitch-on-centos-7/）
+## Build rpm package
+(https://pario.no/2015/05/26/installing-open-vswitch-on-centos-7/）
+```
 yum groupinstall "Development Tools"
 mkdir -p ~/rpmbuild/SOURCES
 cd ~/rpmbuild/SOURCES
