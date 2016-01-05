@@ -468,6 +468,18 @@ util_xalloc              1352.8/sec  1408.983/sec     1199.9022/sec   total: 556
 unixctl_received           0.0/sec     0.033/sec        0.0006/sec   total: 11
 ```
 
+## List logging levels
+```
+ovs-appctl vlog/list
+```
+## Configure debug logging
+
+Syntax: vlog/set module[:facility[:level]]  
+Module: any valid module name displayed by list option.  
+Facility: must be one of the console, syslog, file  
+Level: must be one of the emer, err, warn, info, or dbg.  
+
+Note: Special name “ANY” can be used to set the logging levels for all modules and facility.
 
 
 
