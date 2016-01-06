@@ -21,6 +21,16 @@ Configuration tips for Linux system.
 
 具体参考info inittab或man inittab。
 
+linux kernel参数配置
+显示消息队列配置：
+sysctl -a | grep kernel.msg*
+
+配置核心参数：
+/etc/sysctl.conf
+生效：
+inserv boot.sysctl
+/etc/init.d/boot.sysctl start
+
 
 Linux系统时间修改
 Linux下一般使用“date -s”命令来修改系统时间。
