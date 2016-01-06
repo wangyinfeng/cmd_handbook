@@ -473,6 +473,11 @@ Delete sflow from that bridge
 ```
 [root@dog ~]# ovs-vsctl remove bridge br-int sflow 705b5f89-4d58-4777-86d9-e44fe81271db
 ```
+OR
+```
+ovs-vsctl -- clear Bridge br-int sflow
+ovs-vsctl -- clear Bridge br-bond1 sflow
+```
 
 # Controller
 ## fail mode
