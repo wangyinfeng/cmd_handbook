@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>yum | The handbook to collect commands, usages and thoughts</title>
+        <title>gcc | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./apt-get.html" />
+    <link rel="next" href="./network.html" />
     
     
-    <link rel="prev" href="./index.html" />
+    <link rel="prev" href="./linuxsystem.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="1.1"
-        data-chapter-title="yum"
-        data-filepath="yum.md"
+        data-level="5"
+        data-chapter-title="gcc"
+        data-filepath="gcctips.md"
         data-basepath="."
         data-revision="Wed Jan 06 2016 17:20:02 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -90,7 +90,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1" data-path="yum.html">
+        <li class="chapter " data-level="1.1" data-path="yum.html">
             
                 
                     <a href="./yum.html">
@@ -170,7 +170,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5" data-path="gcctips.html">
+        <li class="chapter active" data-level="5" data-path="gcctips.html">
             
                 
                     <a href="./gcctips.html">
@@ -458,7 +458,33 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="yum">yum</h1>
+                        <h1 id="gcc">gcc</h1>
+<p>&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x5206;&#x4E3A;Pre-processing,compiling,assembling,linking&#x56DB;&#x4E2A;&#x9636;&#x6BB5;&#x3002;</p>
+<h2 id="gcc&#x53C2;&#x6570;">gcc&#x53C2;&#x6570;</h2>
+<ul>
+<li>-E: &#x53EA;&#x8FDB;&#x884C;pre-processing&#x5904;&#x7406;</li>
+<li>-o: &#x4EA7;&#x751F;&#x76EE;&#x6807;&#x6587;&#x4EF6;</li>
+<li>-i: &#x9009;&#x62E9;&#x8981;&#x4F7F;&#x7528;&#x5230;&#x7684;linker&#x5E93;</li>
+<li>-c: &#x7F16;&#x8BD1;&#xFF0C;&#x4E0D;link</li>
+<li>-g: debug&#xFF0C;&#x5305;&#x542B;symbol&#x4FE1;&#x606F;&#xFF0C;release&#x7248;&#x672C;&#x4E0D;&#x542B;symbol&#x4FE1;&#x606F;</li>
+<li>-Wall: &#x663E;&#x793A;&#x6240;&#x6709;warning</li>
+<li>-Wextra: show more warning, such as compare pointer with number, missing parameter type</li>
+<li>-Wfloat-equal: show warning if compare float number with == or !=</li>
+<li>-save-temps: save all temporary files</li>
+<li>@file: save the options in file and type less words. eg: gcc @options hello.c -o hello</li>
+</ul>
+<p><code>readelf</code> &#x67E5;&#x770B;elf&#x6587;&#x4EF6;&#x5185;&#x5BB9;<br><code>nm</code> &#x5217;&#x51FA;symbol<br><code>objdump -S</code> &#x53CD;&#x6C47;&#x7F16;&#x76EE;&#x6807;&#x6587;&#x4EF6;  </p>
+<h2 id="gcc-o&#x9009;&#x9879;">GCC -O&#x9009;&#x9879;</h2>
+<p>&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#x63A7;&#x5236;&#x6240;&#x6709;&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#x3002;&#x4F7F;&#x7528;&#x4F18;&#x5316;&#x9009;&#x9879;&#x4F1A;&#x4F7F;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x8017;&#x8D39;&#x66F4;&#x591A;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x5360;&#x7528;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x5728;&#x63D0;&#x9AD8;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#x7684;&#x65F6;&#x5019;&#x3002;<br>-O&#x8BBE;&#x7F6E;&#x4E00;&#x5171;&#x6709;&#x4E94;&#x79CD;&#xFF1A;-O0&#x3001;-O1&#x3001;-O2&#x3001;-O3&#x548C;-Os&#x3002;</p>
+<ul>
+<li>-O0&#xFF1A;&#x5173;&#x95ED;&#x6240;&#x6709;&#x4F18;&#x5316;&#x9009;&#x9879;&#xFF0C;&#x4E5F;&#x662F;CFLAGS&#x6216;CXXFLAGS&#x4E2D;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;-O&#x7B49;&#x7EA7;&#x65F6;&#x7684;&#x9ED8;&#x8BA4;&#x7B49;&#x7EA7;&#x3002; </li>
+<li>-O1&#xFF1A;&#x57FA;&#x672C;&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#x3002;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;&#x4E0D;&#x82B1;&#x8D39;&#x592A;&#x591A;&#x7F16;&#x8BD1;&#x65F6;&#x95F4;&#x7684;&#x540C;&#x65F6;&#x8BD5;&#x56FE;&#x751F;&#x6210;&#x66F4;&#x5FEB;&#x66F4;&#x5C0F;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x4E9B;&#x4F18;&#x5316;&#x662F;&#x975E;&#x5E38;&#x57FA;&#x7840;&#x7684;&#xFF0C;&#x4F46;&#x4E00;&#x822C;&#x8FD9;&#x4E9B;&#x4EFB;&#x52A1;&#x80AF;&#x5B9A;&#x80FD;&#x987A;&#x5229;&#x5B8C;&#x6210;&#x3002; </li>
+<li>-O2&#xFF1A;&#x63A8;&#x8350;&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#xFF0C;&#x9664;&#x975E;&#x4F60;&#x6709;&#x7279;&#x6B8A;&#x7684;&#x9700;&#x6C42;&#x3002;-O2&#x4F1A;&#x6BD4;-O1&#x542F;&#x7528;&#x591A;&#x4E00;&#x4E9B;&#x6807;&#x8BB0;&#x3002;&#x8BBE;&#x7F6E;&#x4E86;-O2&#x540E;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x8BD5;&#x56FE;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x6027;&#x80FD;&#x800C;&#x4E0D;&#x4F1A;&#x589E;&#x5927;&#x4F53;&#x79EF;&#x548C;&#x5927;&#x91CF;&#x5360;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x65F6;&#x95F4;&#x3002; </li>
+<li>-O3&#xFF1A;&#x6700;&#x9AD8;&#x6700;&#x5371;&#x9669;&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#x3002;&#x7528;&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#x4F1A;&#x5EF6;&#x957F;&#x7F16;&#x8BD1;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x4F7F;&#x7528;gcc4.x&#x7684;&#x7CFB;&#x7EDF;&#x91CC;&#x4E0D;&#x5E94;&#x5168;&#x5C40;&#x542F;&#x7528;&#x3002;&#x81EA;&#x4ECE;3.x&#x7248;&#x672C;&#x4EE5;&#x6765;gcc&#x7684;&#x884C;&#x4E3A;&#x5DF2;&#x7ECF;&#x6709;&#x4E86;&#x6781;&#x5927;&#x5730;&#x6539;&#x53D8;&#x3002;&#x5728;3.x&#xFF0C;-O3&#x751F;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x4E5F;&#x53EA;&#x662F;&#x6BD4;-O2&#x5FEB;&#x4E00;&#x70B9;&#x70B9;&#x800C;&#x5DF2;&#xFF0C;&#x800C;gcc4.x&#x4E2D;&#x8FD8;&#x672A;&#x5FC5;&#x66F4;&#x5FEB;&#x3002;&#x7528;-O3&#x6765;&#x7F16;&#x8BD1;&#x6240;&#x6709;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x5C06;&#x4EA7;&#x751F;&#x66F4;&#x5927;&#x4F53;&#x79EF;&#x66F4;&#x8017;&#x5185;&#x5B58;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#xFF0C;&#x5927;&#x5927;&#x589E;&#x52A0;&#x7F16;&#x8BD1;&#x5931;&#x8D25;&#x7684;&#x673A;&#x4F1A;&#x6216;&#x4E0D;&#x53EF;&#x9884;&#x77E5;&#x7684;&#x7A0B;&#x5E8F;&#x884C;&#x4E3A;&#xFF08;&#x5305;&#x62EC;&#x9519;&#x8BEF;&#xFF09;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x5C06;&#x5F97;&#x4E0D;&#x507F;&#x5931;&#xFF0C;&#x8BB0;&#x4F4F;&#x8FC7;&#x72B9;&#x4E0D;&#x53CA;&#x3002;&#x5728;gcc 4.x.&#x4E2D;&#x4F7F;&#x7528;-O3&#x662F;&#x4E0D;&#x63A8;&#x8350;&#x7684;&#x3002; </li>
+<li>-Os&#xFF1A;&#x8FD9;&#x4E2A;&#x7B49;&#x7EA7;&#x7528;&#x6765;&#x4F18;&#x5316;&#x4EE3;&#x7801;&#x5C3A;&#x5BF8;&#x3002;&#x5176;&#x4E2D;&#x542F;&#x7528;&#x4E86;-O2&#x4E2D;&#x4E0D;&#x4F1A;&#x589E;&#x52A0;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x5360;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x9009;&#x9879;&#x3002;&#x8FD9;&#x5BF9;&#x4E8E;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x6781;&#x5176;&#x7D27;&#x5F20;&#x6216;&#x8005;CPU&#x7F13;&#x5B58;&#x8F83;&#x5C0F;&#x7684;&#x673A;&#x5668;&#x975E;&#x5E38;&#x6709;&#x7528;&#x3002;&#x4F46;&#x4E5F;&#x53EF;&#x80FD;&#x4EA7;&#x751F;&#x4E9B;&#x8BB8;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x6B64;&#x8F6F;&#x4EF6;&#x6811;&#x4E2D;&#x7684;&#x5927;&#x90E8;&#x5206;ebuild&#x90FD;&#x8FC7;&#x6EE4;&#x6389;&#x8FD9;&#x4E2A;&#x7B49;&#x7EA7;&#x7684;&#x4F18;&#x5316;&#x3002;&#x4F7F;&#x7528;-Os&#x662F;&#x4E0D;&#x63A8;&#x8350;&#x7684;&#x3002;</li>
+</ul>
+<h2 id="gcc-g&#x9009;&#x9879;">GCC -g&#x9009;&#x9879;</h2>
+<p>&#x5982;&#x679C;&#x4E0D;&#x6253;&#x5F00;-g&#x6216;&#x8005;-ggdb(GDB&#x4E13;&#x7528;)&#x8C03;&#x8BD5;&#x5F00;&#x5173;&#xFF0C;GCC&#x7F16;&#x8BD1;&#x65F6;&#x4E0D;&#x4F1A;&#x52A0;&#x5165;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4F1A;&#x589E;&#x5927;&#x751F;&#x6210;&#x4EE3;&#x7801;&#x7684;&#x4F53;&#x79EF;&#x3002;<br>GCC&#x91C7;&#x7528;&#x4E86;&#x5206;&#x7EA7;&#x8C03;&#x8BD5;&#xFF0C;&#x901A;&#x8FC7;&#x5728;-g&#x9009;&#x9879;&#x540E;&#x9644;&#x52A0;&#x6570;&#x5B57;1&#x3001;2&#x6216;3&#x6765;&#x6307;&#x5B9A;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x52A0;&#x5165;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x91CF;&#x3002;&#x9ED8;&#x8BA4;&#x7684;&#x7EA7;&#x522B;&#x662F;2&#xFF08;-g2&#xFF09;&#xFF0C;&#x6B64;&#x65F6;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x5305;&#x62EC;&#x6269;&#x5C55;&#x7684;&#x7B26;&#x53F7;&#x8868;&#x3001;&#x884C;&#x53F7;&#x3001;&#x5C40;&#x90E8;&#x6216;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x4FE1;&#x606F;&#x3002;&#x7EA7;&#x522B;3&#xFF08;-g3&#xFF09;&#x5305;&#x542B;&#x7EA7;&#x522B;2&#x4E2D;&#x7684;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x548C;&#x6E90;&#x4EE3;&#x7801;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x5B8F;&#x3002;&#x7EA7;&#x522B;1&#xFF08;-g1&#xFF09;&#x4E0D;&#x5305;&#x542B;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x548C;&#x4E0E;&#x884C;&#x53F7;&#x6709;&#x5173;&#x7684;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x56DE;&#x6EAF;&#x8DDF;&#x8E2A;&#x548C;&#x5806;&#x6808;&#x8F6C;&#x50A8;&#x4E4B;&#x7528;&#x3002;&#x56DE;&#x6EAF;&#x8DDF;&#x8E2A;&#x6307;&#x7684;&#x662F;&#x76D1;&#x89C6;&#x7A0B;&#x5E8F;&#x5728;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5386;&#x53F2;&#xFF0C;&#x5806;&#x6808;&#x8F6C;&#x50A8;&#x5219;&#x662F;&#x4E00;&#x79CD;&#x4EE5;&#x539F;&#x59CB;&#x7684;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x683C;&#x5F0F;&#x4FDD;&#x5B58;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x73AF;&#x5883;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4E24;&#x8005;&#x90FD;&#x662F;&#x7ECF;&#x5E38;&#x7528;&#x5230;&#x7684;&#x8C03;&#x8BD5;&#x624B;&#x6BB5;&#x3002;</p>
 
                     
                     </section>
@@ -469,10 +495,10 @@
         </div>
 
         
-        <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="./linuxsystem.html" class="navigation navigation-prev " aria-label="Previous page: Linux system configuration"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./apt-get.html" class="navigation navigation-next " aria-label="Next page: apt-get"><i class="fa fa-angle-right"></i></a>
+        <a href="./network.html" class="navigation navigation-next " aria-label="Next page: network"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

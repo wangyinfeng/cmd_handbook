@@ -1,0 +1,657 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Linux system configuration | The handbook to collect commands, usages and thoughts</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./gcctips.html" />
+    
+    
+    <link rel="prev" href="./linuxtool.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4"
+        data-chapter-title="Linux system configuration"
+        data-filepath="linuxsystem.md"
+        data-basepath="."
+        data-revision="Wed Jan 06 2016 17:20:02 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> Software manager</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="yum.html">
+            
+                
+                    <a href="./yum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        yum
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="apt-get.html">
+            
+                
+                    <a href="./apt-get.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        apt-get
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="find-grep.html">
+            
+                
+                    <a href="./find-grep.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        find-grep
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="linuxtool.html">
+            
+                
+                    <a href="./linuxtool.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Linux tools
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4" data-path="linuxsystem.html">
+            
+                
+                    <a href="./linuxsystem.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Linux system configuration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="gcctips.html">
+            
+                
+                    <a href="./gcctips.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        gcc
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="network.html">
+            
+                
+                    <a href="./network.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        network
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="tcpdump.html">
+            
+                
+                    <a href="./tcpdump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        tcpdump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="bash.html">
+            
+                
+                    <a href="./bash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        bash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="ovs.html">
+            
+                
+                    <a href="./ovs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        ovs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="ovs_flow.html">
+            
+                
+                    <a href="./ovs_flow.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        ovs flow
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="sr-iov.html">
+            
+                
+                    <a href="./sr-iov.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        sr-iov
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="dpdk.html">
+            
+                
+                    <a href="./dpdk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        dpdk
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="gitbook.html">
+            
+                
+                    <a href="./gitbook.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        gitbook
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="git.html">
+            
+                
+                    <a href="./git.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="openstackusage.html">
+            
+                
+                    <a href="./openstackusage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        openstack usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="virsh.html">
+            
+                
+                    <a href="./virsh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        virsh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="pdb.html">
+            
+                
+                    <a href="./pdb.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        pdb
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="mysql.html">
+            
+                
+                    <a href="./mysql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        mysql
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="oracle.html">
+            
+                
+                    <a href="./oracle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        oracle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="sybase.html">
+            
+                
+                    <a href="./sybase.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        sybase
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="pythontools.html">
+            
+                
+                    <a href="./pythontools.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        python tools
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >The handbook to collect commands, usages and thoughts</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="linux-system-configuration">Linux system configuration</h1>
+<p>Configuration tips for Linux system.</p>
+<p>&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#xFF1A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5F53;&#x524D;&#x7684;&#x529F;&#x80FD;&#x7EA7;&#x522B;&#x3002;&#x5728;/etc/inittab&#x4E2D;&#x6307;&#x5B9A;&#x3002;</p>
+<p>0 &#x2013; halt(DO NOT set initdefault to this)
+1 &#x2013; Single user mode
+2 &#x2013; Mutiuser,without NFS
+3 &#x2013; Full mutiuser mode
+4 &#x2013; unused
+5 &#x2013; X11 (&#x8FDC;&#x7A0B;gui&#x767B;&#x9646;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E3A;&#x8FD9;&#x4E2A;&#x8FD0;&#x884C;&#x7EA7;&#x522B;)
+6 &#x2013; reboot(DO NOT set initdefault to this)
+&#x6700;&#x5148;&#x8FD0;&#x884C;&#x7684;&#x662F;&#x4F4D;&#x4E8E;/etc/rc.d&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x52A8;&#x811A;&#x672C;&#x4E00;&#x822C;&#x4F4D;&#x4E8E;/etc/rc.d/init.d&#x4E2D;&#xFF0C;&#x8FD9;&#x4E9B;&#x811A;&#x672C;&#x88AB;&#x7528;ln&#x8FDE;&#x63A5;&#x5230;/etc/rc.d/rcn.d&#xFF0C;(n&#x8868;&#x793A;&#x8FD0;&#x884C;&#x7EA7;&#x522B;0~6)&#x3002;</p>
+<p>&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x7684;&#x914D;&#x7F6E;
+15:5:wait:/etc/rc.d/rc 5
+&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x4E3A;&#x4E00;&#x4E2A;&#x4EFB;&#x610F;&#x6807;&#x793A;&#xFF1B;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x6BB5;&#x8868;&#x793A;&#x8FD0;&#x884C;&#x7EA7;&#x522B;(5)&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x5B57;&#x6BB5;&#x8868;&#x793A;init&#x7B49;&#x5F85;&#x7B2C;&#x56DB;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x547D;&#x4EE4;&#x8FD0;&#x884C;&#x7ED3;&#x675F;(wait)&#x3002; &#x7B2C;&#x56DB;&#x4E2A;&#x5B57;&#x6BB5;&#x505A;&#x5B9E;&#x9645;&#x5DE5;&#x4F5C;&#xFF0C;&#x542F;&#x52A8;&#x6CA1;&#x6709;&#x8FD0;&#x884C;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x505C;&#x6B62;&#x8BE5;&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x4E0B;&#x4E0D;&#x8BE5;&#x6709;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x5355;&#x7528;&#x6237;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5728;&#x4E22;&#x5931;root&#x53E3;&#x4EE4;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;passwd&#x91CD;&#x65B0;&#x8BBE;&#x5B9A;root&#x53E3;&#x4EE4;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x53C2;&#x8003;info inittab&#x6216;man inittab&#x3002;</p>
+<p>linux kernel&#x53C2;&#x6570;&#x914D;&#x7F6E;
+&#x663E;&#x793A;&#x6D88;&#x606F;&#x961F;&#x5217;&#x914D;&#x7F6E;&#xFF1A;
+sysctl -a | grep kernel.msg*</p>
+<p>&#x914D;&#x7F6E;&#x6838;&#x5FC3;&#x53C2;&#x6570;&#xFF1A;
+/etc/sysctl.conf
+&#x751F;&#x6548;&#xFF1A;
+inserv boot.sysctl
+/etc/init.d/boot.sysctl start</p>
+<p>Linux&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x4FEE;&#x6539;
+Linux&#x4E0B;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x201C;date -s&#x201D;&#x547D;&#x4EE4;&#x6765;&#x4FEE;&#x6539;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x3002;
+&#x5982;&#x5C06;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x8BBE;&#x5B9A;&#x6210;1999&#x5E74;12&#x6708;9&#x65E5;&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;&#xFF1A;#date -s 12/09/99
+&#x5C06;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x8BBE;&#x5B9A;&#x6210;&#x4E0B;&#x5348;2&#x70B9;18&#x5206;9&#x79D2;&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;&#xFF1A;#date -s 14:18:09
+&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x8BF4;&#x7684;&#x662F;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#xFF0C;&#x662F;linux&#x7531;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x7684;&#x3002;
+&#x5728;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#xFF0C;Linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5C06;&#x65F6;&#x95F4;&#x4ECE;CMOS&#x4E2D;&#x8BFB;&#x5230;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x53D8;&#x91CF;&#x4E2D;&#xFF0C;&#x4EE5;&#x540E;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x5B9E;&#x73B0;&#x3002;&#x4E3A;&#x4E86;&#x4FDD;&#x6301;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x4E0E;CMOS&#x65F6;&#x95F4;&#x7684;&#x4E00;&#x81F4;&#x6027;&#xFF0C;Linux&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4F1A;&#x5C06;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x5199;&#x5165;CMOS&#x3002;&#x7531;&#x4E8E;&#x8BE5;&#x540C;&#x6B65;&#x662F;&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF08;&#x5927;&#x7EA6;&#x662F;11&#x5206;&#x949F;&#xFF09;&#x8FDB;&#x884C;&#x7684;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x6267;&#x884C;date -s&#x540E;&#xFF0C;&#x5982;&#x679C;&#x9A6C;&#x4E0A;&#x91CD;&#x8D77;&#x673A;&#x5668;&#xFF0C;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#x5C31;&#x6709;&#x53EF;&#x80FD;&#x6CA1;&#x6709;&#x88AB;&#x5199;&#x5165;CMOS,&#x8FD9;&#x5C31;&#x662F;&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;&#x3002;&#x5982;&#x679C;&#x8981;&#x786E;&#x4FDD;&#x4FEE;&#x6539;&#x751F;&#x6548;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x3002;</p>
+<h1 id="clock-w">clock -w</h1>
+<p>service smb start/ /etc/init.d/smb start/ Yast(suse) smbservice configure
+     &#x542F;&#x52A8;samba&#x670D;&#x52A1;</p>
+<p>sambastatus/chkconfig smb
+     &#x67E5;&#x770B;samba&#x670D;&#x52A1;</p>
+<p>smbmount/smbumount<br>     &#x52A0;&#x8F7D;/&#x5378;&#x8F7D;samba&#x670D;&#x52A1;</p>
+<p>smbclient -l //LOCALHOST
+     &#x67E5;&#x770B;&#x672C;&#x5730;&#x5171;&#x4EAB;</p>
+<p>smbclient //IPADDRESS/share_dir -u username     OR
+mount -t smbs username=USER, passwords=PASSWORD //IPADDRESS/share_dir $HOME/SHARE
+     &#x8BBF;&#x95EE;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;</p>
+<p>XDM&#x670D;&#x52A1;&#x5F00;&#x542F;&#x5728;Suse&#x4E0A;&#x914D;&#x7F6E;&#x8FDC;&#x7A0B;&#x56FE;&#x5F62;&#x767B;&#x5F55;(xdmcp)&#x652F;&#x6301;&#x9700;&#x8981;&#x4E0B;&#x9762;4&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li>&#x4FEE;&#x6539;/etc/X11/xdm/Xaccess&#xFF0C;&#x8BBE;&#x7F6E;&#x54EA;&#x4E9B;&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x8FDE;&#x63A5;X<h1 id="-any-host-can-get-a-login-window">* # any host can get a login window</h1>
+&#x53BB;&#x6389;#</li>
+<li><p>&#x4FEE;&#x6539;/etc/sysconfig/displaymanager
+&#x786E;&#x8BA4;displaymanager&#x4E3A;kdm
+DISPLAYMANAGER=&quot;kdm&quot;
+DISPLAYMANAGER_REMOTE_ACCESS=&quot;yes&quot;</p>
+</li>
+<li><p>&#x4FEE;&#x6539;/etc/opt/kde3/share/config/kdm/kdmrc      (KDE)
+/etc/opt/gnome/gdm/gdm.conf                      (GNOME)
+( RedHat:/etc/X11/gdm/gdm.conf )
+<a href="[xdmcp]">Xdmcp</a>&#x6BB5;
+Enable=true &#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219;&#x6DFB;&#x4E0A;&apos;Enable=true&apos;</p>
+</li>
+<li><p>&#x542F;&#x7528;&#x5E76;&#x91CD;&#x542F;xdm</p>
+<h1 id="insserv-xdm">insserv xdm</h1>
+<h1 id="rcxdm-restart">rcxdm restart</h1>
+<p>( # /etc/init.d/xdm restart )</p>
+</li>
+</ol>
+<p>&#x670D;&#x52A1;&#x5668;&#x8BBF;&#x95EE;&#x63A7;&#x5236;
+/etc/hosts.allow&#x548C;/etc/hosts.deny
+&#x8FD9;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x662F;tcpd&#x670D;&#x52A1;&#x5668;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;tcpd&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x5916;&#x90E8;IP&#x5BF9;&#x672C;&#x673A;&#x670D;&#x52A1;&#x7684;&#x8BBF;&#x95EE;&#x3002;&#x8FD9;&#x4E24;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<h1 id="&#x670D;&#x52A1;&#x8FDB;&#x7A0B;&#x540D;&#x4E3B;&#x673A;&#x5217;&#x8868;&#x5F53;&#x89C4;&#x5219;&#x5339;&#x914D;&#x65F6;&#x53EF;&#x9009;&#x7684;&#x547D;&#x4EE4;&#x64CD;&#x4F5C;">&#x670D;&#x52A1;&#x8FDB;&#x7A0B;&#x540D;:&#x4E3B;&#x673A;&#x5217;&#x8868;:&#x5F53;&#x89C4;&#x5219;&#x5339;&#x914D;&#x65F6;&#x53EF;&#x9009;&#x7684;&#x547D;&#x4EE4;&#x64CD;&#x4F5C;</h1>
+<p>server_name:hosts-list[:command]
+/etc/hosts.allow&#x63A7;&#x5236;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x672C;&#x673A;&#x7684;IP&#x5730;&#x5740;&#xFF0C;/etc/hosts.deny&#x63A7;&#x5236;&#x7981;&#x6B62;&#x8BBF;&#x95EE;&#x672C;&#x673A;&#x7684;IP&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x914D;&#x7F6E;&#x6709;&#x51B2;&#x7A81;&#xFF0C;&#x4EE5;/etc/hosts.deny&#x4E3A;&#x51C6;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;/etc/hosts.allow&#x7684;&#x793A;&#x4F8B;&#xFF1A;
+ALL:127.0.0.1         #&#x5141;&#x8BB8;&#x672C;&#x673A;&#x8BBF;&#x95EE;&#x672C;&#x673A;&#x6240;&#x6709;&#x670D;&#x52A1;&#x8FDB;&#x7A0B;
+smbd:192.168.0.0/255.255.255.0     #&#x5141;&#x8BB8;192.168.0.&#x7F51;&#x6BB5;&#x7684;IP&#x8BBF;&#x95EE;smbd&#x670D;&#x52A1;
+ALL&#x5173;&#x952E;&#x5B57;&#x5339;&#x914D;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;EXCEPT&#x5339;&#x914D;&#x9664;&#x4E86;&#x67D0;&#x4E9B;&#x9879;&#x4E4B;&#x5916;&#x7684;&#x60C5;&#x51B5;&#xFF0C;PARANOID&#x5339;&#x914D;&#x4F60;&#x60F3;&#x63A7;&#x5236;&#x7684;IP&#x5730;&#x5740;&#x548C;&#x5B83;&#x7684;&#x57DF;&#x540D;&#x4E0D;&#x5339;&#x914D;&#x65F6;(&#x57DF;&#x540D;&#x4F2A;&#x88C5;)&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>/etc/ftpusers
+&#x914D;&#x7F6E;&#x767B;&#x5F55;&#x7528;&#x6237;&#x9650;&#x5236;</p>
+<p>/etc/issue.net
+/etc/motd
+&#x8BBE;&#x7F6E;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x754C;&#x9762;&#x63D0;&#x793A;&#x4FE1;&#x606F;
+issue.net&#x7528;&#x4E8E;&#x767B;&#x5F55;&#x524D;&#x63D0;&#x793A;&#x4FE1;&#x606F;
+motd&#x7528;&#x4E8E;&#x767B;&#x5F55;&#x540E;&#x63D0;&#x793A;&#x4FE1;&#x606F;</p>
+<p>&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x5F3A;&#x5236;&#x628A;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x5199;&#x5165;CMOS</p>
+<p>&#x83B7;&#x53D6;&#x65F6;&#x95F4;API
+time() &#x8FD4;&#x56DE;timeval.tv_sec &#x79D2;&#x6570;
+settime() &#x8BBE;&#x7F6E;&#x65F6;&#x95F4;
+gettimeofday() &#x8FD4;&#x56DE;us&#x7CBE;&#x5EA6;&#x7EA7;&#x522B;
+settimeofday()
+cat /proc/uptime     &#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x95F4;&#x4EE5;&#x53CA;cpu idle&#x65F6;&#x95F4;
+uptime     &#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x95F4;&#xFF0C;&#x7528;&#x6237;&#x6570;&#x91CF;&#x4EE5;&#x53CA;1/5/15&#x5206;&#x949F;&#x7684;&#x5E73;&#x5747;&#x8D1F;&#x8377;</p>
+<p>xtime     &#x8BA1;&#x7B97;&#x81EA;1970-01-01 00:00:00&#x7684;&#x76F8;&#x5BF9;&#x79D2;&#x6570;
+jiffies     tick number since system up
+uptime     time since system up</p>
+<p>Linux&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x751F;&#x6210;
+HardwareTimer(RTC) -&gt; tick -&gt; walltime/up time</p>
+<p>&#x81EA;&#x542F;&#x52A8;&#x7BA1;&#x7406;</p>
+<p>1 &#x5F00;&#x673A;&#x81EA;&#x542F;&#x52A8;</p>
+<p>Linux&#x52A0;&#x8F7D;&#x540E;,&#x8FD0;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;init&#x3002;init&#x6839;&#x636E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7EE7;&#x7EED;&#x5F15;&#x5BFC;&#x8FC7;&#x7A0B;&#xFF0C;&#x542F;&#x52A8;&#x5176;&#x5B83;&#x8FDB;&#x7A0B;&#x3002; &#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4FEE;&#x6539;&#x653E;&#x7F6E;&#x5728; /etc/rc&#xFF0C;/etc/rc.d&#x6216;/etc/rc.d/rc.local&#x6216;/etc/rcN.d&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x811A;&#x672C;&#x6587;&#x4EF6;&#xFF0C; &#x53EF;&#x4EE5;&#x4F7F;init&#x81EA;&#x52A8;&#x542F;&#x52A8;&#x5176;&#x5B83;&#x7A0B;&#x5E8F;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<p>vim /etc/rc.d/rc.loacl
+........
+/usr/bin/MYPROGRAMME  [option]
+........</p>
+<p>2 &#x767B;&#x5F55;&#x81EA;&#x542F;&#x52A8;</p>
+<p>&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x9996;&#x5148;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x5EFA;&#x7ACB;&#x7684;&#x5168;&#x5C40;&#x767B;&#x5F55;script&#xFF1A;/ect/profile&#x3002; &#x7136;&#x540E;bash&#x5728;&#x7528;&#x6237;&#x8D77;&#x59CB;&#x76EE;&#x5F55;&#x4E0B;&#x6309;&#x987A;&#x5E8F;&#x67E5;&#x627E;&#x4E09;&#x4E2A;&#x7279;&#x6B8A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#xFF1A;/.bash_profile&#x3001;/.bash_login&#x3001;/.profile&#xFF0C; &#x4F46;&#x53EA;&#x6267;&#x884C;&#x6700;&#x5148;&#x627E;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x3002;&#x53EA;&#x9700;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x9700;&#x8981;&#x5728;&#x4E0A;&#x8FF0;&#x6587;&#x4EF6;&#x4E2D;&#x52A0;&#x5165;&#x547D;&#x4EE4;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x67D0;&#x4E9B;&#x7A0B;&#x5E8F;&#x3002;</p>
+<p>3 &#x9000;&#x51FA;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</p>
+<p>&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x81EA;&#x52A8;&#x6267;&#x884C;&#x4E2A;&#x4EBA;&#x7684;&#x9000;&#x51FA;&#x767B;&#x5F55;&#x811A;&#x672C;/.bash_logout&#x3002; &#x4F8B;&#x5982;&#xFF1A;</p>
+<p>vim /.bash_logout
+...............
+tar &#xFF0D;cvzf c.source.tgz <em>.c #&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x6267;&#x884C; &quot;tar&quot; &#x5907;&#x4EFD; </em>.c &#x6587;&#x4EF6;&#x3002;
+...............</p>
+<p>4 &#x5B9A;&#x671F;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</p>
+<p>Linux&#x6709;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;crond&#x7684;&#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x662F;&#x5468;&#x671F;&#x6027;&#x5730;&#x68C0;&#x67E5; /var/spool/cron&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x4E00;&#x7EC4;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#xFF0C; &#x5E76;&#x5728;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x3002;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;crontab &#x547D;&#x4EE4;&#x6765;&#x5EFA;&#x7ACB;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x3002;</p>
+<p>5 &#x5B9A;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F; &#x2013;&#x2013; &#x4E00;&#x6B21;</p>
+<p>&#x5B9A;&#x65F6;&#x6267;&#x884C;&#x547D;&#x4EE4;at &#x4E0E;crond &#x7C7B;&#x4F3C;&#xFF08;&#x4F46;&#x5B83;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF09;&#xFF1A;&#x547D;&#x4EE4;&#x5728;&#x7ED9;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x4E0D;&#x81EA;&#x52A8;&#x91CD;&#x590D;&#x3002; at&#x547D;&#x4EE4;&#x7684;&#x4E00;&#x822C;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;at [ &#xFF0D;f file ] time &#xFF0C;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;file&#x6587;&#x4EF6;&#x4E2D;&#x6240;&#x7ED9;&#x51FA;&#x7684;&#x6240;&#x6709;&#x547D;&#x4EE4;&#x3002; &#x4E5F;&#x53EF;&#x76F4;&#x63A5;&#x4ECE;&#x952E;&#x76D8;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF1A;</p>
+<p>  $ at 12:00
+  at&gt;mailto Roger &#xFF0D;s &#x2033;Have a lunch&#x2033; &lt; plan.txt
+  at&gt;Ctr&#xFF0D;D
+  Job 1 at 2007&#xFF0D;04&#xFF0D;09 12:00
+&#x5728;2007&#xFF0D;04&#xFF0D;09 12:00&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x53D1;&#x4E00;&#x6807;&#x9898;&#x4E3A;&#x201C;Have a lunch&#x201D;&#xFF0C;&#x5185;&#x5BB9;&#x4E3A;plan.txt&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7684;&#x90AE;&#x4EF6;&#x7ED9;Roger&#x3002;</p>
+<p>RedHat&#x5355;&#x7F51;&#x5361;&#x591A;IP
+&#x4F8B;&#xFF1A;&#x5C06;eht0 &#x6DFB;&#x52A0;&#x65B0;&#x5730;&#x5740; eth0:1</p>
+<ol>
+<li>&#x62F7;&#x8D1D;/etc/sysconfig/network-scripts/ifcfg-eth0&#x6587;&#x4EF6;&#x4E3A;ifcfg-eth0:1</li>
+<li>&#x4FEE;&#x6539;&#x5176;&#x4E2D;DEVICE=eth0:1</li>
+<li>&#x6839;&#x636E;&#x9700;&#x8981;&#x4FEE;&#x6539;IP&#x5730;&#x5740;(IPADD)&#x548C;&#x63A9;&#x7801;&#xFF08;NETMASK&#xFF09;,&#x53EF;&#x4EE5;&#x5220;&#x9664;NETWORK&#x3001;BROADCAST&#x3001;HWADDR</li>
+<li><p>&#x91CD;&#x542F;&#x7F51;&#x7EDC;&#x670D;&#x52A1;#service network restart
+route add default gw xxx.xxx.xxx.xxx netmask xxx.xxx.xxx.xxx
+Check ethernet interface status</p>
+<ul>
+<li>cat /sys/class/net/ethX/operstate</li>
+<li>dmesg | grep eth</li>
+<li>ethtool ethX</li>
+</ul>
+</li>
+</ol>
+<p>Change the NIC name
+editing /etc/default/grub and adding &quot;net.ifnames=0&quot; to GRUB_CMDLINE_LINUX variable.
+Then run regenerate GRUB configuration with updated kernel parameters.
+$ grub2-mkconfig -o /boot/grub2/grub.cfg
+Next, edit (or create) a udev network naming rule file (/etc/udev/rules.d/70-persistent-net.rules), and add the following line. Replace MAC address and interface with your own.
+$ vi /etc/udev/rules.d/70-persistent-net.rules
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?<em>&quot;, ATTR{address}==&quot;08:00:27:a9:7a:e1&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;eth</em>&quot;, NAME=&quot;eth0&quot;
+Then reboot</p>
+<p>&#x4EE3;&#x7406;&#x914D;&#x7F6E;
+First of all, you need a proxy server...</p>
+<p>yum&#x914D;&#x7F6E;&#x4EE3;&#x7406;
+echo &quot;proxy=<a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>&quot; &gt;&gt; /etc/yum.conf</p>
+<p>wget&#x914D;&#x7F6E;&#x4EE3;&#x7406;
+[root@ ~]# cat .wgetrc 
+http_proxy = <a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>
+ftp_proxy = <a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>
+use_proxy = on
+wait = 15</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./linuxtool.html" class="navigation navigation-prev " aria-label="Previous page: Linux tools"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./gcctips.html" class="navigation navigation-next " aria-label="Next page: gcc"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
