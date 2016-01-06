@@ -15,9 +15,9 @@ gcc
 * -save-temps: save all temporary files
 * @file: save the options in file and type less words. eg: gcc @options hello.c -o hello
 
-`readelf` 查看elf文件内容
-`nm` 列出symbol
-`objdump -S` 反汇编目标文件
+`readelf` 查看elf文件内容  
+`nm` 列出symbol  
+`objdump -S` 反汇编目标文件  
 
 ##GCC -O选项
 这个选项控制所有的优化等级。使用优化选项会使编译过程耗费更多的时间，并且占用更多的内存，尤其是在提高优化等级的时候。 
