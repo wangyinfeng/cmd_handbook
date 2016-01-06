@@ -3,17 +3,17 @@ gcc
 
 编译过程分为Pre-processing,compiling,assembling,linking四个阶段。
 
-gcc参数
--E: 只进行pre-processing处理
--o: 产生目标文件
--i: 选择要使用到的linker库
--c: 编译，不link
--g: debug，包含symbol信息，release版本不含symbol信息
--Wall: 显示所有warning
--Wextra: show more warning, such as compare pointer with number, missing parameter type
--Wfloat-equal: show warning if compare float number with == or !=
--save-temps: save all temporary files
-@file: save the options in file and type less words. eg: gcc @options hello.c -o hello
+gcc参数  
+* -E: 只进行pre-processing处理
+* -o: 产生目标文件
+* -i: 选择要使用到的linker库
+* -c: 编译，不link
+* -g: debug，包含symbol信息，release版本不含symbol信息
+* -Wall: 显示所有warning
+* -Wextra: show more warning, such as compare pointer with number, missing parameter type
+* -Wfloat-equal: show warning if compare float number with == or !=
+* -save-temps: save all temporary files
+* @file: save the options in file and type less words. eg: gcc @options hello.c -o hello
 
 readelf
      查看elf文件内容
