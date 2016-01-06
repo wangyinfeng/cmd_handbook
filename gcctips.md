@@ -3,7 +3,7 @@ gcc
 
 编译过程分为Pre-processing,compiling,assembling,linking四个阶段。
 
-gcc参数  
+##gcc参数  
 * -E: 只进行pre-processing处理
 * -o: 产生目标文件
 * -i: 选择要使用到的linker库
