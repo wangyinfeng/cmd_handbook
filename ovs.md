@@ -172,7 +172,7 @@ ovs-appctl lacp/show <bond name>
 ```
 Check bond port
 ```
-ovs-appctl bond/show br-bond0
+ovs-appctl bond/show
 ```
 
 set the bond mode to [balance-slb](http://openvswitch.org/pipermail/dev/2011-July/010028.html)
