@@ -268,7 +268,7 @@ ovs-dpctl dump-flows
 ovs-appctl dpif/show
 ```
 
-Show datapath flow like `top`
+Show datapath flow like `top`, get which port have biggest traffic.
 ```
 ovs-dpctl-top
 ```
