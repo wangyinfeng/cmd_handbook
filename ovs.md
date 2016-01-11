@@ -267,6 +267,12 @@ Show all userspace bridges datapath flows
 ovs-dpctl dump-flows
 ovs-appctl dpif/show
 ```
+
+Show datapath flow like `top`
+```
+ovs-dpctl-top
+```
+
 Show the name of each configured datapath
 ```
 ovs-appctl dpif/dump-dps
@@ -328,6 +334,7 @@ ovs-appctl dpif/show
 ```
 ovs-appctl ofproto/trace <flow>
 ```
+
 
 
 
