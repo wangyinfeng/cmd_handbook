@@ -53,7 +53,7 @@
         data-chapter-title="openstack usage"
         data-filepath="openstackusage.md"
         data-basepath="."
-        data-revision="Wed Jan 06 2016 17:20:02 GMT+0800 (中国标准时间)"
+        data-revision="Fri Jan 15 2016 18:03:58 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -460,7 +460,40 @@
                     
                         <h1 id="openstack-usage">OpenStack usage</h1>
 <p>Collect the usage tips about OpenStack installing and running.</p>
-<h1 id="nova">nova</h1>
+<h1 id="rdo-install">RDO install</h1>
+<h2 id="remove-packstack-installation">remove packstack installation</h2>
+<pre><code>#!/usr/bin/bash
+# Warning! Dangerous step! Destroys VMs
+for x in $(virsh list --all | grep instance- | awk &apos;{print $2}&apos;) ; do
+    virsh destroy $x ;
+    virsh undefine $x ;
+done ;
+
+# Warning! Dangerous step! Removes lots of packages, including many
+# which may be unrelated to RDO.
+yum remove -y nrpe &quot;*nagios*&quot; puppet ntp ntp-perl ntpdate &quot;*openstack*&quot; \
+&quot;*nova*&quot; &quot;*keystone*&quot; &quot;*glance*&quot; &quot;*cinder*&quot; &quot;*swift*&quot; \
+mysql mysql-server httpd &quot;*memcache*&quot; scsi-target-utils \
+iscsi-initiator-utils perl-DBI perl-DBD-MySQL ;
+
+ps -ef | grep -i repli | grep swift | awk &apos;{print $2}&apos; | xargs kill ;
+
+# Warning! Dangerous step! Deletes local application data
+rm -rf /etc/nagios /etc/yum.repos.d/packstack_* /root/.my.cnf \
+/var/lib/mysql/ /var/lib/glance /var/lib/nova /etc/nova /etc/swift \
+/srv/node/device*/* /var/lib/cinder/ /etc/rsync.d/frag* \
+/var/cache/swift /var/log/keystone ;
+
+umount /srv/node/device* ;
+killall -9 dnsmasq tgtd httpd ;
+setenforce 1 ;
+vgremove -f cinder-volumes ;
+losetup -a | sed -e &apos;s/:.*//g&apos; | xargs losetup -d ;
+find /etc/pki/tls -name &quot;ssl_ps*&quot; | xargs rm -rf ;
+for x in $(df | grep &quot;/lib/&quot; | sed -e &apos;s/.* //g&apos;) ; do
+    umount $x ;
+done
+</code></pre><h1 id="nova">nova</h1>
 <h2 id="no-vnc-access-from-horizon">No vnc access from horizon</h2>
 <h3 id="solution">solution</h3>
 <pre><code>service  openstack-nova-novncproxy start

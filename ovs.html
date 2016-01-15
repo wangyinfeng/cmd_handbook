@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Wed Jan 06 2016 17:20:02 GMT+0800 (中国标准时间)"
+        data-revision="Fri Jan 15 2016 18:03:58 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -587,7 +587,7 @@ qvbcbf85285-5d Link encap:Ethernet  HWaddr D2:87:EA:A7:7E:7F
 ovs-appctl bond/show &lt;bond name&gt;
 ovs-appctl lacp/show &lt;bond name&gt;
 </code></pre><p>Check bond port</p>
-<pre><code>ovs-appctl bond/show br-bond0
+<pre><code>ovs-appctl bond/show
 </code></pre><p>set the bond mode to <a href="http://openvswitch.org/pipermail/dev/2011-July/010028.html" target="_blank">balance-slb</a></p>
 <pre><code>ovs-vsctl set port bond0 bond_mode=balance-slb
 </code></pre><blockquote>
@@ -645,6 +645,8 @@ br-int
 </code></pre><p>Show all userspace bridges datapath flows</p>
 <pre><code>ovs-dpctl dump-flows
 ovs-appctl dpif/show
+</code></pre><p>Show datapath flow like <code>top</code>, get which port have biggest traffic.</p>
+<pre><code>ovs-dpctl-top
 </code></pre><p>Show the name of each configured datapath</p>
 <pre><code>ovs-appctl dpif/dump-dps
 system@br-bond1
