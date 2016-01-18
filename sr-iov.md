@@ -37,6 +37,27 @@ Live Migration support. An SR-IOV Neutron port may be directly connected to its 
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 ```
 
+Check the ethX is belong to which PCI device
+```
+[root@fish ~]# systool -c net
+Class = "net"
+
+  Class Device = "eth0"
+    Device = "0000:07:00.0"
+
+  Class Device = "eth1"
+    Device = "0000:07:00.1"
+
+  Class Device = "eth2"
+    Device = "0000:82:00.0"
+
+  Class Device = "eth3"
+    Device = "0000:82:00.1"
+
+  Class Device = "lo"
+
+```
+
 Check SR-IOV driver, igb is for 82576, different NIC has different driver.
 ```
 [root@fish devices]# lsmod | grep igb
