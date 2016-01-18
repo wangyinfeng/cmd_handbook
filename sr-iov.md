@@ -37,40 +37,6 @@ Live Migration support. An SR-IOV Neutron port may be directly connected to its 
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 ```
 
-#Check the ethX is belong to which PCI device
-```
-[root@fish ~]# systool -c net
-Class = "net"
-
-  Class Device = "eth0"
-    Device = "0000:07:00.0"
-
-  Class Device = "eth1"
-    Device = "0000:07:00.1"
-
-  Class Device = "eth2"
-    Device = "0000:82:00.0"
-
-  Class Device = "eth3"
-    Device = "0000:82:00.1"
-
-  Class Device = "lo"
-
-```
-
-#Get the VF's vendor id and product id 
-```
-[root@fish neutron]# lspci -nn | grep -i ethernet
-07:00.0 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
-07:00.1 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
-82:00.0 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
-82:00.1 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
-82:10.0 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
-82:10.2 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
-```
-For the above case, the vendor id is `8086` and product id is `10ca`.
-
-
 Check SR-IOV driver, igb is for 82576, different NIC has different driver.
 ```
 [root@fish devices]# lsmod | grep igb
@@ -126,4 +92,35 @@ pci_0000_82_10_1
 </device>
 ```
 
+#Check the ethX is belong to which PCI device
+```
+[root@fish ~]# systool -c net
+Class = "net"
 
+  Class Device = "eth0"
+    Device = "0000:07:00.0"
+
+  Class Device = "eth1"
+    Device = "0000:07:00.1"
+
+  Class Device = "eth2"
+    Device = "0000:82:00.0"
+
+  Class Device = "eth3"
+    Device = "0000:82:00.1"
+
+  Class Device = "lo"
+
+```
+
+#Get the VF's vendor id and product id 
+```
+[root@fish neutron]# lspci -nn | grep -i ethernet
+07:00.0 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+07:00.1 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+82:00.0 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
+82:00.1 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
+82:10.0 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
+82:10.2 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
+```
+For the above case, the vendor id is `8086` and product id is `10ca`.
