@@ -37,7 +37,7 @@ Live Migration support. An SR-IOV Neutron port may be directly connected to its 
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 ```
 
-Check the ethX is belong to which PCI device
+#Check the ethX is belong to which PCI device
 ```
 [root@fish ~]# systool -c net
 Class = "net"
@@ -58,7 +58,7 @@ Class = "net"
 
 ```
 
-Get the VF's vendor id and product id 
+#Get the VF's vendor id and product id 
 ```
 [root@fish neutron]# lspci -nn | grep -i ethernet
 07:00.0 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
