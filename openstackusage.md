@@ -152,6 +152,7 @@ Explain from https://bugzilla.redhat.com/show_bug.cgi?id=1168478
 > vNIC reported "speed" is an utterly fake number, that has nothing to do with vNIC QoS capping.
 
 ## Failed to allocate the network
+https://ask.openstack.org/en/question/60698/start-vm-failed-to-allocate-the-networks-not-rescheduling/  
 When create instances on another host, such error show on the page.  
 Check the `neutron agent-list` the target host's agent is offline.  
 Then check on the target host, the agent offline because connect to mq failed.  
