@@ -58,7 +58,7 @@ Set SR-IOV
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 82:10.1 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)
 ```
-**This setting will not persist after a reboot.**
+**This setting will not persist after a reboot.** Add the configure in the file `/etc/rc.d/rc.local`.
 
 Another way is 
 ```
