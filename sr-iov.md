@@ -28,6 +28,16 @@ the ability to plug/unplug a SR-IOV port on the fly which is currently not avail
 Live Migration support. An SR-IOV Neutron port may be directly connected to its VF as shown above (vnic_type ‘direct’) or it may be connected with a macvtap device that resides on the Compute (vnic_type ‘macvtap’), which is then connected to the corresponding VF. The macvtap option provides a baseline for implementing Live Migration for SR-IOV enabled instances. 
 
 # Enable SR-IOV driver
+Check if system support SR-IOV
+```
+[root@fish ~]# lspci -vvv | grep -i "initial vf"
+                Initial VFs: 31, Total VFs: 31, Number of VFs: 31, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 8, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 4, Function Dependency Link: 01
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 4, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 8, Function Dependency Link: 01
+```
+
 `lspci` to check the ethernet card type, 82576 and I350 both support SR-IOV.
 ```
 [root@fish devices]# lspci | grep Ethernet
