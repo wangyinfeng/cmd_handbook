@@ -38,6 +38,12 @@ Check if system support SR-IOV
                 Initial VFs: 8, Total VFs: 8, Number of VFs: 8, Function Dependency Link: 01
 ```
 
+Check if vd-d is enabled
+```
+grep -i "iommu.*enabled" /var/log/dmesg
+```
+
+
 `lspci` to check the ethernet card type, 82576 and I350 both support SR-IOV.
 ```
 [root@fish devices]# lspci | grep Ethernet
