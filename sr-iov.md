@@ -44,6 +44,7 @@ grep -i "iommu.*enabled" /var/log/dmesg
 ```
 if not enabled, add `intel_iommu=on` at the end of `/boot/grub/grub.conf`
 
+
 `lspci` to check the ethernet card type, 82576 and I350 both support SR-IOV.
 ```
 [root@fish devices]# lspci | grep Ethernet
