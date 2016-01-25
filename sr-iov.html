@@ -53,7 +53,7 @@
         data-chapter-title="sr-iov"
         data-filepath="sr-iov.md"
         data-basepath="."
-        data-revision="Fri Jan 15 2016 18:03:58 GMT+0800 (中国标准时间)"
+        data-revision="Mon Jan 25 2016 17:28:37 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -473,6 +473,16 @@
 <p>the ability to plug/unplug a SR-IOV port on the fly which is currently not available</p>
 <p>Live Migration support. An SR-IOV Neutron port may be directly connected to its VF as shown above (vnic_type &#x2018;direct&#x2019;) or it may be connected with a macvtap device that resides on the Compute (vnic_type &#x2018;macvtap&#x2019;), which is then connected to the corresponding VF. The macvtap option provides a baseline for implementing Live Migration for SR-IOV enabled instances. </p>
 <h1 id="enable-sriov-driver">Enable SR-IOV driver</h1>
+<p>Check if system support SR-IOV</p>
+<pre><code>[root@fish ~]# lspci -vvv | grep -i &quot;initial vf&quot;
+                Initial VFs: 31, Total VFs: 31, Number of VFs: 31, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 8, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 4, Function Dependency Link: 01
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 4, Function Dependency Link: 00
+                Initial VFs: 8, Total VFs: 8, Number of VFs: 8, Function Dependency Link: 01
+</code></pre><p>Check if vd-d is enabled</p>
+<pre><code>grep -i &quot;iommu.*enabled&quot; /var/log/dmesg
+</code></pre><p>if not enabled, add <code>intel_iommu=on</code> at the end of <code>/boot/grub/grub.conf</code></p>
 <p><code>lspci</code> to check the ethernet card type, 82576 and I350 both support SR-IOV.</p>
 <pre><code>[root@fish devices]# lspci | grep Ethernet
 07:00.0 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
@@ -495,7 +505,8 @@ i2c_core               31084  3 igb,i2c_algo_bit,i2c_i801
 82:00.0 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 82:00.1 Ethernet controller: Intel Corporation 82576 Gigabit Network Connection (rev 01)
 82:10.1 Ethernet controller: Intel Corporation 82576 Virtual Function (rev 01)
-</code></pre><p>Another way is </p>
+</code></pre><p><strong>This setting will not persist after a reboot.</strong> Add the configure in the file <code>/etc/rc.d/rc.local</code>.</p>
+<p>Another way is </p>
 <pre><code>modprobe -r igb
 modprobe igb max_vfs=7
 </code></pre><p><strong>Remove the dirver will make the ethernet card unavaliable. And this way will effect all cards.</strong></p>
@@ -522,7 +533,33 @@ pci_0000_82_10_1
     &lt;/capability&gt;
   &lt;/capability&gt;
 &lt;/device&gt;
-</code></pre>
+</code></pre><h1 id="check-the-ethx-is-belong-to-which-pci-device">Check the ethX is belong to which PCI device</h1>
+<pre><code>[root@fish ~]# systool -c net
+Class = &quot;net&quot;
+
+  Class Device = &quot;eth0&quot;
+    Device = &quot;0000:07:00.0&quot;
+
+  Class Device = &quot;eth1&quot;
+    Device = &quot;0000:07:00.1&quot;
+
+  Class Device = &quot;eth2&quot;
+    Device = &quot;0000:82:00.0&quot;
+
+  Class Device = &quot;eth3&quot;
+    Device = &quot;0000:82:00.1&quot;
+
+  Class Device = &quot;lo&quot;
+</code></pre><h1 id="get-the-vfs-vendor-id-and-product-id">Get the VF&apos;s vendor id and product id</h1>
+<pre><code>[root@fish neutron]# lspci -nn | grep -i ethernet
+07:00.0 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+07:00.1 Ethernet controller [0200]: Intel Corporation I350 Gigabit Network Connection [8086:1521] (rev 01)
+82:00.0 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
+82:00.1 Ethernet controller [0200]: Intel Corporation 82576 Gigabit Network Connection [8086:10c9] (rev 01)
+82:10.0 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
+82:10.2 Ethernet controller [0200]: Intel Corporation 82576 Virtual Function [8086:10ca] (rev 01)
+</code></pre><p>For the above case, the vendor id is <code>8086</code> and product id is <code>10ca</code>.</p>
+
                     
                     </section>
                 

@@ -53,7 +53,7 @@
         data-chapter-title="openstack usage"
         data-filepath="openstackusage.md"
         data-basepath="."
-        data-revision="Fri Jan 15 2016 18:03:58 GMT+0800 (中国标准时间)"
+        data-revision="Mon Jan 25 2016 17:28:37 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -574,6 +574,8 @@ Settings for tapec3e5834-83:
 <blockquote>
 <p>vNIC reported &quot;speed&quot; is an utterly fake number, that has nothing to do with vNIC QoS capping.</p>
 </blockquote>
+<h2 id="failed-to-allocate-the-network">Failed to allocate the network</h2>
+<p><a href="https://ask.openstack.org/en/question/60698/start-vm-failed-to-allocate-the-networks-not-rescheduling/" target="_blank">https://ask.openstack.org/en/question/60698/start-vm-failed-to-allocate-the-networks-not-rescheduling/</a><br>When create instances on another host, such error show on the page.<br>Check the <code>neutron agent-list</code> the target host&apos;s agent is offline.<br>Then check on the target host, the agent offline because connect to mq failed.<br>Restart the agent and then restart the iptables on the controller, mq connect success, and instance build OK.</p>
 <h1 id="keystone">keystone</h1>
 <h2 id="invalid-openstack-identity-credentials">Invalid OpenStack Identity credentials</h2>
 <pre><code>[root@dog ~]# service keystone status
