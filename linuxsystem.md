@@ -15,7 +15,7 @@ Configuration tips for Linux system.
 6 – reboot(DO NOT set initdefault to this)
 最先运行的是位于/etc/rc.d下的文件，启动脚本一般位于/etc/rc.d/init.d中，这些脚本被用ln连接到/etc/rc.d/rcn.d，(n表示运行级别0~6)。
 
-运行级别的配置
+##运行级别的配置
 15:5:wait:/etc/rc.d/rc 5
 第一个字段为一个任意标示；第二个字段表示运行级别(5)，第三个字段表示init等待第四个字段的命令运行结束(wait)。 第四个字段做实际工作，启动没有运行的服务，停止该运行级别下不该有的服务。
 
@@ -23,24 +23,26 @@ Configuration tips for Linux system.
 
 具体参考info inittab或man inittab。
 
-linux kernel参数配置
-显示消息队列配置：
+#linux kernel参数配置
+##显示消息队列配置
+```
 sysctl -a | grep kernel.msg*
+```
 
-配置核心参数：
-/etc/sysctl.conf
+##配置核心参数
+`/etc/sysctl.conf`
 生效：
+```
 inserv boot.sysctl
 /etc/init.d/boot.sysctl start
+```
 
-
-Linux系统时间修改
-Linux下一般使用“date -s”命令来修改系统时间。
+##Linux系统时间修改
+Linux下一般使用`date -s`命令来修改系统时间。
 如将系统时间设定成1999年12月9日的命令如下：#date -s 12/09/99
 将系统时间设定成下午2点18分9秒的命令如下：#date -s 14:18:09
 注意，这里说的是系统时间，是linux由操作系统维护的。
-在系统启动时，Linux操作系统将时间从CMOS中读到系统时间变量中，以后修改时间通过修改系统时间实现。为了保持系统时间与CMOS时间的一致性，Linux每隔一段时间会将系统时间写入CMOS。由于该同步是每隔一段时间（大约是11分钟）进行的，在我们执行date -s后，如果马上重起机器，修改时间就有可能没有被写入CMOS,这就是问题的原因。如果要确保修改生效可以执行如下命令。
-#clock -w 
+在系统启动时，Linux操作系统将时间从CMOS中读到系统时间变量中，以后修改时间通过修改系统时间实现。为了保持系统时间与CMOS时间的一致性，Linux每隔一段时间会将系统时间写入CMOS。由于该同步是每隔一段时间（大约是11分钟）进行的，在我们执行date -s后，如果马上重起机器，修改时间就有可能没有被写入CMOS,这就是问题的原因。如果要确保修改生效可以执行如下命令 `clock -w`
 
 service smb start/ /etc/init.d/smb start/ Yast(suse) smbservice configure
      启动samba服务
