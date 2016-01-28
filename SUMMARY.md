@@ -8,7 +8,7 @@
 * [Linux tools](linuxtool.md)
 * [Linux system configuration](linuxsystem.md)
 * [ubuntu tips](ubuntutips.md)
-* [DOS commands](dos_commands.md)
+* [DOS commands](doscommands.md)
 * [gcc](gcctips.md)
 * [network](network.md)
 * [tcpdump](tcpdump.md)
