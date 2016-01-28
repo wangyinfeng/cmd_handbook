@@ -466,7 +466,10 @@ VM port cannot get IP address assigned. Check the neutron port status:
 +-----------------------+----------------------------------------------------------------------------------+
 
 [root@dog neutron]# grep -r binding_failed ./ 
-./server.log:2016-01-19 06:50:11.341 9415 WARNING neutron.plugins.ml2.rpc [req-b1f5330c-d757-467e-ba1c-0d044ee3e64d None] Device 61250efc-91b5-4b7b-9afa-ad8e73707d58 requested by agent ovs-agent-dog.cat on network 5a10549d-b6a4-40d5-9530-9c48ba1f467b not bound, vif_type: binding_failed
+./server.log:2016-01-19 06:50:11.341 9415 WARNING neutron.plugins.ml2.rpc [req-b1f5330c-d757-467e-ba1c-0d044ee3e64d None] 
+Device 61250efc-91b5-4b7b-9afa-ad8e73707d58 requested by
+agent ovs-agent-dog.cat on network 5a10549d-b6a4-40d5-9530-9c48ba1f467b 
+not bound, vif_type: binding_failed
 ```
 ### solution
 http://www.gossamer-threads.com/lists/openstack/dev/46153  
