@@ -265,6 +265,11 @@ Comment out the default_store=file under [glance_store], enable it at [default]
 Enable filesystem_store_datadir under [glance_store]
 ```
 
+## Add new image
+```
+glance image-create --name centos --disk-format qcow2 --container-format bare --is-public True --file /home/sriov-byvm
+```
+
 # Horizon
 ### An error occurred authenticating. Please try again later
 When login the dashboard, error happened.
