@@ -470,8 +470,7 @@ VM port cannot get IP address assigned. Check the neutron port status:
 ```
 ### solution
 http://www.gossamer-threads.com/lists/openstack/dev/46153  
-The compute node use physnet1 but the network node use physnet2…
-Both nodes use the same physnet1, dhcp port binding OK
+The compute node use physnet1 but the network node use physnet2… Both nodes use the same physnet1, dhcp port binding OK
 
 56(tap4e567fd6-7b): addr:77:00:00:00:00:00
      config:     PORT_DOWN
