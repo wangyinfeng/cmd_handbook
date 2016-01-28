@@ -1,2 +1,6 @@
-# ubuntu tips
+ubuntu tips
+================================
+Tips for ubuntu usage.
+
+
 
