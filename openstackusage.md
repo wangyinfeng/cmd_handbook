@@ -446,7 +446,7 @@ Configure the default_floating_pool=public <- the external network
 https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/
 
 
-##DHCP port bonding failed
+## DHCP port bonding failed
 VM port cannot get IP address assigned. Check the neutron port status:
 ```
 [root@dog ~]# neutron port-show 61250efc-91b5-4b7b-9afa-ad8e73707d58
