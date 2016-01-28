@@ -44,6 +44,7 @@ Linux下一般使用`date -s`命令来修改系统时间。
 注意，这里说的是系统时间，是linux由操作系统维护的。  
 在系统启动时，Linux操作系统将时间从CMOS中读到系统时间变量中，以后修改时间通过修改系统时间实现。为了保持系统时间与CMOS时间的一致性，Linux每隔一段时间会将系统时间写入CMOS。由于该同步是每隔一段时间（大约是11分钟）进行的，在我们执行date -s后，如果马上重起机器，修改时间就有可能没有被写入CMOS,这就是问题的原因。如果要确保修改生效可以执行如下命令 `clock -w`
 
+#samba服务
 service smb start/ /etc/init.d/smb start/ Yast(suse) smbservice configure
      启动samba服务
 
