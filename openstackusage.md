@@ -445,3 +445,41 @@ Configure the default_floating_pool=public <- the external network
 
 https://www.mirantis.com/blog/configuring-floating-ip-addresses-networking-openstack-public-private-clouds/
 
+
+##DHCP port bonding failed
+VM port cannot get IP address assigned. Check the neutron port status:
+```
+[root@dog ~]# neutron port-show 61250efc-91b5-4b7b-9afa-ad8e73707d58
++-----------------------+----------------------------------------------------------------------------------+
+| Field                 | Value                                                                            |
++-----------------------+----------------------------------------------------------------------------------+
+| admin_state_up        | True                                                                             |
+| binding:vif_type      | binding_failed                                                                   |
+| binding:vnic_type     | normal                                                                           |
+| device_owner          | network:dhcp                                                                     |
+| extra_dhcp_opts       |                                                                                  |
+| fixed_ips             | {"subnet_id": "2c16e8b7-023a-47b5-b13a-5fddc44f4f2e", "ip_address": "4.4.4.101"} |
+| mac_address           | fa:16:3e:18:31:fe                                                                |
+| network_id            | 5a10549d-b6a4-40d5-9530-9c48ba1f467b                                             |
+| security_groups       |                                                                                  |
+| status                | DOWN                                                                             |
++-----------------------+----------------------------------------------------------------------------------+
+
+[root@dog neutron]# grep -r binding_failed ./ 
+./server.log:2016-01-19 06:50:11.341 9415 WARNING neutron.plugins.ml2.rpc [req-b1f5330c-d757-467e-ba1c-0d044ee3e64d None] Device 61250efc-91b5-4b7b-9afa-ad8e73707d58 requested by agent ovs-agent-dog.cat on network 5a10549d-b6a4-40d5-9530-9c48ba1f467b not bound, vif_type: binding_failed
+```
+### solution
+http://www.gossamer-threads.com/lists/openstack/dev/46153
+
+The compute node use physnet1 but the network node use physnet2…
+Both nodes use the same physnet1, dhcp port binding OK
+
+56(tap4e567fd6-7b): addr:77:00:00:00:00:00
+     config:     PORT_DOWN
+     state:      LINK_DOWN
+     speed: 0 Mbps now, 0 Mbps max
+Check from the dashboard, the DHCP port status is UP, check from the ovs, the port is DOWN, but the instance on the same host with DHCP server can get address assigned.
+
+The VM should enable DHCP clinet.
+Enable DHCP client by configure the file /etc/sysconfig/network-scripts/ifcfg-eth0, BOOTPROTO=DHCP
+Verify by ps –aux | grep dhc
