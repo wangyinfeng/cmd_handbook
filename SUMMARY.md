@@ -7,7 +7,7 @@
 * [find-grep](find-grep.md)
 * [Linux tools](linuxtool.md)
 * [Linux system configuration](linuxsystem.md)
-* [ubuntu tips](ubuntu_tips.md)
+* [ubuntu tips](ubuntutips.md)
 * [gcc](gcctips.md)
 * [network](network.md)
 * [tcpdump](tcpdump.md)
