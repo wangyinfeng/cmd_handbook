@@ -345,8 +345,7 @@ http://osdir.com/ml/openstack-dev/2015-05/msg00435.html
 must do the monkey patching before anything else even loading another module that eventlet. – I change the monkey_path(os=False, thread=False) for debug purpose.
 
 ## Horizon cannot access the instance’s console
-http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html
-
+http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html  
 Configure the vnc
 
 # neutron
