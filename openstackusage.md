@@ -484,5 +484,5 @@ Check from the dashboard, the DHCP port status is UP, check from the ovs, the po
 
 ### solution
 The VM should enable DHCP clinet.  
-Enable DHCP client by configure the file `/etc/sysconfig/network-scripts/ifcfg-eth0`, `BOOTPROTO=DHCP`
-Verify by `ps –aux | grep dhc`
+Enable DHCP client by configure the file `/etc/sysconfig/network-scripts/ifcfg-eth0`, `BOOTPROTO=DHCP`  
+Verify by `ps –aux | grep dhc`, should have dhclient process run.
