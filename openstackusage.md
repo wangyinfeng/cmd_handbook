@@ -348,6 +348,12 @@ must do the monkey patching before anything else even loading another module tha
 http://docs.openstack.org/havana/config-reference/content/vnc-configuration-options.html  
 Configure the vnc
 
+##VNC Failed to connect to server (code: 1006)
+https://ask.openstack.org/en/question/520/vnc-console-in-dashboard-fails-to-connect-ot-server-code-1006/
+Follow the above link to configure the controller and compute node
+Still can not access the compute node? May be the issue about Firewall https://ask.openstack.org/en/question/46158/vnc-console-failed-to-connect-to-server-code-1006/
+Iptables –F on the compute node – worked!
+
 # neutron
 ## neutron-server cannot start
 ```
