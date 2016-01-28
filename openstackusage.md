@@ -473,6 +473,7 @@ http://www.gossamer-threads.com/lists/openstack/dev/46153
 The compute node use physnet1 but the network node use physnet2… Both nodes use the same physnet1, dhcp port binding OK
 
 ## VM cannot get DHCP address
+Check the DHCP port on the OVS, the port status is down, but seems the status is not correct.
 ```
 56(tap4e567fd6-7b): addr:77:00:00:00:00:00
      config:     PORT_DOWN
@@ -481,6 +482,7 @@ The compute node use physnet1 but the network node use physnet2… Both nodes us
 ```
 Check from the dashboard, the DHCP port status is UP, check from the ovs, the port is DOWN, but the instance on the same host with DHCP server can get address assigned.
 
-The VM should enable DHCP clinet.
-Enable DHCP client by configure the file /etc/sysconfig/network-scripts/ifcfg-eth0, BOOTPROTO=DHCP
-Verify by ps –aux | grep dhc
+### solution
+The VM should enable DHCP clinet.  
+Enable DHCP client by configure the file `/etc/sysconfig/network-scripts/ifcfg-eth0`, `BOOTPROTO=DHCP`
+Verify by `ps –aux | grep dhc`
