@@ -19,7 +19,8 @@ modprobe openvswitch
 检查下是否依赖包已经安装完毕`dpkg-checkbuilddeps`  
 构建安装包
 ```
-DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
+DEB_BUILD_OPTIONS='parallel=8 nocheck' 
+fakeroot debian/rules binary
 dpkg -i openvswitch-common_2.3.2-1_amd64.deb  openvswitch-switch_2.3.2-1_amd64.deb
 ```
 
