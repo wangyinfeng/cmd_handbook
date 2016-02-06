@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>yum | The handbook to collect commands, usages and thoughts</title>
+        <title>DOS commands | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="./apt-get.html" />
+    <link rel="next" href="./gcctips.html" />
     
     
-    <link rel="prev" href="./index.html" />
+    <link rel="prev" href="./ubuntutips.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="1.1"
-        data-chapter-title="yum"
-        data-filepath="yum.md"
+        data-level="6"
+        data-chapter-title="DOS commands"
+        data-filepath="doscommands.md"
         data-basepath="."
         data-revision="Sat Feb 06 2016 12:53:35 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -90,7 +90,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1" data-path="yum.html">
+        <li class="chapter " data-level="1.1" data-path="yum.html">
             
                 
                     <a href="./yum.html">
@@ -185,7 +185,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6" data-path="doscommands.html">
+        <li class="chapter active" data-level="6" data-path="doscommands.html">
             
                 
                     <a href="./doscommands.html">
@@ -488,8 +488,79 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="yum">yum</h1>
-<h1 id="ignore-dependency">ignore dependency</h1>
+                        <h1 id="dos-commands">DOS commands</h1>
+<p>subst&#x3000;&#x8DEF;&#x5F84;&#x66FF;&#x6362;
+ [&#x7528;&#x6CD5;&#xFF3D;subst &#x3000;&#x3000;&#x663E;&#x793A;&#x5F53;&#x524D;&#x7684;&#x66FF;&#x4EE3;&#x8DEF;&#x5F84;
+&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;subst [&#x76D8;&#x7B26;] [&#x8DEF;&#x5F84;]&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;
+&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x5C06;&#x6307;&#x5B9A;&#x7684;[&#x8DEF;&#x5F84;]&#x66FF;&#x4EE3;[&#x76D8;&#x7B26;]&#xFF0C;&#x8BE5;&#x8DEF;&#x5F84;&#x5C06;&#x4F5C;&#x4E3A;&#x9A71;&#x52A8;&#x5668;&#x4F7F;&#x7528;
+&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;subst /b&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x89E3;&#x9664;&#x66FF;&#x4EE3;
+&#xFF3B;&#x4F8B;&#x5B50;&#xFF3D;C:\DOS&gt;subst a: c:\temp   &#x7528;c&#x76D8;temp&#x76EE;&#x5F55;&#x66FF;&#x4EE3;a&#x76D8;
+&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;C:&gt;subst a: /d  &#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x89E3;&#x9664;&#x66FF;&#x4EE3; </p>
+<p>md      make directory
+     md 1\2\3     &#x53EF;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x591A;&#x5C42;&#x76EE;&#x5F55;</p>
+<p>rd     remove directory
+     /s     &#x5220;&#x9664;&#x5305;&#x62EC;&#x5B50;&#x76EE;&#x5F55;&#x65F6;&#x4E0D;&#x9700;&#x8981;&#x786E;&#x8BA4;
+     /q     quiet mode</p>
+<p>ren(rename)     rename file</p>
+<p>del
+     /p     &#x786E;&#x8BA4;&#x5220;&#x9664;
+     /f     &#x5F3A;&#x5236;&#x5220;&#x9664;
+     /s     &#x4ECE;&#x6240;&#x6709;&#x5B50;&#x76EE;&#x5F55;&#x5220;&#x9664;&#x6587;&#x4EF6;
+     /q     quiet mod</p>
+<p>xcopy source destination
+     /e     &#x590D;&#x5236;&#x76EE;&#x5F55;&#x53CA;&#x5B50;&#x76EE;&#x5F55;&#xFF0C;&#x5305;&#x62EC;&#x7A7A;&#x76EE;&#x5F55;
+     /s     &#x590D;&#x5236;&#x76EE;&#x5F55;&#x53CA;&#x5B50;&#x76EE;&#x5F55;&#xFF0C;&#x9664;&#x4E86;&#x7A7A;&#x76EE;&#x5F55;
+     /c     &#x5FFD;&#x7565;&#x9519;&#x8BEF;
+     /i     &#x82E5;&#x76EE;&#x6807;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x590D;&#x5236;&#x4E00;&#x4E2A;&#x4EE5;&#x4E0A;&#x6587;&#x4EF6;&#xFF0C;&#x5219;&#x5047;&#x5B9A;&#x76EE;&#x6807;&#x662F;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;
+     /h     &#x590D;&#x5236;&#x9690;&#x85CF;&#x6587;&#x4EF6;&#x548C;&#x7CFB;&#x7EDF;&#x6587;&#x4EF6;
+     /u     &#x53EA;&#x590D;&#x5236;&#x5DF2;&#x5B58;&#x5728;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x5B58;&#x5728;&#x7684;&#x6587;&#x4EF6;
+     /k     &#x590D;&#x5236;&#x4FDD;&#x7559;&#x5C5E;&#x6027;
+     /y     &#x7981;&#x6B62;&#x63D0;&#x793A;&#x6587;&#x4EF6;&#x91CD;&#x590D;</p>
+<p>&#x5FAA;&#x73AF;
+for /l %%i in (1,1,100) do (
+command
+)
+i&#x4ECE;1&#x5230;100&#x6B65;&#x8FDB;1&#x6267;&#x884C;command</p>
+<p>&#x5224;&#x65AD;
+&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728;  if exist FILE
+&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x76F8;&#x7B49; if &quot;strA&quot;==&quot;strB&quot;  &#x4F7F;&#x7528; /I &#x53C2;&#x6570;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;
+&#x6570;&#x503C;&#x662F;&#x5426;&#x76F8;&#x7B49; if numA equ numB
+&#x53D8;&#x91CF;&#x662F;&#x5426;&#x8D4B;&#x503C; if defined VAL</p>
+<p>&#x6570;&#x503C;&#x6BD4;&#x8F83;
+equ  =
+gtr   &gt;
+geq  &gt;=
+lss   &lt;
+leq  &lt;=
+neq !=</p>
+<p>if-else&#x5FC5;&#x987B;&#x5728;&#x540C;&#x4E00;&#x884C;&#xFF0C;&#x82E5;&#x5206;&#x884C;&#xFF0C;&#x5219;&#x7528;^&#x7B26;&#x53F7;&#x8FDE;&#x63A5;
+if [] (
+......
+) else (
+......
+)
+&#x6216;
+if [] (
+......) ^
+else 
+(
+......
+)</p>
+<p>&#x5EF6;&#x65F6;
+ping 127.0.0.1 -n 1000 &gt;nul
+&#x6267;&#x884C;&#x7A7A;&#x547D;&#x4EE4;&#x5EF6;&#x65F6;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;1000&#x8868;&#x793A;1&#x5206;&#x949F;</p>
+<p>&#x53D8;&#x91CF;
+&#x521D;&#x59CB;&#x5316;&#x53D8;&#x91CF;&#xFF1A; set val=value
+&#x5F15;&#x7528;&#xFF1A; echo %val%</p>
+<p>&#x9884;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;
+%CD% &#x5F53;&#x524D;&#x76EE;&#x5F55;&#x5B57;&#x7B26;&#x4E32;
+%DATE% &#x65E5;&#x671F;
+%TIME% &#x65F6;&#x95F4;
+%RANDOM% 0&#xFF5E;32767&#x4E4B;&#x95F4;&#x7684;&#x5341;&#x8FDB;&#x5236;&#x6570;&#x503C;
+%path% &#x73AF;&#x5883;&#x53D8;&#x91CF;
+%1&#xFF5E;%9 &#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;(&#x4F4D;&#x7F6E;&#x53C2;&#x6570;), &#x8BBF;&#x95EE;&#x8D85;&#x8FC7;9&#x4E2A;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;shift&#x547D;&#x4EE4;
+%0 &#x5F53;&#x524D;&#x8FD0;&#x884C;&#x811A;&#x672C;&#x540D;
+%* &#x6240;&#x6709;&#x53C2;&#x6570;</p>
 
                     
                     </section>
@@ -500,10 +571,10 @@
         </div>
 
         
-        <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="./ubuntutips.html" class="navigation navigation-prev " aria-label="Previous page: ubuntu tips"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./apt-get.html" class="navigation navigation-next " aria-label="Next page: apt-get"><i class="fa fa-angle-right"></i></a>
+        <a href="./gcctips.html" class="navigation navigation-next " aria-label="Next page: gcc"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
