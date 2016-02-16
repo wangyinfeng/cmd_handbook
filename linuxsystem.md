@@ -129,6 +129,7 @@ vim /etc/rc.d/rc.loacl
 /usr/bin/MYPROGRAMME  [option]
 ........
 ```
+
 2 登录自启动
 
 用户登录时，bash首先自动执行系统管理员建立的全局登录script：/ect/profile。 然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：/.bash_profile、/.bash_login、/.profile， 但只执行最先找到的一个。只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序。
