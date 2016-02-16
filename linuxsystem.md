@@ -135,7 +135,7 @@ vim /etc/rc.d/rc.loacl
 
 3 退出自动运行
 
-退出登录时，bash自动执行个人的退出登录脚本/.bash_logout。 例如：
+退出登录时，bash自动执行个人的退出登录脚本`/.bash_logout`。 例如：
 
 ```
 vim /.bash_logout
