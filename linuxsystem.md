@@ -159,7 +159,7 @@ Linux有一个称为crond的守护程序，主要功能是周期性地检查 `/v
 ```
 在2007－04－09 12:00时候自动发一标题为“Have a lunch”，内容为plan.txt文件内容的邮件给Roger。
 
-RedHat单网卡多IP
+##RedHat单网卡多IP
 例：将eht0 添加新地址 eth0:1
 1.  拷贝/etc/sysconfig/network-scripts/ifcfg-eth0文件为ifcfg-eth0:1
 2.  修改其中DEVICE=eth0:1
