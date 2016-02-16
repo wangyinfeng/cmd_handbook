@@ -149,11 +149,12 @@ Linux有一个称为crond的守护程序，主要功能是周期性地检查 /va
 5 定时自动运行程序 –– 一次
 
 定时执行命令at 与crond 类似（但它只执行一次）：命令在给定的时间执行，但不自动重复。 at命令的一般格式为：at [ －f file ] time ，在指定的时间执行file文件中所给出的所有命令。 也可直接从键盘输入命令：
-
+```
   $ at 12:00
   at>mailto Roger －s ″Have a lunch″ < plan.txt
   at>Ctr－D
   Job 1 at 2007－04－09 12:00
+```
 在2007－04－09 12:00时候自动发一标题为“Have a lunch”，内容为plan.txt文件内容的邮件给Roger。
 
 RedHat单网卡多IP
