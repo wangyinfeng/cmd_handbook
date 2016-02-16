@@ -169,7 +169,7 @@ Check ethernet interface status
 	* dmesg | grep eth
 	* ethtool ethX
 
-Change the NIC name
+##Change the NIC name
 editing /etc/default/grub and adding "net.ifnames=0" to GRUB_CMDLINE_LINUX variable.
 Then run regenerate GRUB configuration with updated kernel parameters.
 $ grub2-mkconfig -o /boot/grub2/grub.cfg
