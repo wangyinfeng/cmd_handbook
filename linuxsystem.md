@@ -123,12 +123,12 @@ HardwareTimer(RTC) -> tick -> walltime/up time
 1 开机自启动
 
 Linux加载后,运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。 通常情况下，修改放置在 /etc/rc，/etc/rc.d或/etc/rc.d/rc.local或/etc/rcN.d目录下的脚本文件， 可以使init自动启动其它程序。例如：
-
+```
 vim /etc/rc.d/rc.loacl
 ........
 /usr/bin/MYPROGRAMME  [option]
 ........
-
+```
 2 登录自启动
 
 用户登录时，bash首先自动执行系统管理员建立的全局登录script：/ect/profile。 然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：/.bash_profile、/.bash_login、/.profile， 但只执行最先找到的一个。只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序。
