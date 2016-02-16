@@ -118,9 +118,9 @@ uptime     time since system up
 Linux系统时间生成
 HardwareTimer(RTC) -> tick -> walltime/up time
 
-自启动管理
+##自启动管理
 
-1 开机自启动
+###开机自启动
 
 Linux加载后,运行第一个进程init。init根据配置文件继续引导过程，启动其它进程。 通常情况下，修改放置在 /etc/rc，/etc/rc.d或/etc/rc.d/rc.local或/etc/rcN.d目录下的脚本文件， 可以使init自动启动其它程序。例如：
 ```
@@ -130,11 +130,11 @@ vim /etc/rc.d/rc.loacl
 ........
 ```
 
-2 登录自启动
+###登录自启动
 
 用户登录时，bash首先自动执行系统管理员建立的全局登录script：/ect/profile。 然后bash在用户起始目录下按顺序查找三个特殊文件中的一个：/.bash_profile、/.bash_login、/.profile， 但只执行最先找到的一个。只需根据实际需要在上述文件中加入命令就可以实现用户登录时自动运行某些程序。
 
-3 退出自动运行
+###退出自动运行
 
 退出登录时，bash自动执行个人的退出登录脚本`/.bash_logout`。 例如：
 
@@ -144,11 +144,11 @@ vim /.bash_logout
 tar －cvzf c.source.tgz *.c #退出登录时自动执行 "tar" 备份 *.c 文件。
 ...............
 ```
-4 定期自动运行
+###定期自动运行
 
 Linux有一个称为crond的守护程序，主要功能是周期性地检查 `/var/spool/cron`目录下的一组命令文件的内容， 并在设定的时间执行这些文件中的命令。用户可以通过`crontab` 命令来建立、修改、删除这些命令文件。
 
-5 定时自动运行程序 –– 一次
+###定时自动运行程序 –– 一次
 
 定时执行命令at 与crond 类似（但它只执行一次）：命令在给定的时间执行，但不自动重复。 at命令的一般格式为：at [ －f file ] time ，在指定的时间执行file文件中所给出的所有命令。 也可直接从键盘输入命令：
 ```
