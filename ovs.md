@@ -58,6 +58,19 @@ Kernel module that handles switching and tunneling
 - Does no flow expiration
 - Knows nothing of OpenFlow
 - Implements tunnels
+ 
+### Check kernel module version
+```
+[root@osnode002001 ~]# modinfo openvswitch
+filename:       /lib/modules/2.6.32-431.el6.x86_64/weak-updates/openvswitch/openvswitch.ko
+version:        2.3.1
+license:        GPL
+description:    Open vSwitch switching datapath
+srcversion:     4D7CD38A83A9A4A782F73A1
+depends:        libcrc32c
+vermagic:       2.6.32-504.3.3.el6.x86_64 SMP mod_unload modversions 
+parm:           vlan_tso:Enable TSO for VLAN packets (int)
+```
 
 ## commands
 - ovs-appctl发送命令消息，运行相关daemon
