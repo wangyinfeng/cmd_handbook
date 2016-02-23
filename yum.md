@@ -14,5 +14,6 @@ yum whatprovides "*/include/linux/autoconf.h"
 ## uninstall packet
 ```
 rpm -e packet
+rpm -e --nodeps packet   #ignore dependency
 ```
 
