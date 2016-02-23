@@ -1,4 +1,4 @@
-yum
+yum and rpm
 ==================================
 #ignore dependency
 
@@ -8,4 +8,5 @@ yum
 yum whatprovides "*/include/linux/autoconf.h"
 
 
+#rpm 
 
