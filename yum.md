@@ -17,3 +17,5 @@ rpm -e packet
 rpm -e --nodeps packet   #ignore dependency
 ```
 
+
+
