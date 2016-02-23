@@ -1,6 +1,7 @@
 yum and rpm
 ==================================
-#ignore dependency
+#yum
+## ignore dependency
 
 ## uninstall packet
 
