@@ -27,5 +27,19 @@ virsh edit <vm>
 <virtualport type='openvswitch'>
 ```
 
+# add device
+
+Edit the device configure file
+```
+   <interface type='hostdev' managed='yes'>
+     <source>
+       <address type='pci' domain='0' bus='11' slot='16' function='0'/>
+     </source>
+   </interface>
+```
+Add the device by `attach-device` command.
+```
+virsh attach-device MyGuest /tmp/new-interface.xml  --config
+```
 
 
