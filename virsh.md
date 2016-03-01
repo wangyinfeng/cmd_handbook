@@ -35,6 +35,7 @@ Edit the device configure file
      <source>
        <address type='pci' domain='0' bus='11' slot='16' function='0'/>
      </source>
+     <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
    </interface>
 ```
 Add the device by `attach-device` command.
