@@ -2,6 +2,11 @@ git
 =======================================
 # config
 
+## rename branch
+```
+git branch -m <old> <new>
+```
+
 # show
 show specific commit changes
 ```
