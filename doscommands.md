@@ -6,7 +6,7 @@ DOS commands
 `subst /b` 解除替代  
 ```
 C:\DOS>subst a: c:\temp   用c盘temp目录替代a盘
-　　　　　　　　C:\>subst a: /d  　　　　　解除替代 
+C:\>subst a: /d  　　　　　解除替代 
 ```
 
 ##md      make directory
