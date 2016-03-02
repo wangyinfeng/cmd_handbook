@@ -2,12 +2,12 @@ DOS commands
 =========================
 
 ##subst　路径替换
- [用法］subst 　　显示当前的替代路径
-　　　　　　　　subst [盘符] [路径]　　　　　　　　　　　　　　　　　　　　
-　　　　　　　　将指定的[路径]替代[盘符]，该路径将作为驱动器使用
-　　　　　　　　subst /b　　　　　　　　　解除替代
-［例子］C:\DOS>subst a: c:\temp   用c盘temp目录替代a盘
+`subst [盘符] [路径]` 将指定的[路径]替代[盘符]，该路径将作为驱动器使用  
+`subst /b` 解除替代  
+```
+C:\DOS>subst a: c:\temp   用c盘temp目录替代a盘
 　　　　　　　　C:\>subst a: /d  　　　　　解除替代 
+```
 
 ##md      make directory
      `md 1\2\3`     可直接创建多层目录  
