@@ -53,10 +53,10 @@ ops | equal to|
 ----|----:|
 equ  | =  
 gtr  | >  
-geq  |>=|  
-lss  |< |  
-leq  |<=|  
-neq  |!=|  
+geq  |>=  
+lss  |<   
+leq  |<=  
+neq  |!=  
 
 if-else必须在同一行，若分行，则用^符号连接
 ```
