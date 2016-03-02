@@ -22,7 +22,7 @@ C:\>subst a: /d  　　　　　解除替代
     `/p` 确认删除
     `/f` 强制删除
     `/s` 从所有子目录删除文件
-    `/q`     quiet mod
+    `/q` quiet mod
 
 ##xcopy source destination
      /e     复制目录及子目录，包括空目录
