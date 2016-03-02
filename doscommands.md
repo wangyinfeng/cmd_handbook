@@ -49,7 +49,7 @@ i从1到100步进1执行command
 变量是否赋值 `if defined VAL`  
 
 ##数值比较
-equ   =  
+equ  -->  =  
 gtr   >  
 geq   >=  
 lss   <  
