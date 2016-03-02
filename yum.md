@@ -19,7 +19,6 @@ yum search STRING
 ```
 yum repolist 
 ```
-     Not all packages(libnet) are available in the list, the EPEL need to add by manual for CentOS, refer to Enable EPEL repository
 
 ## install repository     
 To Install Sourceforge repository use below download links.
