@@ -41,10 +41,10 @@ command
 i从1到100步进1执行command
 
 ##判断
-文件是否存在  if exist FILE
-字符串是否相等 if "strA"=="strB"  使用 /I 参数不区分大小写
-数值是否相等 if numA equ numB
-变量是否赋值 if defined VAL
+文件是否存在  `if exist FILE`  
+字符串是否相等 `if "strA"=="strB"`  使用 `/I` 参数不区分大小写  
+数值是否相等 `if numA equ numB`  
+变量是否赋值 `if defined VAL`  
 
 ##数值比较
 equ   =  
