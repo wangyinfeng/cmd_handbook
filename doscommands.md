@@ -9,22 +9,22 @@ DOS commands
 ［例子］C:\DOS>subst a: c:\temp   用c盘temp目录替代a盘
 　　　　　　　　C:\>subst a: /d  　　　　　解除替代 
 
-md      make directory
+##md      make directory
      md 1\2\3     可直接创建多层目录
 
-rd     remove directory
+##rd     remove directory
      /s     删除包括子目录时不需要确认
      /q     quiet mode
 
-ren(rename)     rename file
+##ren(rename)     rename file
 
-del
+##del
      /p     确认删除
      /f     强制删除
      /s     从所有子目录删除文件
      /q     quiet mod
 
-xcopy source destination
+##xcopy source destination
      /e     复制目录及子目录，包括空目录
      /s     复制目录及子目录，除了空目录
      /c     忽略错误
