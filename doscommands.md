@@ -52,12 +52,11 @@ i从1到100步进1执行command
 ops | equal to|
 ----|----:|
 equ  | =|  
-
-gtr   >  
-geq   >=  
-lss   <  
-leq   <=  
-neq   !=  
+gtr  | >|  
+geq  |>=|  
+lss  |< |  
+leq  |<=|  
+neq  |!=|  
 
 if-else必须在同一行，若分行，则用^符号连接
 ```
