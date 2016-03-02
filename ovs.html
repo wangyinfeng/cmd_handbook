@@ -53,7 +53,7 @@
         data-chapter-title="ovs"
         data-filepath="ovs.md"
         data-basepath="."
-        data-revision="Sat Feb 06 2016 12:53:35 GMT+0800 (中国标准时间)"
+        data-revision="Wed Mar 02 2016 17:40:41 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -534,7 +534,17 @@ yum localinstall /home/ovswitch/rpmbuild/RPMS/x86_64/openvswitch-2.3.1-1.x86_64.
 <li>Knows nothing of OpenFlow</li>
 <li>Implements tunnels</li>
 </ul>
-<h2 id="commands">commands</h2>
+<h3 id="check-kernel-module-version">Check kernel module version</h3>
+<pre><code>[root@osnode002001 ~]# modinfo openvswitch
+filename:       /lib/modules/2.6.32-431.el6.x86_64/weak-updates/openvswitch/openvswitch.ko
+version:        2.3.1
+license:        GPL
+description:    Open vSwitch switching datapath
+srcversion:     4D7CD38A83A9A4A782F73A1
+depends:        libcrc32c
+vermagic:       2.6.32-504.3.3.el6.x86_64 SMP mod_unload modversions 
+parm:           vlan_tso:Enable TSO for VLAN packets (int)
+</code></pre><h2 id="commands">commands</h2>
 <ul>
 <li>ovs-appctl&#x53D1;&#x9001;&#x547D;&#x4EE4;&#x6D88;&#x606F;&#xFF0C;&#x8FD0;&#x884C;&#x76F8;&#x5173;daemon</li>
 <li>ovs-vswitchd &#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B9E;&#x73B0;&#x4EA4;&#x6362;&#x529F;&#x80FD;&#xFF0C;&#x548C;Linux&#x5185;&#x6838;&#x6A21;&#x5757;&#x4E00;&#x8D77;&#xFF0C;&#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x6D41;&#x7684;&#x4EA4;&#x6362;flow-based switching&#x3002;</li>

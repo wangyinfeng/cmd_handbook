@@ -53,7 +53,7 @@
         data-chapter-title="virsh"
         data-filepath="virsh.md"
         data-basepath="."
-        data-revision="Sat Feb 06 2016 12:53:35 GMT+0800 (中国标准时间)"
+        data-revision="Wed Mar 02 2016 17:40:41 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -503,6 +503,16 @@
 <p>Solution<br>Add the virtual port to the VM configure file, </p>
 <pre><code>virsh edit &lt;vm&gt;
 &lt;virtualport type=&apos;openvswitch&apos;&gt;
+</code></pre><h1 id="add-device">add device</h1>
+<p>Edit the device configure file</p>
+<pre><code>   &lt;interface type=&apos;hostdev&apos; managed=&apos;yes&apos;&gt;
+     &lt;source&gt;
+       &lt;address type=&apos;pci&apos; domain=&apos;0&apos; bus=&apos;11&apos; slot=&apos;16&apos; function=&apos;0&apos;/&gt;
+     &lt;/source&gt;
+     &lt;address type=&apos;pci&apos; domain=&apos;0x0000&apos; bus=&apos;0x00&apos; slot=&apos;0x07&apos; function=&apos;0x0&apos;/&gt;
+   &lt;/interface&gt;
+</code></pre><p>Add the device by <code>attach-device</code> command.</p>
+<pre><code>virsh attach-device MyGuest /tmp/new-interface.xml  --config
 </code></pre>
                     
                     </section>

@@ -53,7 +53,7 @@
         data-chapter-title="yum"
         data-filepath="yum.md"
         data-basepath="."
-        data-revision="Sat Feb 06 2016 12:53:35 GMT+0800 (中国标准时间)"
+        data-revision="Wed Mar 02 2016 17:40:41 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -488,9 +488,17 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="yum">yum</h1>
-<h1 id="ignore-dependency">ignore dependency</h1>
-
+                        <h1 id="yum-and-rpm">yum and rpm</h1>
+<h1 id="yum">yum</h1>
+<h2 id="ignore-dependency">ignore dependency</h2>
+<h2 id="uninstall-packet">uninstall packet</h2>
+<h2 id="find-the-header-file-installed-by-which-packet">find the header file installed by which packet</h2>
+<pre><code>yum whatprovides &quot;*/include/linux/autoconf.h&quot;
+</code></pre><h1 id="rpm">rpm</h1>
+<h2 id="uninstall-packet">uninstall packet</h2>
+<pre><code>rpm -e packet
+rpm -e --nodeps packet   #ignore dependency
+</code></pre>
                     
                     </section>
                 

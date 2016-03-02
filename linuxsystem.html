@@ -53,7 +53,7 @@
         data-chapter-title="Linux system configuration"
         data-filepath="linuxsystem.md"
         data-basepath="."
-        data-revision="Sat Feb 06 2016 12:53:35 GMT+0800 (中国标准时间)"
+        data-revision="Wed Mar 02 2016 17:40:41 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -576,32 +576,32 @@ jiffies     tick number since system up
 uptime     time since system up</p>
 <p>Linux&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x751F;&#x6210;
 HardwareTimer(RTC) -&gt; tick -&gt; walltime/up time</p>
-<p>&#x81EA;&#x542F;&#x52A8;&#x7BA1;&#x7406;</p>
-<p>1 &#x5F00;&#x673A;&#x81EA;&#x542F;&#x52A8;</p>
+<h2 id="&#x81EA;&#x542F;&#x52A8;&#x7BA1;&#x7406;">&#x81EA;&#x542F;&#x52A8;&#x7BA1;&#x7406;</h2>
+<h3 id="&#x5F00;&#x673A;&#x81EA;&#x542F;&#x52A8;">&#x5F00;&#x673A;&#x81EA;&#x542F;&#x52A8;</h3>
 <p>Linux&#x52A0;&#x8F7D;&#x540E;,&#x8FD0;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;init&#x3002;init&#x6839;&#x636E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7EE7;&#x7EED;&#x5F15;&#x5BFC;&#x8FC7;&#x7A0B;&#xFF0C;&#x542F;&#x52A8;&#x5176;&#x5B83;&#x8FDB;&#x7A0B;&#x3002; &#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4FEE;&#x6539;&#x653E;&#x7F6E;&#x5728; /etc/rc&#xFF0C;/etc/rc.d&#x6216;/etc/rc.d/rc.local&#x6216;/etc/rcN.d&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x811A;&#x672C;&#x6587;&#x4EF6;&#xFF0C; &#x53EF;&#x4EE5;&#x4F7F;init&#x81EA;&#x52A8;&#x542F;&#x52A8;&#x5176;&#x5B83;&#x7A0B;&#x5E8F;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
-<p>vim /etc/rc.d/rc.loacl
+<pre><code>vim /etc/rc.d/rc.loacl
 ........
 /usr/bin/MYPROGRAMME  [option]
-........</p>
-<p>2 &#x767B;&#x5F55;&#x81EA;&#x542F;&#x52A8;</p>
-<p>&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x9996;&#x5148;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x5EFA;&#x7ACB;&#x7684;&#x5168;&#x5C40;&#x767B;&#x5F55;script&#xFF1A;/ect/profile&#x3002; &#x7136;&#x540E;bash&#x5728;&#x7528;&#x6237;&#x8D77;&#x59CB;&#x76EE;&#x5F55;&#x4E0B;&#x6309;&#x987A;&#x5E8F;&#x67E5;&#x627E;&#x4E09;&#x4E2A;&#x7279;&#x6B8A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#xFF1A;/.bash_profile&#x3001;/.bash_login&#x3001;/.profile&#xFF0C; &#x4F46;&#x53EA;&#x6267;&#x884C;&#x6700;&#x5148;&#x627E;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x3002;&#x53EA;&#x9700;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x9700;&#x8981;&#x5728;&#x4E0A;&#x8FF0;&#x6587;&#x4EF6;&#x4E2D;&#x52A0;&#x5165;&#x547D;&#x4EE4;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x67D0;&#x4E9B;&#x7A0B;&#x5E8F;&#x3002;</p>
-<p>3 &#x9000;&#x51FA;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</p>
-<p>&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x81EA;&#x52A8;&#x6267;&#x884C;&#x4E2A;&#x4EBA;&#x7684;&#x9000;&#x51FA;&#x767B;&#x5F55;&#x811A;&#x672C;/.bash_logout&#x3002; &#x4F8B;&#x5982;&#xFF1A;</p>
-<p>vim /.bash_logout
+........
+</code></pre><h3 id="&#x767B;&#x5F55;&#x81EA;&#x542F;&#x52A8;">&#x767B;&#x5F55;&#x81EA;&#x542F;&#x52A8;</h3>
+<p>&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x9996;&#x5148;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x5EFA;&#x7ACB;&#x7684;&#x5168;&#x5C40;&#x767B;&#x5F55;script&#xFF1A;<code>/ect/profile</code>&#x3002; &#x7136;&#x540E;bash&#x5728;&#x7528;&#x6237;&#x8D77;&#x59CB;&#x76EE;&#x5F55;&#x4E0B;&#x6309;&#x987A;&#x5E8F;&#x67E5;&#x627E;&#x4E09;&#x4E2A;&#x7279;&#x6B8A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#xFF1A;<code>/.bash_profile</code>&#x3001;<code>/.bash_login</code>&#x3001;<code>/.profile</code>&#xFF0C; &#x4F46;&#x53EA;&#x6267;&#x884C;&#x6700;&#x5148;&#x627E;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x3002;&#x53EA;&#x9700;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x9700;&#x8981;&#x5728;&#x4E0A;&#x8FF0;&#x6587;&#x4EF6;&#x4E2D;&#x52A0;&#x5165;&#x547D;&#x4EE4;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x67D0;&#x4E9B;&#x7A0B;&#x5E8F;&#x3002;</p>
+<h3 id="&#x9000;&#x51FA;&#x81EA;&#x52A8;&#x8FD0;&#x884C;">&#x9000;&#x51FA;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</h3>
+<p>&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#xFF0C;bash&#x81EA;&#x52A8;&#x6267;&#x884C;&#x4E2A;&#x4EBA;&#x7684;&#x9000;&#x51FA;&#x767B;&#x5F55;&#x811A;&#x672C;<code>/.bash_logout</code>&#x3002; &#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>vim /.bash_logout
 ...............
-tar &#xFF0D;cvzf c.source.tgz <em>.c #&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x6267;&#x884C; &quot;tar&quot; &#x5907;&#x4EFD; </em>.c &#x6587;&#x4EF6;&#x3002;
-...............</p>
-<p>4 &#x5B9A;&#x671F;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</p>
-<p>Linux&#x6709;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;crond&#x7684;&#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x662F;&#x5468;&#x671F;&#x6027;&#x5730;&#x68C0;&#x67E5; /var/spool/cron&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x4E00;&#x7EC4;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#xFF0C; &#x5E76;&#x5728;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x3002;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;crontab &#x547D;&#x4EE4;&#x6765;&#x5EFA;&#x7ACB;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x3002;</p>
-<p>5 &#x5B9A;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F; &#x2013;&#x2013; &#x4E00;&#x6B21;</p>
+tar &#xFF0D;cvzf c.source.tgz *.c #&#x9000;&#x51FA;&#x767B;&#x5F55;&#x65F6;&#x81EA;&#x52A8;&#x6267;&#x884C; &quot;tar&quot; &#x5907;&#x4EFD; *.c &#x6587;&#x4EF6;&#x3002;
+...............
+</code></pre><h3 id="&#x5B9A;&#x671F;&#x81EA;&#x52A8;&#x8FD0;&#x884C;">&#x5B9A;&#x671F;&#x81EA;&#x52A8;&#x8FD0;&#x884C;</h3>
+<p>Linux&#x6709;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;crond&#x7684;&#x5B88;&#x62A4;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x662F;&#x5468;&#x671F;&#x6027;&#x5730;&#x68C0;&#x67E5; <code>/var/spool/cron</code>&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x4E00;&#x7EC4;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#xFF0C; &#x5E76;&#x5728;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x3002;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>crontab</code> &#x547D;&#x4EE4;&#x6765;&#x5EFA;&#x7ACB;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#x6587;&#x4EF6;&#x3002;</p>
+<h3 id="&#x5B9A;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;-&#x2013;&#x2013;-&#x4E00;&#x6B21;">&#x5B9A;&#x65F6;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F; &#x2013;&#x2013; &#x4E00;&#x6B21;</h3>
 <p>&#x5B9A;&#x65F6;&#x6267;&#x884C;&#x547D;&#x4EE4;at &#x4E0E;crond &#x7C7B;&#x4F3C;&#xFF08;&#x4F46;&#x5B83;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF09;&#xFF1A;&#x547D;&#x4EE4;&#x5728;&#x7ED9;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x4E0D;&#x81EA;&#x52A8;&#x91CD;&#x590D;&#x3002; at&#x547D;&#x4EE4;&#x7684;&#x4E00;&#x822C;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;at [ &#xFF0D;f file ] time &#xFF0C;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6267;&#x884C;file&#x6587;&#x4EF6;&#x4E2D;&#x6240;&#x7ED9;&#x51FA;&#x7684;&#x6240;&#x6709;&#x547D;&#x4EE4;&#x3002; &#x4E5F;&#x53EF;&#x76F4;&#x63A5;&#x4ECE;&#x952E;&#x76D8;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF1A;</p>
-<p>  $ at 12:00
+<pre><code>  $ at 12:00
   at&gt;mailto Roger &#xFF0D;s &#x2033;Have a lunch&#x2033; &lt; plan.txt
   at&gt;Ctr&#xFF0D;D
   Job 1 at 2007&#xFF0D;04&#xFF0D;09 12:00
-&#x5728;2007&#xFF0D;04&#xFF0D;09 12:00&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x53D1;&#x4E00;&#x6807;&#x9898;&#x4E3A;&#x201C;Have a lunch&#x201D;&#xFF0C;&#x5185;&#x5BB9;&#x4E3A;plan.txt&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7684;&#x90AE;&#x4EF6;&#x7ED9;Roger&#x3002;</p>
-<p>RedHat&#x5355;&#x7F51;&#x5361;&#x591A;IP
-&#x4F8B;&#xFF1A;&#x5C06;eht0 &#x6DFB;&#x52A0;&#x65B0;&#x5730;&#x5740; eth0:1</p>
+</code></pre><p>&#x5728;2007&#xFF0D;04&#xFF0D;09 12:00&#x65F6;&#x5019;&#x81EA;&#x52A8;&#x53D1;&#x4E00;&#x6807;&#x9898;&#x4E3A;&#x201C;Have a lunch&#x201D;&#xFF0C;&#x5185;&#x5BB9;&#x4E3A;plan.txt&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7684;&#x90AE;&#x4EF6;&#x7ED9;Roger&#x3002;</p>
+<h2 id="redhat&#x5355;&#x7F51;&#x5361;&#x591A;ip">RedHat&#x5355;&#x7F51;&#x5361;&#x591A;IP</h2>
+<p>&#x4F8B;&#xFF1A;&#x5C06;eht0 &#x6DFB;&#x52A0;&#x65B0;&#x5730;&#x5740; eth0:1</p>
 <ol>
 <li>&#x62F7;&#x8D1D;/etc/sysconfig/network-scripts/ifcfg-eth0&#x6587;&#x4EF6;&#x4E3A;ifcfg-eth0:1</li>
 <li>&#x4FEE;&#x6539;&#x5176;&#x4E2D;DEVICE=eth0:1</li>
@@ -616,25 +616,25 @@ Check ethernet interface status</p>
 </ul>
 </li>
 </ol>
-<p>Change the NIC name
-editing /etc/default/grub and adding &quot;net.ifnames=0&quot; to GRUB_CMDLINE_LINUX variable.
+<h2 id="change-the-nic-name">Change the NIC name</h2>
+<p>editing /etc/default/grub and adding &quot;net.ifnames=0&quot; to GRUB_CMDLINE_LINUX variable.
 Then run regenerate GRUB configuration with updated kernel parameters.
 $ grub2-mkconfig -o /boot/grub2/grub.cfg
 Next, edit (or create) a udev network naming rule file (/etc/udev/rules.d/70-persistent-net.rules), and add the following line. Replace MAC address and interface with your own.
 $ vi /etc/udev/rules.d/70-persistent-net.rules
 SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?<em>&quot;, ATTR{address}==&quot;08:00:27:a9:7a:e1&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;eth</em>&quot;, NAME=&quot;eth0&quot;
 Then reboot</p>
-<p>&#x4EE3;&#x7406;&#x914D;&#x7F6E;
-First of all, you need a proxy server...</p>
-<p>yum&#x914D;&#x7F6E;&#x4EE3;&#x7406;
-echo &quot;proxy=<a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>&quot; &gt;&gt; /etc/yum.conf</p>
-<p>wget&#x914D;&#x7F6E;&#x4EE3;&#x7406;
-[root@ ~]# cat .wgetrc 
-http_proxy = <a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>
-ftp_proxy = <a href="http://192.168.255.130:655" target="_blank">http://192.168.255.130:655</a>
+<h2 id="&#x4EE3;&#x7406;&#x914D;&#x7F6E;">&#x4EE3;&#x7406;&#x914D;&#x7F6E;</h2>
+<p>First of all, you need a proxy server...</p>
+<h3 id="yum&#x914D;&#x7F6E;&#x4EE3;&#x7406;">yum&#x914D;&#x7F6E;&#x4EE3;&#x7406;</h3>
+<pre><code>echo &quot;proxy=http://192.168.255.130:655&quot; &gt;&gt; /etc/yum.conf
+</code></pre><h3 id="wget&#x914D;&#x7F6E;&#x4EE3;&#x7406;">wget&#x914D;&#x7F6E;&#x4EE3;&#x7406;</h3>
+<pre><code>[root@ ~]# cat .wgetrc 
+http_proxy = http://192.168.255.130:655
+ftp_proxy = http://192.168.255.130:655
 use_proxy = on
-wait = 15</p>
-
+wait = 15
+</code></pre>
                     
                     </section>
                 
