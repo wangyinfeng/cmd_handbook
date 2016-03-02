@@ -52,6 +52,7 @@ i从1到100步进1执行command
 ops | equal to|
 ----|------:|
 equ  | =|  
+
 gtr   >  
 geq   >=  
 lss   <  
