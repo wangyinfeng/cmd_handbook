@@ -46,7 +46,7 @@ i从1到100步进1执行command
 数值是否相等 if numA equ numB
 变量是否赋值 if defined VAL
 
-数值比较
+##数值比较
 equ  =
 gtr   >
 geq  >=
