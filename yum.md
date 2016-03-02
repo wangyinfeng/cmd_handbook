@@ -33,6 +33,8 @@ CentOS/RHEL 6, 64 Bit x86_64):
 ```
 # rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 ```
+
+
      
 
 
