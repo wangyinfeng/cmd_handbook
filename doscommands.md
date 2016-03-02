@@ -35,9 +35,11 @@ DOS commands
      /y     禁止提示文件重复
 
 ##循环
+```
 for /l %%i in (1,1,100) do (
 command
 )
+```
 i从1到100步进1执行command
 
 ##判断
