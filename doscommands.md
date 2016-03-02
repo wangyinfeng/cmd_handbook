@@ -51,7 +51,7 @@ i从1到100步进1执行command
 ##数值比较
 ops | equal to|
 ----|------:|
-|equ  | =|  
+equ  | =|  
 gtr   >  
 geq   >=  
 lss   <  
