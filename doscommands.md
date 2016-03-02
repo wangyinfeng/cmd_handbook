@@ -10,11 +10,11 @@ DOS commands
 　　　　　　　　C:\>subst a: /d  　　　　　解除替代 
 
 ##md      make directory
-     md 1\2\3     可直接创建多层目录
+     `md 1\2\3`     可直接创建多层目录  
 
 ##rd     remove directory
-     /s     删除包括子目录时不需要确认
-     /q     quiet mode
+     `/s`     删除包括子目录时不需要确认  
+     `/q`     quiet mode  
 
 ##ren(rename)     rename file
 
