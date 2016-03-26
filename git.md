@@ -7,6 +7,7 @@ git
 ```
 git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
 ```
+Or, configure the `proxy` under `http`.    
 Check the current proxy setting
 ```
 git config --get http.proxy
