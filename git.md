@@ -15,9 +15,13 @@ git config --get http.proxy
 [If the repository use ssh protocol](http://stackoverflow.com/questions/15589682/ssh-connect-to-host-github-com-port-22-connection-timed-out), change the url from `git@` to `https://`
 ```
 git config --local -e
+```
 change entry of
- url = git@github.com:username/repo.git
+```
+url = git@github.com:username/repo.git
+```
 to
+```
 url = https://github.com/username/repo.git
 ```
 
