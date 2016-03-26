@@ -53,7 +53,7 @@
         data-chapter-title="yum"
         data-filepath="yum.md"
         data-basepath="."
-        data-revision="Wed Mar 02 2016 17:40:41 GMT+0800 (中国标准时间)"
+        data-revision="Sat Mar 26 2016 10:41:51 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
     
 
@@ -494,6 +494,17 @@
 <h2 id="uninstall-packet">uninstall packet</h2>
 <h2 id="find-the-header-file-installed-by-which-packet">find the header file installed by which packet</h2>
 <pre><code>yum whatprovides &quot;*/include/linux/autoconf.h&quot;
+</code></pre><h2 id="search-packages-name-with-string">search packages name with STRING</h2>
+<pre><code>yum search STRING
+</code></pre><h2 id="list-repository">list repository</h2>
+<pre><code>yum repolist
+</code></pre><h2 id="install-repository">install repository</h2>
+<p>To Install Sourceforge repository use below download links.
+CentOS/RHEL 6, 64 Bit (x86_64):</p>
+<pre><code># rpm -Uvh http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+</code></pre><p>To Install EPEL repository use below download links.
+CentOS/RHEL 6, 64 Bit x86_64):</p>
+<pre><code># rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 </code></pre><h1 id="rpm">rpm</h1>
 <h2 id="uninstall-packet">uninstall packet</h2>
 <pre><code>rpm -e packet
