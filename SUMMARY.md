@@ -26,4 +26,5 @@
 * [oracle](oracle.md)
 * [sybase](sybase.md)
 * [python tools](pythontools.md)
+* [proxy](proxy.md)
 
