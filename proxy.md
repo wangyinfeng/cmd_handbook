@@ -14,6 +14,9 @@ sudo HTTP_PROXY=http://<PROXY_DETAILS>/ docker -d &
 ```
 
 # pip
+```
+pip install --proxy 192.168.255.130:655 TARGET
+```
 
 # apt-get
 
