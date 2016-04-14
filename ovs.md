@@ -349,6 +349,10 @@ ovs-appctl dpif/show
 ovs-appctl ofproto/trace <flow>
 ```
 
+## set flow max-idle
+```
+ovs-vsctl --no-wait set bridge br-bond0 other_config:max-idle=100
+```
 
 
 
