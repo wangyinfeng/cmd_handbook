@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Linux tools | The handbook to collect commands, usages and thoughts</title>
+        <title>proxy | The handbook to collect commands, usages and thoughts</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,8 @@
         
     
     
-    <link rel="next" href="./linuxsystem.html" />
     
-    
-    <link rel="prev" href="./find-grep.html" />
+    <link rel="prev" href="./pythontools.html" />
     
 
         
@@ -49,9 +47,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="Linux tools"
-        data-filepath="linuxtool.md"
+        data-level="24"
+        data-chapter-title="proxy"
+        data-filepath="proxy.md"
         data-basepath="."
         data-revision="Fri Apr 15 2016 13:06:06 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -140,7 +138,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="linuxtool.html">
+        <li class="chapter " data-level="3" data-path="linuxtool.html">
             
                 
                     <a href="./linuxtool.html">
@@ -455,7 +453,7 @@
             
         </li>
     
-        <li class="chapter " data-level="24" data-path="proxy.html">
+        <li class="chapter active" data-level="24" data-path="proxy.html">
             
                 
                     <a href="./proxy.html">
@@ -503,23 +501,18 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="linux-tools">Linux tools</h1>
-<p>Collection for tools used on Linux platform.</p>
-<h1 id="performance">Performance</h1>
-<h2 id="nmon">nmon</h2>
-<p><a href="http://nmon.sourceforge.net/pmwiki.php" target="_blank">http://nmon.sourceforge.net/pmwiki.php</a>  </p>
-<h2 id="perf">perf</h2>
-<p>Performance monitor</p>
-<h2 id="sar">sar</h2>
-<p><a href="http://linux.die.net/man/1/sar" target="_blank">http://linux.die.net/man/1/sar</a><br>check network load <code>sar -n DEV 1 1</code></p>
-<h2 id="htop">htop</h2>
-<p><a href="http://ask.xmodulo.com/install-htop-centos-rhel.html" target="_blank">http://ask.xmodulo.com/install-htop-centos-rhel.html</a></p>
-<h2 id="stress">stress</h2>
-<p><a href="http://people.seas.harvard.edu/~apw/stress/" target="_blank">http://people.seas.harvard.edu/~apw/stress/</a></p>
-<p>CPU test. Workload generator. <code>stress --cpu 2 --timeout 60s --verbose</code></p>
-<h1 id="networking">Networking</h1>
-<h2 id="tcping">tcping</h2>
-<p><a href="http://www.linuxco.de/tcping/tcping.html" target="_blank">http://www.linuxco.de/tcping/tcping.html</a><br><a href="http://www.elifulkerson.com/projects/tcping.php" target="_blank">http://www.elifulkerson.com/projects/tcping.php</a></p>
+                        <h1 id="proxy-setting-for-everything">Proxy setting for everything</h1>
+<h1 id="docker">docker</h1>
+<p><a href="http://2mohitarora.blogspot.com/2014/02/docker-tip-if-you-are-running-docker.html" target="_blank">docker behind proxy</a></p>
+<p>Stop docker </p>
+<pre><code>sudo service docker stop
+</code></pre><p>Start it again using following command.</p>
+<pre><code>sudo HTTP_PROXY=http://&lt;PROXY_DETAILS&gt;/ docker -d &amp;
+</code></pre><h1 id="pip">pip</h1>
+<pre><code>pip install --proxy 192.168.255.130:655 TARGET
+</code></pre><h1 id="aptget">apt-get</h1>
+<h1 id="yum">yum</h1>
+<h1 id="git">git</h1>
 
                     
                     </section>
@@ -530,10 +523,8 @@
         </div>
 
         
-        <a href="./find-grep.html" class="navigation navigation-prev " aria-label="Previous page: find-grep"><i class="fa fa-angle-left"></i></a>
+        <a href="./pythontools.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: python tools"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./linuxsystem.html" class="navigation navigation-next " aria-label="Next page: Linux system configuration"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
