@@ -36,6 +36,12 @@ do
 	......
 done
 ```
+```
+while true  #loop forever
+do
+    ......
+done
+```
 
 ##case
 ```
