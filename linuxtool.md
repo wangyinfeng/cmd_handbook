@@ -26,6 +26,25 @@ CPU test. Workload generator. `stress --cpu 2 --timeout 60s --verbose`
 http://www.linuxco.de/tcping/tcping.html  
 http://www.elifulkerson.com/projects/tcping.php
 
+##nethogs
+https://linux.cn/article-2808-1.html  
+Calculate the bandwidth usage for each processer
+
+##nload
+https://linux.cn/article-5114-1.html  
+Monitor incoming/outgoing traffic
+
+##slurm
+http://linoxide.com/ubuntu-how-to/monitor-network-load-slurm-tool/  
+Another monitor tool for incoming/outgoing traffic
+
+##iftop
+https://linux.cn/article-1843-1.html  
+display bandwidth usage on an interface by host
+
+##collectl
+https://linux.cn/article-3154-1.html  
+Collects data that describes the current system status(CPU/Disk/Network).
 
 
 
