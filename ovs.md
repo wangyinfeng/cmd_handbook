@@ -254,6 +254,11 @@ br-ha
 br-int
 ```
 
+# interface
+## List interfaces
+```
+ovs-vsctl list interface
+```
 
 # Flow
 Open vSwitch uses different kinds of flows for different purposes:

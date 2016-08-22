@@ -7,6 +7,7 @@
 * [find-grep](find-grep.md)
 * [Linux tools](linuxtool.md)
 * [Linux system configuration](linuxsystem.md)
+* [Linux commands](linux_commands.md)
 * [ubuntu tips](ubuntutips.md)
 * [DOS commands](doscommands.md)
 * [gcc](gcctips.md)
